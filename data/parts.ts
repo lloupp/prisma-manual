@@ -67,7 +67,7 @@ export const parts: Part[] = [
     position: 'Cabeçote do motor - sobre as velas',
     description: 'Bobina de ignição individual para cada cilindro',
     symptoms: ['Motor falhando', 'Luz de injeção acesa', 'Dificuldade para partir'],
-    guideIds: ['guide-spark-plugs'],
+    guideIds: ['guide-ignition-coils'],
     replacementInterval: 'A cada 60.000km',
     priceRange: 'R$ 180 - R$ 350 cada'
   },
@@ -95,7 +95,7 @@ export const parts: Part[] = [
     position: 'Parte frontal do compartimento do motor',
     description: 'Radiador de arrefecimento do motor 1.0L',
     symptoms: ['Motor esquentando', 'Vazamento de líquido', 'Aquecimento excessivo'],
-    guideIds: ['guide-coolant'],
+    guideIds: ['guide-radiator'],
     replacementInterval: 'A cada 100.000km',
     priceRange: 'R$ 450 - R$ 850'
   },
@@ -109,7 +109,7 @@ export const parts: Part[] = [
     position: 'Cabeçote do motor - entrada do radiador',
     description: 'Termostato de cera para controle de temperatura',
     symptoms: ['Motor demorando para aquecer', 'Motor esquentando', 'Aquecimento irregular'],
-    guideIds: ['guide-coolant'],
+    guideIds: ['guide-thermostat'],
     replacementInterval: 'A cada 80.000km',
     priceRange: 'R$ 65 - R$ 120'
   },
@@ -165,7 +165,7 @@ export const parts: Part[] = [
     position: 'Eixo do limpiador no para-brisa',
     description: 'Braço do limpador do para-brisa',
     symptoms: ['Palheta não encostando no vidro', 'Movimento irregular'],
-    guideIds: ['guide-wiper-blades'],
+    guideIds: ['guide-wiper-arms'],
     replacementInterval: 'A cada 3 anos ou conforme necessidade',
     priceRange: 'R$ 65 - R$ 150 cada'
   },
@@ -193,7 +193,7 @@ export const parts: Part[] = [
     position: 'Painel interno - lado do condutor',
     description: 'Caixa de fusíveis interna do veículo',
     symptoms: ['Fusíveis queimando frequentemente', 'Componentes elétricos parando de funcionar'],
-    guideIds: ['guide-fuses'],
+    guideIds: ['guide-fuse-box'],
     replacementInterval: 'Somente quando necessário',
     priceRange: 'R$ 180 - R$ 350'
   },

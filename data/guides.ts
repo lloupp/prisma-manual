@@ -1044,10 +1044,348 @@ export const guides = [
     ],
     professionalHelp: 'Esse serviço exige ferramenta e procedimento corretos; se houver dúvida, procure oficina especializada.'
   },
-  {
-    id: 'guide-ball-joints',
-    partId: 'part-ball-joints',
-    title: 'Substituição das Articulações da Suspensão',
+{
+  id: 'guide-ignition-coils',
+  partId: 'part-ignition-coils',
+  title: 'Substituição das Bobinas de Ignição',
+  description: 'Guia para trocar as bobinas de ignição defeituosas que causam falhas no motor.',
+  difficulty: 'medium',
+  estimatedTime: '45min',
+  estimatedTimeMinutes: 45,
+  tools: ['Chave de fenda', 'Chave 10mm', 'Alicate', 'Pinça', 'Multímetro (opcional)'],
+  materials: ['Bobinas de ignição novas (4 unidades)'],
+  steps: [
+    {
+      stepNumber: 1,
+      title: 'Desconexão da bateria',
+      description: 'Desligue o cabo negativo da bateria para evitar curto-circuito.',
+      imageUrl: '',
+      status: 'pending',
+      tips: ['Aguarde alguns minutos antes de trabalhar no sistema de ignição.'],
+      warnings: ['Nunca trabalhe no sistema de ignição com a bateria conectada.']
+    },
+    {
+      stepNumber: 2,
+      title: 'Localização das bobinas',
+      description: 'Abra o capô e localize as 4 bobinas de ignição sobre o cabeçote, próximas às velas.',
+      imageUrl: '',
+      status: 'pending',
+      tips: ['Fotografe a posição dos conectores antes de desconectar.'],
+      warnings: []
+    },
+    {
+      stepNumber: 3,
+      title: 'Remoção das bobinas',
+      description: 'Desconecte o conector elétrico de cada bobina e retire os parafusos de fixação com chave 10mm.',
+      imageUrl: '',
+      status: 'pending',
+      tips: ['Trabalhe em uma bobina por vez para não misturar a ordem.'],
+      warnings: []
+    },
+    {
+      stepNumber: 4,
+      title: 'Instalação das novas bobinas',
+      description: 'Posicione a bobina nova, recoloque os parafusos e reconecte o chicote elétrico.',
+      imageUrl: '',
+      status: 'pending',
+      tips: ['Verifique se a bobina está bem assentada antes de apertar.'],
+      warnings: ['Não force os conectores para não danificar o soquete.']
+    },
+    {
+      stepNumber: 5,
+      title: 'Teste e verificação',
+      description: 'Conecte a bateria, ligue o motor e observe se a luz de injeção apaga. Faça teste de aceleração.',
+      imageUrl: '',
+      status: 'pending',
+      tips: ['Se a luz de falha persistir, verifique as bobinas com multímetro.'],
+      warnings: []
+    }
+  ],
+  precautions: [
+    'Desconecte sempre o cabo negativo da bateria antes de trabalhar.',
+    'Utilize bobinas compatíveis com o motor 1.0L 8V do Prisma.'
+  ],
+  commonIssues: [
+    'Mau contato no conector após montagem.',
+    'Bobina incompatível causando falha na ignição.'
+  ],
+  professionalHelp: 'Se houver falha recorrente após a troca, procure um eletricista automotivo para diagnóstico completo.'
+},
+{
+  id: 'guide-thermostat',
+  partId: 'part-thermostat',
+  title: 'Substituição do Termostato',
+  description: 'Como trocar o termostato com defeito que compromete a regulação da temperatura do motor.',
+  difficulty: 'medium',
+  estimatedTime: '60min',
+  estimatedTimeMinutes: 60,
+  tools: ['Chave de fenda', 'Chave 10mm', 'Chave 13mm', 'Pano limpo', 'Recipiente para líquido'],
+  materials: ['Termostato novo', 'Junta/anel de vedação', 'Fluido de arrefecimento para reposição'],
+  steps: [
+    {
+      stepNumber: 1,
+      title: 'Resfriamento do sistema',
+      description: 'Aguarde o motor esfriar completamente antes de iniciar o serviço.',
+      imageUrl: '',
+      status: 'pending',
+      tips: ['Não trabalhe com o motor quente para evitar queimaduras.'],
+      warnings: ['O líquido de arrefecimento pode estar quente e sob pressão.']
+    },
+    {
+      stepNumber: 2,
+      title: 'Drenagem parcial',
+      description: 'Abra a tampa do vaso expansor e drene quantidade suficiente para acessar o termostato.',
+      imageUrl: '',
+      status: 'pending',
+      tips: ['Coloque recipiente sob o motor para coletar o líquido.'],
+      warnings: []
+    },
+    {
+      stepNumber: 3,
+      title: 'Acesso e remoção do termostato',
+      description: 'Localize a carcaça do termostato na saída do motor, solte as abraçadeiras e retire o componente antigo.',
+      imageUrl: '',
+      status: 'pending',
+      tips: ['Observe a posição da marca de fluxo antes de remover.'],
+      warnings: ['Não force mangueiras para não quebrar os encaixes.']
+    },
+    {
+      stepNumber: 4,
+      title: 'Instalação do termostato novo',
+      description: 'Coloque o novo termostato na posição correta com a mola voltada para baixo, recoloque a junta e as mangueiras.',
+      imageUrl: '',
+      status: 'pending',
+      tips: ['Confirme que o sentido de fluxo está correto (indicado por seta ou marca).'],
+      warnings: ['Uma instalação invertida causa superaquecimento.']
+    },
+    {
+      stepNumber: 5,
+      title: 'Reabastecimento e teste',
+      description: 'Complete o nível do líquido de arrefecimento, ligue o motor e observe a temperatura até o termostato abrir.',
+      imageUrl: '',
+      status: 'pending',
+      tips: ['O motor deve atingir a temperatura de trabalho em alguns minutos.'],
+      warnings: ['Observe se há vazamentos nas conexões após o aquecimento.']
+    }
+  ],
+  precautions: [
+    'Nunca abra o sistema de arrefecimento com motor quente.',
+    'Descarte o líquido drenado corretamente.',
+    'Use termostato com temperatura de abertura correta (geralmente 88°C).'
+  ],
+  commonIssues: [
+    'Termostato instalado invertido causando superaquecimento imediato.',
+    'Vazamento por junta mal posicionada.'
+  ],
+  professionalHelp: 'Se o motor continuar esquentando após a troca, verifique a bomba d\'água e o radiador.'
+},
+{
+  id: 'guide-radiator',
+  partId: 'part-radiator',
+  title: 'Substituição do Radiador',
+  description: 'Guia para trocar o radiador danificado ou com vazamento no sistema de arrefecimento.',
+  difficulty: 'hard',
+  estimatedTime: '120min',
+  estimatedTimeMinutes: 120,
+  tools: ['Chave de fenda', 'Jogo de chaves 10mm e 13mm', 'Alicate', 'Bandeja para peças', 'Pano limpo'],
+  materials: ['Radiador novo', 'Mangueiras novas se necessário', 'Fluido de arrefecimento (4L)', 'Juntas ou vedadores'],
+  steps: [
+    {
+      stepNumber: 1,
+      title: 'Drenagem do sistema',
+      description: 'Com o motor frio, drene todo o líquido de arrefecimento abrindo a válvula na base do radiador.',
+      imageUrl: '',
+      status: 'pending',
+      tips: ['Coloque recipiente grande para recolher os 4,5L de líquido.'],
+      warnings: []
+    },
+    {
+      stepNumber: 2,
+      title: 'Remoção de componentes frontais',
+      description: 'Remova a grade dianteira, osfaróis e os defletores plásticos que bloqueiam o acesso ao radiador.',
+      imageUrl: '',
+      status: 'pending',
+      tips: ['Organize parafusos e clipes para não perder nenhuma peça.'],
+      warnings: []
+    },
+    {
+      stepNumber: 3,
+      title: 'Desconexão das mangueiras e conectores',
+      description: 'Solte as abraçadeiras das mangueiras superior e inferior, e desconecte o conector do eletroventilador.',
+      imageUrl: '',
+      status: 'pending',
+      tips: ['Marque as mangueiras para não inverter na montagem.'],
+      warnings: ['Evite forçar as mangueiras velhas que podem estar endurecidas.']
+    },
+    {
+      stepNumber: 4,
+      title: 'Retirada do radiador',
+      description: 'Remova os parafusos de fixação e levante o radiador com cuidado para não danificar as aletas.',
+      imageUrl: '',
+      status: 'pending',
+      tips: ['Verifique o estado daspresilhas de borracha antivibrração.'],
+      warnings: []
+    },
+    {
+      stepNumber: 5,
+      title: 'Instalação do radiador novo',
+      description: 'Posicione o radiador novo com as presilhas, reconecte mangueiras, ventilador e instale os componentes frontais.',
+      imageUrl: '',
+      status: 'pending',
+      tips: ['Não aperte demais as abraçadeiras das mangueiras.'],
+      warnings: []
+    },
+    {
+      stepNumber: 6,
+      title: 'Reabastecimento e sangria',
+      description: 'Coloque o líquido de arrefecimento, ligue o motor e deixe o sistema circular até o eletroventilador acionar.',
+      imageUrl: '',
+      status: 'pending',
+      tips: ['Complete o nível após o primeiro aquecimento e verifique vazamentos.'],
+      warnings: ['Nunca dirija com o nível de líquido baixo ou com superaquecimento.']
+    }
+  ],
+  precautions: [
+    'Desconecte a bateria antes de trabalhar na parte elétrica.',
+    'Nunca opere o motor sem o líquido de arrefecimento.',
+    'Descarte o líquido velho corretamente.'
+  ],
+  commonIssues: [
+    'Vazamento nas conexões das mangueiras.',
+    'Eletroventilador não reconectado corretamente.'
+  ],
+  professionalHelp: 'Este serviço exige conhecimento mecânico; se houver dúvida, procure oficina especializada.'
+},
+{
+  id: 'guide-wiper-arms',
+  partId: 'part-wiper-arms',
+  title: 'Substituição dos Braços do Limpador',
+  description: 'Como trocar braços de limpador que estão tortos, com folga ou com regulagem incorreta.',
+  difficulty: 'easy',
+  estimatedTime: '20min',
+  estimatedTimeMinutes: 20,
+  tools: ['Chave de fenda', 'Alicate de ponta', 'Chave 13mm (se aplicável)'],
+  materials: ['Braço do limpador novo', 'Retentor/vedador do eixo se necessário'],
+  steps: [
+    {
+      stepNumber: 1,
+      title: 'Posicionamento para serviço',
+      description: 'Levante os braços do limpador e posicione as palhetas na posição de teste ou remoção (conforme o veículo).',
+      imageUrl: '',
+      status: 'pending',
+      tips: ['Coloque um pano sobre o para-brisa para proteger em caso de queda do braço.'],
+      warnings: ['Cuidado para não deixar o braço voltar rápido e quebrar o vidro.']
+    },
+    {
+      stepNumber: 2,
+      title: 'Remoção do braço antigo',
+      description: 'Remova a tampa decorativa do eixo, solte a porca de fixação com chave 13mm e puxe o braço para fora.',
+      imageUrl: '',
+      status: 'pending',
+      tips: ['Se o braço estiver preso, gire levemente para soltar.'],
+      warnings: []
+    },
+    {
+      stepNumber: 3,
+      title: 'Instalação do braço novo',
+      description: 'Limpe o eixo, posicione o braço novo na mesma angulação aproximada e aperte a porca sem totalmente fixer.',
+      imageUrl: '',
+      status: 'pending',
+      tips: ['Ative o limpador para verificar a posição antes do aperto final.'],
+      warnings: []
+    },
+    {
+      stepNumber: 4,
+      title: 'Ajuste e fixação final',
+      description: 'Ligue a ignição (sem motor) para ativar o limpador e ajuste a posição do braço para varrer corretamente o para-brisa.',
+      imageUrl: '',
+      status: 'pending',
+      tips: ['O braço deve varrer cerca de 2-3cm da borda do para-brisa e deixar uma faixa limpa.'],
+      warnings: ['Desligue o limpador antes de soltá-lo para não danificar o vidro.']
+    }
+  ],
+  precautions: [
+    'Ao trabalhar sem palheta, cuidado para o braço não voltar e quebrar o vidro.',
+    'Verifique o ângulo de varredura antes de fixer definitivamente.'
+  ],
+  commonIssues: [
+    'Braço mal posicionado gerando falha na limpeza do para-brisa.',
+    'Porca de fixação afrouxando com o tempo.'
+  ],
+  professionalHelp: 'Se o eixo do limpador estiver com folga no para-brisa, pode ser necessário substituir o conjunto completo.'
+},
+{
+  id: 'guide-fuse-box',
+  partId: 'part-fuse-box',
+  title: 'Substituição da Caixa de Fusíveis',
+  description: 'Guia para trocar a caixa de fusíveis com defeito ou queimada que afeta múltiplos circuitos.',
+  difficulty: 'medium',
+  estimatedTime: '40min',
+  estimatedTimeMinutes: 40,
+  tools: ['Chave Philips', 'Chave de fenda', 'Multímetro', 'Pinça elétrica'],
+  materials: ['Caixa de fusíveis nova', 'Fusíveis de reposição se não vierem inclusos'],
+  steps: [
+    {
+      stepNumber: 1,
+      title: 'Identificação do problema',
+      description: 'Verifique se múltiplos circuitos estão falhando simultaneamente e localize a caixa de fusíveis.',
+      imageUrl: '',
+      status: 'pending',
+      tips: ['Inspecione visualmente a caixa em busca de marcas de queimado ou derretido.'],
+      warnings: ['Antes de trocar, verifique se não há curto-circuito na origem do problema.']
+    },
+    {
+      stepNumber: 2,
+      title: 'Desconexão da bateria',
+      description: 'Desligue o cabo negativo da bateria antes de mexer na caixa de fusíveis.',
+      imageUrl: '',
+      status: 'pending',
+      tips: [],
+      warnings: ['Nunca trabalhe no sistema elétrico com a bateria conectada.']
+    },
+    {
+      stepNumber: 3,
+      title: 'Remoção da caixa antiga',
+      description: 'Tire a tampa da caixa, fotografe a disposição dos fusíveis, desconecte todos os chicotes e remova a caixa.',
+      imageUrl: '',
+      status: 'pending',
+      tips: ['Etiquetar cada chicote facilita a remontagem.'],
+      warnings: ['Nãoforce os conectores para não danificar os terminais.']
+    },
+    {
+      stepNumber: 4,
+      title: 'Instalação da caixa nova',
+      description: 'Posicione a caixa nova, reconecte todos os chicotes na ordem correta e recoloque os fusíveis conforme foto.',
+      imageUrl: '',
+      status: 'pending',
+      tips: ['Confirme que cada fusível está na amperagem correta.'],
+      warnings: ['Fusíveis de amperagem errada podem causar falhas ou danos.']
+    },
+    {
+      stepNumber: 5,
+      title: 'Teste dos circuitos',
+      description: 'Conecte a bateria, ligue sistemas um a um e verifique se todos os circuitos funcionam corretamente.',
+      imageUrl: '',
+      status: 'pending',
+      tips: ['Se algum circuito não funcionar, verifique o fusível e as conexões.'],
+      warnings: []
+    }
+  ],
+  precautions: [
+    'Desconecte a bateria antes de manipular a caixa de fusíveis.',
+    'Verifique se não há curto-circuito antes de instalar a caixa nova.',
+    'Mantenha cada fusível na posição correta conforme amperagem.'
+  ],
+  commonIssues: [
+    'Um ou mais circuitos não funcionam após a remontagem por conector mal encaixado.',
+    'Fusível de amperagem incorreta causando falha recorrente.'
+  ],
+  professionalHelp: 'Se múltiplos circuitos continuarem falhando após a troca, procure um eletricista automotivo.'
+},
+{
+  id: 'guide-ball-joints',
+  partId: 'part-ball-joints',
+  title: 'Substituição das Articulações da Suspensão',
     description: 'Passo a passo para trocar pivôs e articulações com folga na suspensão do Prisma.',
     difficulty: 'hard',
     estimatedTime: '90min',
