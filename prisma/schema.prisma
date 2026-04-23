@@ -1,0 +1,136 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Vehicle {
+  id          String   @id
+  name        String
+  year        Int
+  model       String
+  engine      String
+  fuelType    String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  systems     System[]
+  views       CarView[]
+}
+
+model System {
+  id            String   @id
+  vehicleId     String
+  name          String
+  categoryType  String
+  description   String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  vehicle       Vehicle  @relation(fields: [vehicleId], references: [id])
+  parts         Part[]
+}
+
+model Part {
+  id                  String   @id
+  systemId            String
+  name                String
+  partNumber          String
+  oemNumber           String
+  brand               String
+  position            String
+  description         String
+  replacementInterval String
+  priceRange          String
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  system              System   @relation(fields: [systemId], references: [id])
+  guides              Guide[]
+
+  @@index([systemId])
+}
+
+model Guide {
+  id                  String   @id
+  partId              String
+  title               String
+  description         String
+  difficulty          String
+  estimatedTime       String
+  estimatedTimeMinutes Int
+  imageUrl            String?
+  precautions         String   // JSON array stored as string
+  commonIssues        String   // JSON array stored as string
+  professionalHelp    String
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  part                Part     @relation(fields: [partId], references: [id])
+  steps               GuideStep[]
+
+  @@index([partId])
+}
+
+model GuideStep {
+  id          String   @id
+  guideId     String
+  stepNumber  Int
+  title       String
+  description String
+  imageUrl    String?
+  tips        String   // JSON array
+  warnings    String   // JSON array
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  guide       Guide    @relation(fields: [guideId], references: [id], onDelete: Cascade)
+
+  @@index([guideId])
+}
+
+model CarView {
+  id              String   @id
+  vehicleId       String
+  name            String
+  viewType        String
+  description     String
+  cameraPositionX Float
+  cameraPositionY Float
+  cameraPositionZ Float
+  cameraTargetX   Float
+  cameraTargetY   Float
+  cameraTargetZ   Float
+  thumbnailUrl    String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  vehicle         Vehicle  @relation(fields: [vehicleId], references: [id])
+  hotspots        Hotspot[]
+}
+
+model Hotspot {
+  id      String  @id
+  viewId  String
+  area    String
+  x       Float
+  y       Float
+
+  view    CarView @relation(fields: [viewId], references: [id])
+
+  @@index([viewId])
+}
+
+model User {
+  id        String   @id
+  email     String   @unique
+  password  String
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

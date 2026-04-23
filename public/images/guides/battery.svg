@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#16213e"/>
+    </linearGradient>
+  </defs>
+  <rect fill="url(#bg)" width="400" height="300"/>
+
+  <!-- Bateria -->
+  <rect x="100" y="90" width="200" height="120" rx="10" fill="#4a4a4a" stroke="#5a5a5a" stroke-width="2"/>
+
+  <!-- Terminais -->
+  <rect x="120" y="70" width="50" height="30" rx="5" fill="#6a6a6a"/>
+  <rect x="230" y="70" width="50" height="30" rx="5" fill="#8a5a5a"/>
+  <text x="145" y="90" text-anchor="middle" fill="#4a8" font-size="12" font-weight="bold">+</text>
+  <text x="255" y="90" text-anchor="middle" fill="#a44" font-size="12" font-weight="bold">−</text>
+
+  <!-- Tampa -->
+  <rect x="110" y="95" width="180" height="20" rx="5" fill="#3a3a3a"/>
+  <rect x="160" y="100" width="80" height="10" rx="3" fill="#2a2a2a"/>
+
+  <!-- Nivel -->
+  <rect x="130" y="130" width="140" height="60" rx="5" fill="#1a2a3a"/>
+  <rect x="135" y="175" width="130" height="10" fill="#3a6a8a"/>
+  <text x="200" y="160" text-anchor="middle" fill="#6a8" font-size="10">ELETROLITO</text>
+
+  <!-- Cabos -->
+  <path d="M145 90 Q145 50 80 50" fill="none" stroke="#4a8" stroke-width="6"/>
+  <path d="M255 90 Q255 50 320 50" fill="none" stroke="#a44" stroke-width="6"/>
+
+  <!-- Etiqueta -->
+  <rect x="140" y="195" width="120" height="25" rx="3" fill="#3a3a3a"/>
+  <text x="200" y="212" text-anchor="middle" fill="#888" font-size="10">60Ah 12V</text>
+
+  <text x="200" y="40" text-anchor="middle" fill="#00d4ff" font-size="18" font-weight="bold">Bateria</text>
+  <text x="200" y="270" text-anchor="middle" fill="#666" font-size="11">Sistema Elétrico</text>
+</svg>

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#16213e"/>
+    </linearGradient>
+  </defs>
+  <rect fill="url(#bg)" width="400" height="300"/>
+
+  <!-- Vela de ignição -->
+  <rect x="170" y="80" width="60" height="120" rx="8" fill="#5a5a7a" stroke="#6a6a8a" stroke-width="2"/>
+  <rect x="185" y="60" width="30" height="25" rx="3" fill="#4a4a6a"/>
+  <rect x="180" y="195" width="40" height="50" rx="5" fill="#3d3d5c"/>
+  <circle cx="200" cy="220" r="12" fill="#2d4a6a" stroke="#4a6a8a" stroke-width="2"/>
+  <circle cx="200" cy="220" r="5" fill="#1a1a2e"/>
+
+  <!-- Eletrodo -->
+  <line x1="200" y1="232" x2="200" y2="260" stroke="#6a8a4a" stroke-width="3"/>
+  <circle cx="200" cy="265" r="4" fill="#6a8a4a"/>
+
+  <!-- Bobina -->
+  <rect x="140" y="100" width="120" height="40" rx="5" fill="#4a3a5a" stroke="#5a4a6a" stroke-width="2"/>
+  <text x="200" y="125" text-anchor="middle" fill="#a8a" font-size="11">BOBINA</text>
+
+  <!-- Fio -->
+  <path d="M240 120 Q300 120 300 160" fill="none" stroke="#6a6a8a" stroke-width="4"/>
+
+  <!-- Chave -->
+  <line x1="50" y1="250" x2="90" y2="250" stroke="#888" stroke-width="4"/>
+  <circle cx="50" cy="250" r="8" fill="none" stroke="#888" stroke-width="3"/>
+  <text x="70" y="275" text-anchor="middle" fill="#888" font-size="10">Chave 10mm</text>
+
+  <text x="200" y="40" text-anchor="middle" fill="#00d4ff" font-size="18" font-weight="bold">Velas de Ignição</text>
+  <text x="200" y="280" text-anchor="middle" fill="#666" font-size="11">NGK BPR6ES</text>
+</svg>

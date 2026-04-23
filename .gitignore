@@ -1,0 +1,42 @@
+# Dependencies
+node_modules
+
+# Agent/session metadata ( Hermes, Codex, Playwright, Claude Code)
+.omc/
+.codex
+.playwright-mcp/
+
+# Environment variables (contains DATABASE_URL and JWT_SECRET)
+.env
+.env.local
+.env.*.local
+
+# Build output
+.next
+out
+build
+dist
+
+# Database (local SQLite - use migrations for schema)
+prisma/dev.db
+prisma/dev.db-journal
+
+# Prisma generated
+/lib/generated/prisma
+
+# IDE
+.idea
+.vscode
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# TypeScript build info
+*.tsbuildinfo

@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#16213e"/>
+    </linearGradient>
+  </defs>
+  <rect fill="url(#bg)" width="400" height="300"/>
+
+  <!-- Disco de freio -->
+  <circle cx="200" cy="140" r="70" fill="#4a4a5a" stroke="#5a5a6a" stroke-width="2"/>
+  <circle cx="200" cy="140" r="45" fill="#3a3a4a"/>
+  <circle cx="200" cy="140" r="20" fill="#2a2a3a"/>
+  <circle cx="200" cy="140" r="8" fill="#1a1a2e"/>
+
+  <!-- Ventilações -->
+  <g stroke="#2a2a3a" stroke-width="3">
+    <line x1="200" y1="75" x2="200" y2="95"/>
+    <line x1="200" y1="185" x2="200" y2="205"/>
+    <line x1="135" y1="140" x2="155" y2="140"/>
+    <line x1="245" y1="140" x2="265" y2="140"/>
+    <line x1="154" y1="94" x2="168" y2="108"/>
+    <line x1="232" y1="172" x2="246" y2="186"/>
+    <line x1="154" y1="186" x2="168" y2="172"/>
+    <line x1="232" y1="108" x2="246" y2="94"/>
+  </g>
+
+  <!-- Pinça -->
+  <rect x="220" y="100" width="50" height="80" rx="8" fill="#8a4a4a" stroke="#9a5a5a" stroke-width="2"/>
+  <rect x="225" y="90" width="15" height="20" rx="3" fill="#6a3a3a"/>
+  <text x="245" y="145" text-anchor="middle" fill="#caa" font-size="10">PINÇA</text>
+
+  <!-- Pastilha -->
+  <rect x="175" y="110" width="40" height="60" rx="5" fill="#6a5a4a" stroke="#7a6a5a" stroke-width="2"/>
+  <rect x="180" y="115" width="30" height="50" rx="3" fill="#8a7a6a"/>
+  <text x="195" y="143" text-anchor="middle" fill="#3a3a4a" font-size="9">PASTILHA</text>
+
+  <text x="200" y="40" text-anchor="middle" fill="#00d4ff" font-size="18" font-weight="bold">Pastilhas de Freio</text>
+  <text x="200" y="280" text-anchor="middle" fill="#666" font-size="11">Sistema de Freios Dianteiros</text>
+</svg>

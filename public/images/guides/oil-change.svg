@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#16213e"/>
+    </linearGradient>
+  </defs>
+  <rect fill="url(#bg)" width="400" height="300"/>
+
+  <!-- Motor block -->
+  <rect x="100" y="100" width="200" height="120" rx="10" fill="#3d3d5c" stroke="#4a4a6a" stroke-width="2"/>
+  <rect x="130" y="80" width="140" height="30" rx="5" fill="#4a4a6a"/>
+
+  <!-- Filtro de óleo -->
+  <circle cx="260" cy="160" r="25" fill="#5a5a7a" stroke="#6a6a8a" stroke-width="2"/>
+  <circle cx="260" cy="160" r="15" fill="#1a1a2e"/>
+  <text x="260" y="210" text-anchor="middle" fill="#888" font-size="12">Filtro</text>
+
+  <!-- Óleo -->
+  <rect x="140" y="140" width="80" height="40" fill="#2d5a3d" rx="3"/>
+  <text x="180" y="165" text-anchor="middle" fill="#6a8" font-size="11">ÓLEO</text>
+
+  <!-- Bujão -->
+  <circle cx="180" cy="200" r="12" fill="#6a6a8a"/>
+  <circle cx="180" cy="200" r="6" fill="#1a1a2e"/>
+  <text x="180" y="230" text-anchor="middle" fill="#888" font-size="10">Bujão</text>
+
+  <!-- Ferramentas -->
+  <line x1="50" y1="250" x2="90" y2="250" stroke="#888" stroke-width="3"/>
+  <line x1="70" y1="240" x2="70" y2="260" stroke="#888" stroke-width="3"/>
+
+  <!-- Texto -->
+  <text x="200" y="40" text-anchor="middle" fill="#00d4ff" font-size="18" font-weight="bold">Troca de Óleo</text>
+  <text x="200" y="280" text-anchor="middle" fill="#666" font-size="11">Chevrolet Prisma 1.0</text>
+</svg>
