@@ -16,7 +16,7 @@ export const systems: SystemCategory[] = [
     name: 'Sistema de Ar do Motor',
     categoryType: SystemCategoryType.ENGINE,
     description: 'Sistema de admissão de ar do motor',
-    partIds: ['part-air-filter']
+    partIds: ['part-air-filter', 'part-throttle-body']
   },
   {
     id: 'sys-engine-ignition',
@@ -24,7 +24,7 @@ export const systems: SystemCategory[] = [
     name: 'Sistema de Ignição',
     categoryType: SystemCategoryType.ENGINE,
     description: 'Sistema de ignição incluindo velas e bobinas',
-    partIds: ['part-spark-plugs', 'part-ignition-coils']
+    partIds: ['part-spark-plugs', 'part-ignition-coils', 'part-timing-belt', 'part-clutch-cable']
   },
   {
     id: 'sys-cooling',
@@ -80,6 +80,6 @@ export const systems: SystemCategory[] = [
     name: 'Sistema de Suspensão',
     categoryType: SystemCategoryType.SUSPENSION,
     description: 'Sistema de suspensão do veículo',
-    partIds: ['part-shock-absorbers', 'part-ball-joints']
+    partIds: ['part-shock-absorbers', 'part-ball-joints', 'part-cv-boot', 'part-power-steering-fluid']
   }
 ];

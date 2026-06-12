@@ -1439,6 +1439,328 @@ export const guides = [
       'Parafusos antigos sem torque adequado.'
     ],
     professionalHelp: 'Se houver dificuldade na extração ou montagem, leve o carro a uma oficina de suspensão.'
+  },
+  {
+    id: 'guide-throttle-body',
+    partId: 'part-throttle-body',
+    title: 'Limpeza do Corpo de Borboleta',
+    description: 'Procedimento para limpar o corpo de borboleta e corrigir marcha lenta irregular ou dificuldade de partida no Chevrolet Prisma 1.0.',
+    difficulty: 'medium',
+    estimatedTime: '45min',
+    estimatedTimeMinutes: 45,
+    tools: ['Chave Torx T20', 'Chave soquete 10mm', 'Pano sem fiapos', 'Escova de cerdas macias', 'Seringa ou conta-gotas'],
+    materials: ['Limpa corpo de borboleta (spray)', 'Pano limpo'],
+    steps: [
+      {
+        stepNumber: 1,
+        title: 'Preparação',
+        description: 'Desligue o motor, desconecte o cabo negativo da bateria e aguarde o motor esfriar completamente.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Fotografe os dutos antes de desmontar para facilitar a remontagem.'],
+        warnings: ['Nunca limpe o corpo de borboleta com o motor ligado.']
+      },
+      {
+        stepNumber: 2,
+        title: 'Remoção do duto de admissão',
+        description: 'Afrouxe as abraçadeiras e remova o duto flexível de borracha que conecta o filtro de ar ao corpo de borboleta.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Guarde as abraçadeiras em local seguro.'],
+        warnings: []
+      },
+      {
+        stepNumber: 3,
+        title: 'Limpeza da borboleta',
+        description: 'Aplique o limpa corpo de borboleta na borboleta aberta (abra manualmente com o dedo) e remova os depósitos de carbono com a escova e pano.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Limpe a sede da borboleta com movimentos circulares.', 'Abra a borboleta com os dedos para limpar a parte interna do canal.'],
+        warnings: ['Não use produto abrasivo que possa arranhar o alumínio.']
+      },
+      {
+        stepNumber: 4,
+        title: 'Remontagem e resetagem do ECU',
+        description: 'Reinstale o duto de admissão, reconecte a bateria e ligue o motor para o ECU recalibrar a posição de marcha lenta.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Após ligar, o carro pode apresentar marcha lenta irregular por alguns minutos até o ECU adaptar — isso é normal.'],
+        warnings: ['Não acelere em excesso nos primeiros 5 minutos após a limpeza.']
+      },
+      {
+        stepNumber: 5,
+        title: 'Verificação da marcha lenta',
+        description: 'Com o motor em temperatura normal, verifique se a marcha lenta estabiliza entre 750 e 850 RPM.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Se não estabilizar, desconecte a bateria por 10 minutos para resetar o ECU.'],
+        warnings: []
+      }
+    ],
+    precautions: [
+      'Não utilize solventes agressivos que possam danificar as vedações internas.',
+      'Desconecte sempre a bateria antes da limpeza.',
+      'Evite contato de líquidos com o conector elétrico do sensor TPS.'
+    ],
+    commonIssues: [
+      'Marcha lenta instável após limpeza — normal por alguns minutos até o ECU adaptar.',
+      'Conector do TPS danificado durante remoção do duto.',
+      'Abraçadeiras mal posicionadas causando falsa aspiração de ar.'
+    ],
+    professionalHelp: 'Se a marcha lenta continuar irregular após a limpeza, o sensor TPS pode estar com defeito — procure um mecânico.'
+  },
+  {
+    id: 'guide-timing-belt',
+    partId: 'part-timing-belt',
+    title: 'Troca da Correia Dentada',
+    description: 'Procedimento completo para substituir a correia dentada, tensor e bomba d\'água do motor 1.0L 8V Flexpower do Prisma.',
+    difficulty: 'hard',
+    estimatedTime: '180min',
+    estimatedTimeMinutes: 180,
+    tools: ['Jogo de soquetes', 'Chave fixa 17mm e 19mm', 'Torquímetro', 'Destravador de polia', 'Macaco e cavalete', 'Chave Allen 6mm'],
+    materials: ['Kit correia dentada (correia + tensor + bomba d\'água)', 'Fluido de arrefecimento', 'Silicone vedante'],
+    steps: [
+      {
+        stepNumber: 1,
+        title: 'Preparação e acesso',
+        description: 'Eleve o veículo com segurança. Remova a roda dianteira direita e a proteção inferior do motor para acessar a cobertura da correia.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Marque a posição das polias com tinta ou caneta marcadora antes de remover a correia.'],
+        warnings: ['Apoie o veículo em cavaletes — nunca trabalhe apenas com o macaco hidráulico.']
+      },
+      {
+        stepNumber: 2,
+        title: 'Alinhamento no PMS',
+        description: 'Gire manualmente o motor pela polia do virabrequim até o cilindro 1 atingir o Ponto Morto Superior (PMS). Confirme com as marcas de referência no bloco e no cabeçote.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Nunca gire o motor pela polia do eixo comando — sempre pelo virabrequim.'],
+        warnings: ['Com a correia removida, não gire o eixo comando ou virabrequim separadamente para evitar contato de válvulas com pistões.']
+      },
+      {
+        stepNumber: 3,
+        title: 'Remoção da correia antiga',
+        description: 'Remova a cobertura da correia dentada, afrouxe o tensor e retire a correia. Substitua também o tensor e a bomba d\'água enquanto o conjunto está aberto.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Aproveite para inspecionar o estado dos retentores das polias.'],
+        warnings: ['Descarte a correia usada — nunca reutilize uma correia dentada.']
+      },
+      {
+        stepNumber: 4,
+        title: 'Instalação da correia nova',
+        description: 'Monte o tensor novo, instale a correia nova seguindo a ordem: virabrequim → bomba d\'água → tensionador → polia do eixo comando. Ajuste a tensão conforme especificação.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Verifique se as marcas de alinhamento estão corretas antes de tensionar.'],
+        warnings: ['Aperto incorreto do tensor compromete a vida útil da correia.']
+      },
+      {
+        stepNumber: 5,
+        title: 'Verificação e fechamento',
+        description: 'Gire o motor manualmente 2 voltas completas e verifique se as marcas de PMS ainda estão alinhadas. Reinstale a cobertura, a roda e a proteção inferior.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Complete o fluido de arrefecimento se a bomba d\'água foi substituída.'],
+        warnings: ['Antes de ligar o motor, sempre confirme o alinhamento das marcas de referência.']
+      }
+    ],
+    precautions: [
+      'A correia dentada é componente crítico de segurança — não economize com peças de procedência duvidosa.',
+      'Troque sempre o kit completo: correia + tensor + bomba d\'água.',
+      'Respeite rigorosamente o intervalo de troca de 60.000km.'
+    ],
+    commonIssues: [
+      'Motor não parte após a troca por marcas de PMS fora de posição.',
+      'Barulho após a troca por tensão incorreta do tensor.',
+      'Vazamento de água por vedação incorreta da bomba d\'água.'
+    ],
+    professionalHelp: 'A troca da correia dentada é serviço técnico avançado — se não tiver experiência, leve a um mecânico especializado.'
+  },
+  {
+    id: 'guide-cv-boot',
+    partId: 'part-cv-boot',
+    title: 'Verificação e Troca das Coifas do Homocinético',
+    description: 'Como inspecionar e substituir as coifas de borracha do homocinético para evitar danos ao semi-eixo do Prisma 1.0.',
+    difficulty: 'easy',
+    estimatedTime: '30min',
+    estimatedTimeMinutes: 30,
+    tools: ['Macaco e cavalete', 'Alicate de bico', 'Chave de fenda', 'Pano limpo'],
+    materials: ['Coifa nova com graxa inclusa', 'Abraçadeiras de fixação novas'],
+    steps: [
+      {
+        stepNumber: 1,
+        title: 'Inspeção visual',
+        description: 'Eleve o veículo e inspecione as coifas do homocinético dos dois lados. Procure por rachaduras, rasgos ou graxa espalhada nas rodas.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Gire o semi-eixo manualmente para inspecionar toda a extensão da coifa.'],
+        warnings: ['Apoie o veículo em cavaletes antes de trabalhar sob ele.']
+      },
+      {
+        stepNumber: 2,
+        title: 'Remoção da coifa danificada',
+        description: 'Corte as abraçadeiras antigas com o alicate. Deslize a coifa danificada para fora do semi-eixo e remova a graxa velha.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Identifique se é a coifa do lado da roda ou do câmbio — os tamanhos são diferentes.'],
+        warnings: ['Evite contaminar o homocinético com sujeira durante a remoção.']
+      },
+      {
+        stepNumber: 3,
+        title: 'Instalação da coifa nova',
+        description: 'Aplique toda a graxa do kit no homocinético, deslize a coifa nova no posicionamento correto e fixe as abraçadeiras novas.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Use toda a graxa que veio no kit — a quantidade é calibrada para o homocinético.'],
+        warnings: ['Aperte as abraçadeiras com firmeza para evitar perda de graxa.']
+      },
+      {
+        stepNumber: 4,
+        title: 'Teste em rodagem',
+        description: 'Abaixe o veículo, faça percurso curto executando curvas abertas e fechadas e escute se há ruído tipo clique.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Ruído de clique nas curvas pode indicar homocinético já danificado.'],
+        warnings: []
+      }
+    ],
+    precautions: [
+      'Coifa rasgada sem correção rápida pode inutilizar o homocinético inteiro.',
+      'Não use graxa diferente da específica para homocinético.'
+    ],
+    commonIssues: [
+      'Graxa insuficiente causando desgaste acelerado do homocinético.',
+      'Abraçadeira mal fixada causando fuga de graxa.',
+      'Homocinético já danificado quando a coifa foi encontrada rasgada.'
+    ],
+    professionalHelp: 'Se ouvir clique nas curvas após a troca da coifa, o homocinético precisará de substituição completa.'
+  },
+  {
+    id: 'guide-power-steering-fluid',
+    partId: 'part-power-steering-fluid',
+    title: 'Troca do Fluido da Direção Hidráulica',
+    description: 'Procedimento para substituir o fluido da direção hidráulica e manter o sistema de direção assistida do Prisma em bom funcionamento.',
+    difficulty: 'easy',
+    estimatedTime: '30min',
+    estimatedTimeMinutes: 30,
+    tools: ['Seringa ou pera de borracha', 'Pano limpo', 'Funil'],
+    materials: ['Fluido de direção hidráulica 500ml', 'Pano absorvente'],
+    steps: [
+      {
+        stepNumber: 1,
+        title: 'Localização do reservatório',
+        description: 'Abra o capô e localize o reservatório de fluido da direção hidráulica — frasco plástico translúcido com tampa marcada com símbolo de volante.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Verifique o nível com o motor frio para leitura precisa.'],
+        warnings: ['Motor deve estar desligado e frio antes de abrir o reservatório.']
+      },
+      {
+        stepNumber: 2,
+        title: 'Remoção do fluido antigo',
+        description: 'Com a seringa ou pera, aspire todo o fluido antigo do reservatório. Limpe o interior do reservatório com pano limpo.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Fluido escuro ou com cheiro queimado indica que a troca está atrasada.'],
+        warnings: ['Descarte o fluido antigo corretamente — não jogue no esgoto.']
+      },
+      {
+        stepNumber: 3,
+        title: 'Abastecimento com fluido novo',
+        description: 'Adicione fluido novo até o nível máximo indicado no reservatório usando um funil.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Não ultrapasse o nível máximo — excesso causa vazamento.'],
+        warnings: ['Nunca misture fluidos de especificações diferentes.']
+      },
+      {
+        stepNumber: 4,
+        title: 'Sangria e verificação final',
+        description: 'Ligue o motor e gire o volante de batente a batente 5 a 6 vezes para circular o fluido novo. Verifique o nível e complete se necessário.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Repita o giro do volante com o motor em marcha lenta.', 'Verifique se não há vazamentos ao redor do reservatório.'],
+        warnings: ['Não mantenha o volante no batente por mais de 3 segundos seguidos para não danificar a bomba.']
+      }
+    ],
+    precautions: [
+      'Nível baixo de fluido pode danificar a bomba de direção.',
+      'Use apenas fluido específico para direção hidráulica — nunca ATF ou óleo de motor.'
+    ],
+    commonIssues: [
+      'Volante ainda pesado após a troca — pode indicar desgaste na bomba.',
+      'Nível caindo rapidamente — verifique vazamentos nas mangueiras.'
+    ],
+    professionalHelp: 'Se o volante continuar pesado mesmo com fluido correto, a bomba da direção pode precisar de substituição.'
+  },
+  {
+    id: 'guide-clutch-cable',
+    partId: 'part-clutch-cable',
+    title: 'Troca do Cabo de Embreagem',
+    description: 'Passo a passo para substituir o cabo de embreagem com desgaste ou rompido no Chevrolet Prisma 1.0 com câmbio manual.',
+    difficulty: 'medium',
+    estimatedTime: '60min',
+    estimatedTimeMinutes: 60,
+    tools: ['Chave 10mm', 'Chave de fenda', 'Alicate', 'Lanterna', 'Pano limpo'],
+    materials: ['Cabo de embreagem novo', 'Graxa para cabos'],
+    steps: [
+      {
+        stepNumber: 1,
+        title: 'Verificação da regulagem atual',
+        description: 'Localize o pedal de embreagem e a porca de regulagem na extremidade do cabo. Anote ou fotografe a posição atual da regulagem.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['A folga correta do pedal é de 15 a 25mm antes de sentir resistência.'],
+        warnings: []
+      },
+      {
+        stepNumber: 2,
+        title: 'Remoção do cabo antigo',
+        description: 'Afrouxe a porca de regulagem do lado do câmbio e desencaixe o cabo do garfo. No pedal, desencaixe o terminal do cabo do pino do pedal.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Puxe o cabo com cuidado para não danificar a canaleta de passagem.'],
+        warnings: ['Verifique sinais de desgaste na canaleta — se danificada, troque também.']
+      },
+      {
+        stepNumber: 3,
+        title: 'Instalação do cabo novo',
+        description: 'Passe o cabo novo pelo mesmo trajeto do antigo. Aplique graxa nas pontas e encaixe primeiro no garfo do câmbio, depois no pedal.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Graxa nas pontas aumenta a vida útil e torna o acionamento mais suave.'],
+        warnings: ['Confirme que o cabo passou corretamente pela canaleta sem dobras bruscas.']
+      },
+      {
+        stepNumber: 4,
+        title: 'Regulagem da folga',
+        description: 'Ajuste a porca de regulagem até obter 15-25mm de folga no pedal antes de sentir resistência. Confirme que as marchas engajam suavemente.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Faça o teste com o motor desligado antes e depois com motor ligado.'],
+        warnings: ['Folga insuficiente mantém a embreagem parcialmente acionada, causando desgaste prematuro.']
+      },
+      {
+        stepNumber: 5,
+        title: 'Teste em movimento',
+        description: 'Faça percurso curto em local seguro testando o acionamento da embreagem e o engajamento de todas as marchas.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Faça nova verificação da folga após o primeiro percurso — o cabo novo pode acomodar ligeiramente.'],
+        warnings: []
+      }
+    ],
+    precautions: [
+      'Não deixe o cabo novo com dobras acentuadas no trajeto.',
+      'Ajuste correto da folga é essencial — excesso causa patinamento, insuficiência causa desgaste prematuro.'
+    ],
+    commonIssues: [
+      'Dificuldade em engatar marcha após a troca — verificar regulagem da folga.',
+      'Cabo partindo novamente cedo — verificar canaleta danificada.'
+    ],
+    professionalHelp: 'Se houver dificuldade para engatar marchas mesmo após regulagem correta, o disco de embreagem pode estar desgastado.'
   }
 ] as const;
 

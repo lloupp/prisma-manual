@@ -163,7 +163,7 @@ export default function CarViewer3D() {
         <svg
           viewBox="0 0 400 200"
           className="absolute inset-0 w-full h-full"
-          style={{ opacity: 0.18 }}
+          style={{ opacity: 0.38 }}
         >
           <VehicleShape viewType={activeViewData.viewType} />
         </svg>
