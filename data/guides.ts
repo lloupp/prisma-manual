@@ -1439,6 +1439,1638 @@ export const guides = [
       'Parafusos antigos sem torque adequado.'
     ],
     professionalHelp: 'Se houver dificuldade na extração ou montagem, leve o carro a uma oficina de suspensão.'
+  },
+  {
+    id: 'guide-throttle-body',
+    partId: 'part-throttle-body',
+    title: 'Limpeza do Corpo de Borboleta',
+    description: 'Procedimento para limpar o corpo de borboleta e corrigir marcha lenta irregular ou dificuldade de partida no Chevrolet Prisma 1.0.',
+    difficulty: 'medium',
+    estimatedTime: '45min',
+    estimatedTimeMinutes: 45,
+    tools: ['Chave Torx T20', 'Chave soquete 10mm', 'Pano sem fiapos', 'Escova de cerdas macias', 'Seringa ou conta-gotas'],
+    materials: ['Limpa corpo de borboleta (spray)', 'Pano limpo'],
+    steps: [
+      {
+        stepNumber: 1,
+        title: 'Preparação',
+        description: 'Desligue o motor, desconecte o cabo negativo da bateria e aguarde o motor esfriar completamente.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Fotografe os dutos antes de desmontar para facilitar a remontagem.'],
+        warnings: ['Nunca limpe o corpo de borboleta com o motor ligado.']
+      },
+      {
+        stepNumber: 2,
+        title: 'Remoção do duto de admissão',
+        description: 'Afrouxe as abraçadeiras e remova o duto flexível de borracha que conecta o filtro de ar ao corpo de borboleta.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Guarde as abraçadeiras em local seguro.'],
+        warnings: []
+      },
+      {
+        stepNumber: 3,
+        title: 'Limpeza da borboleta',
+        description: 'Aplique o limpa corpo de borboleta na borboleta aberta (abra manualmente com o dedo) e remova os depósitos de carbono com a escova e pano.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Limpe a sede da borboleta com movimentos circulares.', 'Abra a borboleta com os dedos para limpar a parte interna do canal.'],
+        warnings: ['Não use produto abrasivo que possa arranhar o alumínio.']
+      },
+      {
+        stepNumber: 4,
+        title: 'Remontagem e resetagem do ECU',
+        description: 'Reinstale o duto de admissão, reconecte a bateria e ligue o motor para o ECU recalibrar a posição de marcha lenta.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Após ligar, o carro pode apresentar marcha lenta irregular por alguns minutos até o ECU adaptar — isso é normal.'],
+        warnings: ['Não acelere em excesso nos primeiros 5 minutos após a limpeza.']
+      },
+      {
+        stepNumber: 5,
+        title: 'Verificação da marcha lenta',
+        description: 'Com o motor em temperatura normal, verifique se a marcha lenta estabiliza entre 750 e 850 RPM.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Se não estabilizar, desconecte a bateria por 10 minutos para resetar o ECU.'],
+        warnings: []
+      }
+    ],
+    precautions: [
+      'Não utilize solventes agressivos que possam danificar as vedações internas.',
+      'Desconecte sempre a bateria antes da limpeza.',
+      'Evite contato de líquidos com o conector elétrico do sensor TPS.'
+    ],
+    commonIssues: [
+      'Marcha lenta instável após limpeza — normal por alguns minutos até o ECU adaptar.',
+      'Conector do TPS danificado durante remoção do duto.',
+      'Abraçadeiras mal posicionadas causando falsa aspiração de ar.'
+    ],
+    professionalHelp: 'Se a marcha lenta continuar irregular após a limpeza, o sensor TPS pode estar com defeito — procure um mecânico.'
+  },
+  {
+    id: 'guide-timing-belt',
+    partId: 'part-timing-belt',
+    title: 'Troca da Correia Dentada',
+    description: 'Procedimento completo para substituir a correia dentada, tensor e bomba d\'água do motor 1.0L 8V Flexpower do Prisma.',
+    difficulty: 'hard',
+    estimatedTime: '180min',
+    estimatedTimeMinutes: 180,
+    tools: ['Jogo de soquetes', 'Chave fixa 17mm e 19mm', 'Torquímetro', 'Destravador de polia', 'Macaco e cavalete', 'Chave Allen 6mm'],
+    materials: ['Kit correia dentada (correia + tensor + bomba d\'água)', 'Fluido de arrefecimento', 'Silicone vedante'],
+    steps: [
+      {
+        stepNumber: 1,
+        title: 'Preparação e acesso',
+        description: 'Eleve o veículo com segurança. Remova a roda dianteira direita e a proteção inferior do motor para acessar a cobertura da correia.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Marque a posição das polias com tinta ou caneta marcadora antes de remover a correia.'],
+        warnings: ['Apoie o veículo em cavaletes — nunca trabalhe apenas com o macaco hidráulico.']
+      },
+      {
+        stepNumber: 2,
+        title: 'Alinhamento no PMS',
+        description: 'Gire manualmente o motor pela polia do virabrequim até o cilindro 1 atingir o Ponto Morto Superior (PMS). Confirme com as marcas de referência no bloco e no cabeçote.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Nunca gire o motor pela polia do eixo comando — sempre pelo virabrequim.'],
+        warnings: ['Com a correia removida, não gire o eixo comando ou virabrequim separadamente para evitar contato de válvulas com pistões.']
+      },
+      {
+        stepNumber: 3,
+        title: 'Remoção da correia antiga',
+        description: 'Remova a cobertura da correia dentada, afrouxe o tensor e retire a correia. Substitua também o tensor e a bomba d\'água enquanto o conjunto está aberto.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Aproveite para inspecionar o estado dos retentores das polias.'],
+        warnings: ['Descarte a correia usada — nunca reutilize uma correia dentada.']
+      },
+      {
+        stepNumber: 4,
+        title: 'Instalação da correia nova',
+        description: 'Monte o tensor novo, instale a correia nova seguindo a ordem: virabrequim → bomba d\'água → tensionador → polia do eixo comando. Ajuste a tensão conforme especificação.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Verifique se as marcas de alinhamento estão corretas antes de tensionar.'],
+        warnings: ['Aperto incorreto do tensor compromete a vida útil da correia.']
+      },
+      {
+        stepNumber: 5,
+        title: 'Verificação e fechamento',
+        description: 'Gire o motor manualmente 2 voltas completas e verifique se as marcas de PMS ainda estão alinhadas. Reinstale a cobertura, a roda e a proteção inferior.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Complete o fluido de arrefecimento se a bomba d\'água foi substituída.'],
+        warnings: ['Antes de ligar o motor, sempre confirme o alinhamento das marcas de referência.']
+      }
+    ],
+    precautions: [
+      'A correia dentada é componente crítico de segurança — não economize com peças de procedência duvidosa.',
+      'Troque sempre o kit completo: correia + tensor + bomba d\'água.',
+      'Respeite rigorosamente o intervalo de troca de 60.000km.'
+    ],
+    commonIssues: [
+      'Motor não parte após a troca por marcas de PMS fora de posição.',
+      'Barulho após a troca por tensão incorreta do tensor.',
+      'Vazamento de água por vedação incorreta da bomba d\'água.'
+    ],
+    professionalHelp: 'A troca da correia dentada é serviço técnico avançado — se não tiver experiência, leve a um mecânico especializado.'
+  },
+  {
+    id: 'guide-cv-boot',
+    partId: 'part-cv-boot',
+    title: 'Verificação e Troca das Coifas do Homocinético',
+    description: 'Como inspecionar e substituir as coifas de borracha do homocinético para evitar danos ao semi-eixo do Prisma 1.0.',
+    difficulty: 'easy',
+    estimatedTime: '30min',
+    estimatedTimeMinutes: 30,
+    tools: ['Macaco e cavalete', 'Alicate de bico', 'Chave de fenda', 'Pano limpo'],
+    materials: ['Coifa nova com graxa inclusa', 'Abraçadeiras de fixação novas'],
+    steps: [
+      {
+        stepNumber: 1,
+        title: 'Inspeção visual',
+        description: 'Eleve o veículo e inspecione as coifas do homocinético dos dois lados. Procure por rachaduras, rasgos ou graxa espalhada nas rodas.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Gire o semi-eixo manualmente para inspecionar toda a extensão da coifa.'],
+        warnings: ['Apoie o veículo em cavaletes antes de trabalhar sob ele.']
+      },
+      {
+        stepNumber: 2,
+        title: 'Remoção da coifa danificada',
+        description: 'Corte as abraçadeiras antigas com o alicate. Deslize a coifa danificada para fora do semi-eixo e remova a graxa velha.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Identifique se é a coifa do lado da roda ou do câmbio — os tamanhos são diferentes.'],
+        warnings: ['Evite contaminar o homocinético com sujeira durante a remoção.']
+      },
+      {
+        stepNumber: 3,
+        title: 'Instalação da coifa nova',
+        description: 'Aplique toda a graxa do kit no homocinético, deslize a coifa nova no posicionamento correto e fixe as abraçadeiras novas.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Use toda a graxa que veio no kit — a quantidade é calibrada para o homocinético.'],
+        warnings: ['Aperte as abraçadeiras com firmeza para evitar perda de graxa.']
+      },
+      {
+        stepNumber: 4,
+        title: 'Teste em rodagem',
+        description: 'Abaixe o veículo, faça percurso curto executando curvas abertas e fechadas e escute se há ruído tipo clique.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Ruído de clique nas curvas pode indicar homocinético já danificado.'],
+        warnings: []
+      }
+    ],
+    precautions: [
+      'Coifa rasgada sem correção rápida pode inutilizar o homocinético inteiro.',
+      'Não use graxa diferente da específica para homocinético.'
+    ],
+    commonIssues: [
+      'Graxa insuficiente causando desgaste acelerado do homocinético.',
+      'Abraçadeira mal fixada causando fuga de graxa.',
+      'Homocinético já danificado quando a coifa foi encontrada rasgada.'
+    ],
+    professionalHelp: 'Se ouvir clique nas curvas após a troca da coifa, o homocinético precisará de substituição completa.'
+  },
+  {
+    id: 'guide-power-steering-fluid',
+    partId: 'part-power-steering-fluid',
+    title: 'Troca do Fluido da Direção Hidráulica',
+    description: 'Procedimento para substituir o fluido da direção hidráulica e manter o sistema de direção assistida do Prisma em bom funcionamento.',
+    difficulty: 'easy',
+    estimatedTime: '30min',
+    estimatedTimeMinutes: 30,
+    tools: ['Seringa ou pera de borracha', 'Pano limpo', 'Funil'],
+    materials: ['Fluido de direção hidráulica 500ml', 'Pano absorvente'],
+    steps: [
+      {
+        stepNumber: 1,
+        title: 'Localização do reservatório',
+        description: 'Abra o capô e localize o reservatório de fluido da direção hidráulica — frasco plástico translúcido com tampa marcada com símbolo de volante.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Verifique o nível com o motor frio para leitura precisa.'],
+        warnings: ['Motor deve estar desligado e frio antes de abrir o reservatório.']
+      },
+      {
+        stepNumber: 2,
+        title: 'Remoção do fluido antigo',
+        description: 'Com a seringa ou pera, aspire todo o fluido antigo do reservatório. Limpe o interior do reservatório com pano limpo.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Fluido escuro ou com cheiro queimado indica que a troca está atrasada.'],
+        warnings: ['Descarte o fluido antigo corretamente — não jogue no esgoto.']
+      },
+      {
+        stepNumber: 3,
+        title: 'Abastecimento com fluido novo',
+        description: 'Adicione fluido novo até o nível máximo indicado no reservatório usando um funil.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Não ultrapasse o nível máximo — excesso causa vazamento.'],
+        warnings: ['Nunca misture fluidos de especificações diferentes.']
+      },
+      {
+        stepNumber: 4,
+        title: 'Sangria e verificação final',
+        description: 'Ligue o motor e gire o volante de batente a batente 5 a 6 vezes para circular o fluido novo. Verifique o nível e complete se necessário.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Repita o giro do volante com o motor em marcha lenta.', 'Verifique se não há vazamentos ao redor do reservatório.'],
+        warnings: ['Não mantenha o volante no batente por mais de 3 segundos seguidos para não danificar a bomba.']
+      }
+    ],
+    precautions: [
+      'Nível baixo de fluido pode danificar a bomba de direção.',
+      'Use apenas fluido específico para direção hidráulica — nunca ATF ou óleo de motor.'
+    ],
+    commonIssues: [
+      'Volante ainda pesado após a troca — pode indicar desgaste na bomba.',
+      'Nível caindo rapidamente — verifique vazamentos nas mangueiras.'
+    ],
+    professionalHelp: 'Se o volante continuar pesado mesmo com fluido correto, a bomba da direção pode precisar de substituição.'
+  },
+  {
+    id: 'guide-clutch-cable',
+    partId: 'part-clutch-cable',
+    title: 'Troca do Cabo de Embreagem',
+    description: 'Passo a passo para substituir o cabo de embreagem com desgaste ou rompido no Chevrolet Prisma 1.0 com câmbio manual.',
+    difficulty: 'medium',
+    estimatedTime: '60min',
+    estimatedTimeMinutes: 60,
+    tools: ['Chave 10mm', 'Chave de fenda', 'Alicate', 'Lanterna', 'Pano limpo'],
+    materials: ['Cabo de embreagem novo', 'Graxa para cabos'],
+    steps: [
+      {
+        stepNumber: 1,
+        title: 'Verificação da regulagem atual',
+        description: 'Localize o pedal de embreagem e a porca de regulagem na extremidade do cabo. Anote ou fotografe a posição atual da regulagem.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['A folga correta do pedal é de 15 a 25mm antes de sentir resistência.'],
+        warnings: []
+      },
+      {
+        stepNumber: 2,
+        title: 'Remoção do cabo antigo',
+        description: 'Afrouxe a porca de regulagem do lado do câmbio e desencaixe o cabo do garfo. No pedal, desencaixe o terminal do cabo do pino do pedal.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Puxe o cabo com cuidado para não danificar a canaleta de passagem.'],
+        warnings: ['Verifique sinais de desgaste na canaleta — se danificada, troque também.']
+      },
+      {
+        stepNumber: 3,
+        title: 'Instalação do cabo novo',
+        description: 'Passe o cabo novo pelo mesmo trajeto do antigo. Aplique graxa nas pontas e encaixe primeiro no garfo do câmbio, depois no pedal.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Graxa nas pontas aumenta a vida útil e torna o acionamento mais suave.'],
+        warnings: ['Confirme que o cabo passou corretamente pela canaleta sem dobras bruscas.']
+      },
+      {
+        stepNumber: 4,
+        title: 'Regulagem da folga',
+        description: 'Ajuste a porca de regulagem até obter 15-25mm de folga no pedal antes de sentir resistência. Confirme que as marchas engajam suavemente.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Faça o teste com o motor desligado antes e depois com motor ligado.'],
+        warnings: ['Folga insuficiente mantém a embreagem parcialmente acionada, causando desgaste prematuro.']
+      },
+      {
+        stepNumber: 5,
+        title: 'Teste em movimento',
+        description: 'Faça percurso curto em local seguro testando o acionamento da embreagem e o engajamento de todas as marchas.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Faça nova verificação da folga após o primeiro percurso — o cabo novo pode acomodar ligeiramente.'],
+        warnings: []
+      }
+    ],
+    precautions: [
+      'Não deixe o cabo novo com dobras acentuadas no trajeto.',
+      'Ajuste correto da folga é essencial — excesso causa patinamento, insuficiência causa desgaste prematuro.'
+    ],
+    commonIssues: [
+      'Dificuldade em engatar marcha após a troca — verificar regulagem da folga.',
+      'Cabo partindo novamente cedo — verificar canaleta danificada.'
+    ],
+    professionalHelp: 'Se houver dificuldade para engatar marchas mesmo após regulagem correta, o disco de embreagem pode estar desgastado.'
+  },
+  {
+    id: 'guide-oil-pan-gasket',
+    partId: 'part-oil-pan-gasket',
+    title: 'Troca da Junta do Cárter',
+    description: 'Procedimento para substituir a junta do cárter do Chevrolet Prisma 1.0 2009/2010 e eliminar vazamentos de óleo.',
+    difficulty: 'medium',
+    estimatedTime: '90min',
+    estimatedTimeMinutes: 90,
+    tools: ['Jogo de soquetes', 'Chave Torx', 'Recipiente para óleo', 'Espátula plástica', 'Torquímetro', 'Macaco e cavaletes'],
+    materials: ['Junta do cárter nova', 'Óleo lubrificante 5W30 (3,5L)', 'Filtro de óleo novo', 'Limpa-peças', 'Pano limpo'],
+    steps: [
+      {
+        stepNumber: 1,
+        title: 'Preparação e drenagem do óleo',
+        description: 'Eleve a dianteira com segurança, posicione o recipiente sob o cárter e drene todo o óleo do motor.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Drene com o motor morno para o óleo escorrer melhor.'],
+        warnings: ['Apoie o veículo em cavaletes, nunca apenas no macaco.', 'Aguarde o motor esfriar para evitar queimaduras.']
+      },
+      {
+        stepNumber: 2,
+        title: 'Remoção do cárter',
+        description: 'Solte todos os parafusos de fixação do cárter em sequência e retire a peça com cuidado.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Solte os parafusos em forma de cruz para aliviar a tensão uniformemente.'],
+        warnings: ['Pode haver óleo residual ao remover o cárter.']
+      },
+      {
+        stepNumber: 3,
+        title: 'Limpeza das superfícies',
+        description: 'Remova totalmente os resíduos da junta antiga do cárter e do bloco com espátula plástica e limpa-peças.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Use espátula plástica para não riscar as superfícies de vedação.'],
+        warnings: ['Não deixe resíduos da junta antiga, pois causam vazamento.']
+      },
+      {
+        stepNumber: 4,
+        title: 'Instalação da junta nova',
+        description: 'Posicione a junta nova, recoloque o cárter e aperte os parafusos com torquímetro na sequência correta.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Aperte os parafusos de forma cruzada e gradual.'],
+        warnings: ['Respeite o torque especificado para não deformar o cárter.']
+      },
+      {
+        stepNumber: 5,
+        title: 'Abastecimento e teste',
+        description: 'Abasteça com óleo novo, ligue o motor e verifique se há vazamentos na junta do cárter.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Confira o nível do óleo após o motor esfriar.'],
+        warnings: ['Observe a região da junta por alguns minutos com o motor ligado.']
+      }
+    ],
+    precautions: [
+      'Trabalhe com o veículo bem apoiado e nivelado.',
+      'Limpe completamente as superfícies de vedação.',
+      'Descarte corretamente o óleo usado.'
+    ],
+    commonIssues: [
+      'Vazamento por limpeza incompleta da superfície.',
+      'Empenamento do cárter por aperto desigual.',
+      'Rosca de parafuso danificada.'
+    ],
+    professionalHelp: 'Procure um mecânico se o cárter estiver empenado ou se houver dificuldade no acesso aos parafusos.'
+  },
+  {
+    id: 'guide-engine-mounts',
+    partId: 'part-engine-mounts',
+    title: 'Troca dos Coxins do Motor',
+    description: 'Guia para substituir os coxins do motor do Chevrolet Prisma 1.0 2009/2010 e eliminar vibrações e trancos.',
+    difficulty: 'medium',
+    estimatedTime: '120min',
+    estimatedTimeMinutes: 120,
+    tools: ['Jogo de soquetes', 'Chave de boca', 'Macaco hidráulico', 'Calço de madeira', 'Torquímetro', 'Cavaletes'],
+    materials: ['Coxins do motor novos', 'Pano limpo'],
+    steps: [
+      {
+        stepNumber: 1,
+        title: 'Preparação e apoio do motor',
+        description: 'Abra o capô e posicione um macaco com calço de madeira sob o cárter para sustentar o peso do motor.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Use um calço de madeira para não danificar o cárter.'],
+        warnings: ['Sustente o motor antes de soltar qualquer coxim.']
+      },
+      {
+        stepNumber: 2,
+        title: 'Identificação dos coxins',
+        description: 'Localize os coxins direito, esquerdo e o coxim do câmbio. Avalie qual está desgastado ou rompido.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Substitua um coxim de cada vez para manter o motor apoiado.'],
+        warnings: ['Não solte todos os coxins ao mesmo tempo.']
+      },
+      {
+        stepNumber: 3,
+        title: 'Remoção do coxim antigo',
+        description: 'Levante levemente o motor com o macaco, solte os parafusos do coxim e remova a peça desgastada.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Eleve o motor apenas o necessário para aliviar o coxim.'],
+        warnings: ['Cuidado com mangueiras e cabos próximos ao coxim.']
+      },
+      {
+        stepNumber: 4,
+        title: 'Instalação do coxim novo',
+        description: 'Posicione o coxim novo e aperte os parafusos com torquímetro no torque especificado.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Alinhe o coxim antes de apertar definitivamente.'],
+        warnings: ['Respeite o torque para evitar folgas ou trincas.']
+      },
+      {
+        stepNumber: 5,
+        title: 'Teste e verificação',
+        description: 'Abaixe o motor, retire o macaco, ligue o motor e verifique se as vibrações cessaram.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Acelere levemente para confirmar a estabilidade do motor.'],
+        warnings: ['Confira se não há trancos ao engatar marchas.']
+      }
+    ],
+    precautions: [
+      'Sustente sempre o motor antes de soltar os coxins.',
+      'Substitua um coxim por vez.',
+      'Use o torque correto na fixação.'
+    ],
+    commonIssues: [
+      'Vibração persistente por coxim restante desgastado.',
+      'Ruído por desalinhamento do coxim.',
+      'Parafuso espanado na fixação.'
+    ],
+    professionalHelp: 'Procure um mecânico caso não tenha como sustentar o motor com segurança ou se as vibrações persistirem.'
+  },
+  {
+    id: 'guide-transmission-fluid',
+    partId: 'part-transmission-fluid',
+    title: 'Troca do Fluido do Câmbio Manual',
+    description: 'Procedimento para trocar o óleo da transmissão manual do Chevrolet Prisma 1.0 2009/2010.',
+    difficulty: 'easy',
+    estimatedTime: '30min',
+    estimatedTimeMinutes: 30,
+    tools: ['Chave para bujão (quadrada ou Allen)', 'Bomba manual de abastecimento', 'Recipiente para óleo', 'Pano limpo'],
+    materials: ['Óleo de câmbio 75W90 API GL-4 (cerca de 1,8L)', 'Arruela do bujão se necessário'],
+    steps: [
+      {
+        stepNumber: 1,
+        title: 'Preparação do veículo',
+        description: 'Eleve o veículo nivelado e localize os bujões de enchimento e de dreno da caixa de câmbio.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Identifique o bujão de enchimento antes de drenar.'],
+        warnings: ['Mantenha o veículo nivelado para a medição correta do nível.']
+      },
+      {
+        stepNumber: 2,
+        title: 'Drenagem do óleo antigo',
+        description: 'Remova primeiro o bujão de enchimento, depois o de dreno, deixando o óleo escorrer no recipiente.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Abrir o bujão de enchimento primeiro garante que será possível reabastecer.'],
+        warnings: ['O óleo pode estar morno e escorrer rapidamente.']
+      },
+      {
+        stepNumber: 3,
+        title: 'Abastecimento com óleo novo',
+        description: 'Recoloque o bujão de dreno e abasteça pelo bujão de enchimento até o óleo transbordar levemente.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Use bomba manual para facilitar o abastecimento pelo lado da caixa.'],
+        warnings: ['O nível correto é quando o óleo atinge a borda do furo de enchimento.']
+      },
+      {
+        stepNumber: 4,
+        title: 'Fechamento e verificação',
+        description: 'Recoloque o bujão de enchimento, limpe a região e verifique se não há vazamentos.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Teste as marchas após a troca.'],
+        warnings: ['Descarte o óleo usado corretamente.']
+      }
+    ],
+    precautions: [
+      'Use a especificação correta 75W90 GL-4.',
+      'Mantenha o veículo nivelado.',
+      'Não complete com óleo de especificação diferente.'
+    ],
+    commonIssues: [
+      'Vazamento por bujão mal apertado.',
+      'Nível incorreto por veículo desnivelado.',
+      'Marchas ásperas se usado óleo errado.'
+    ],
+    professionalHelp: 'Procure um mecânico se o bujão estiver emperrado ou se houver dificuldade de acesso aos bujões.'
+  },
+  {
+    id: 'guide-pcv-valve',
+    partId: 'part-pcv-valve',
+    title: 'Limpeza e Troca da Válvula PCV',
+    description: 'Procedimento para limpar ou substituir a válvula PCV do Chevrolet Prisma 1.0 2009/2010.',
+    difficulty: 'easy',
+    estimatedTime: '20min',
+    estimatedTimeMinutes: 20,
+    tools: ['Alicate', 'Chave de fenda', 'Pano limpo'],
+    materials: ['Válvula PCV nova (se for trocar)', 'Limpa-carburador', 'Pano limpo'],
+    steps: [
+      {
+        stepNumber: 1,
+        title: 'Localização da válvula',
+        description: 'Abra o capô e localize a válvula PCV na região da tampa de válvulas e mangueira de ventilação.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Consulte o manual para identificar a posição exata.'],
+        warnings: ['Faça o serviço com o motor frio.']
+      },
+      {
+        stepNumber: 2,
+        title: 'Remoção da válvula',
+        description: 'Solte a presilha da mangueira e retire a válvula PCV do encaixe.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Chacoalhe a válvula: se não chocalhar, está presa e deve ser trocada.'],
+        warnings: ['Não force a mangueira ressecada para não rompê-la.']
+      },
+      {
+        stepNumber: 3,
+        title: 'Limpeza ou substituição',
+        description: 'Limpe a válvula com limpa-carburador ou instale uma válvula nova caso esteja entupida.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Se a válvula estiver muito suja, prefira a troca.'],
+        warnings: ['Deixe a válvula secar antes de reinstalar.']
+      },
+      {
+        stepNumber: 4,
+        title: 'Reinstalação e teste',
+        description: 'Reinstale a válvula, prenda a mangueira e ligue o motor verificando a marcha lenta.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['A marcha lenta deve estabilizar após a troca.'],
+        warnings: ['Garanta que a mangueira esteja bem fixada para não entrar ar falso.']
+      }
+    ],
+    precautions: [
+      'Trabalhe com o motor frio.',
+      'Verifique também o estado das mangueiras.',
+      'Use a válvula PCV correta para o motor 1.0.'
+    ],
+    commonIssues: [
+      'Marcha lenta irregular por entrada de ar falso.',
+      'Mangueira ressecada rompendo na remoção.',
+      'Válvula entupida que não resolve com limpeza.'
+    ],
+    professionalHelp: 'Procure um mecânico se a marcha lenta continuar irregular após a troca da válvula.'
+  },
+  {
+    id: 'guide-valve-cover-gasket',
+    partId: 'part-valve-cover-gasket',
+    title: 'Troca da Junta da Tampa de Válvulas',
+    description: 'Guia para substituir a junta da tampa de válvulas do Chevrolet Prisma 1.0 2009/2010 e eliminar vazamentos de óleo no cabeçote.',
+    difficulty: 'medium',
+    estimatedTime: '60min',
+    estimatedTimeMinutes: 60,
+    tools: ['Jogo de soquetes', 'Chave Torx', 'Torquímetro', 'Espátula plástica', 'Pano limpo'],
+    materials: ['Junta da tampa de válvulas nova', 'Limpa-peças', 'Cola de silicone para vedação (se especificado)'],
+    steps: [
+      {
+        stepNumber: 1,
+        title: 'Remoção dos componentes superiores',
+        description: 'Desconecte as bobinas, cabos e mangueiras que ficam sobre a tampa de válvulas.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Fotografe as conexões antes de desconectar.'],
+        warnings: ['Trabalhe com o motor frio.']
+      },
+      {
+        stepNumber: 2,
+        title: 'Remoção da tampa de válvulas',
+        description: 'Solte os parafusos da tampa em sequência e retire a tampa com cuidado.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Solte os parafusos de forma cruzada.'],
+        warnings: ['Não force a tampa para não empená-la.']
+      },
+      {
+        stepNumber: 3,
+        title: 'Limpeza das superfícies',
+        description: 'Remova a junta antiga e limpe a canaleta da tampa e a superfície do cabeçote.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Use espátula plástica para não riscar a superfície.'],
+        warnings: ['Não deixe resíduos da junta nem sujeira cair no motor.']
+      },
+      {
+        stepNumber: 4,
+        title: 'Instalação da junta nova',
+        description: 'Encaixe a junta nova na canaleta, recoloque a tampa e aperte os parafusos com torquímetro.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Aplique silicone nos cantos críticos se o fabricante recomendar.'],
+        warnings: ['Respeite o torque para não esmagar a junta.']
+      },
+      {
+        stepNumber: 5,
+        title: 'Remontagem e teste',
+        description: 'Reconecte bobinas, cabos e mangueiras, ligue o motor e verifique se há vazamentos.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Confira novamente após o motor aquecer.'],
+        warnings: ['Garanta que todas as conexões elétricas estejam firmes.']
+      }
+    ],
+    precautions: [
+      'Trabalhe com o motor frio.',
+      'Limpe bem as superfícies de vedação.',
+      'Use o torque correto nos parafusos.'
+    ],
+    commonIssues: [
+      'Vazamento por aperto desigual.',
+      'Junta mal posicionada na canaleta.',
+      'Falha do motor por conexão de bobina solta.'
+    ],
+    professionalHelp: 'Procure um mecânico se o vazamento persistir ou se a tampa estiver empenada.'
+  },
+  {
+    id: 'guide-water-pump',
+    partId: 'part-water-pump',
+    title: 'Troca da Bomba D\'água',
+    description: 'Procedimento para substituir a bomba d\'água do Chevrolet Prisma 1.0 2009/2010, realizado junto com a troca da correia dentada.',
+    difficulty: 'hard',
+    estimatedTime: '120min',
+    estimatedTimeMinutes: 120,
+    tools: ['Jogo de soquetes', 'Chave de roda', 'Travas de comando e virabrequim', 'Torquímetro', 'Recipiente para líquido', 'Macaco e cavaletes'],
+    materials: ['Bomba d\'água nova', 'Correia dentada nova', 'Líquido de arrefecimento', 'Junta ou anel de vedação da bomba'],
+    steps: [
+      {
+        stepNumber: 1,
+        title: 'Drenagem e preparação',
+        description: 'Drene o líquido de arrefecimento pelo radiador e remova as proteções e correias de acesso ao motor.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Aproveite para trocar o líquido de arrefecimento.'],
+        warnings: ['Faça o serviço com o motor totalmente frio para evitar queimaduras.']
+      },
+      {
+        stepNumber: 2,
+        title: 'Acesso à correia dentada',
+        description: 'Remova a tampa da correia dentada e posicione o motor no ponto, travando comando e virabrequim.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Marque a posição do ponto antes de soltar a correia.'],
+        warnings: ['Erro no ponto pode causar choque entre válvulas e pistões.']
+      },
+      {
+        stepNumber: 3,
+        title: 'Remoção da bomba antiga',
+        description: 'Afrouxe o tensor, retire a correia dentada e solte os parafusos da bomba d\'água, removendo-a.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Limpe a superfície de assentamento da bomba no bloco.'],
+        warnings: ['Não gire o comando ou virabrequim com a correia removida.']
+      },
+      {
+        stepNumber: 4,
+        title: 'Instalação da bomba nova',
+        description: 'Posicione a bomba nova com a junta, aperte no torque correto e reinstale a correia dentada no ponto.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Confira o alinhamento das marcas de ponto antes de tensionar a correia.'],
+        warnings: ['Tensione a correia conforme especificação do fabricante.']
+      },
+      {
+        stepNumber: 5,
+        title: 'Abastecimento e teste',
+        description: 'Reabasteça com líquido de arrefecimento, faça a sangria do ar, ligue o motor e verifique vazamentos e temperatura.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Acompanhe o ventilador ligar para confirmar a circulação.'],
+        warnings: ['Elimine o ar do sistema para evitar superaquecimento.']
+      }
+    ],
+    precautions: [
+      'Sempre troque a correia dentada junto com a bomba.',
+      'Respeite as marcas de ponto do motor.',
+      'Faça a sangria do sistema de arrefecimento.'
+    ],
+    commonIssues: [
+      'Superaquecimento por ar no sistema.',
+      'Erro de ponto causando falha do motor.',
+      'Vazamento por junta da bomba mal assentada.'
+    ],
+    professionalHelp: 'Por envolver a correia dentada e o ponto do motor, recomenda-se forte a execução por um mecânico experiente.'
+  },
+  {
+    id: 'guide-radiator-hoses',
+    partId: 'part-radiator-hoses',
+    title: 'Troca das Mangueiras do Radiador',
+    description: 'Guia para substituir as mangueiras do radiador do Chevrolet Prisma 1.0 2009/2010.',
+    difficulty: 'easy',
+    estimatedTime: '40min',
+    estimatedTimeMinutes: 40,
+    tools: ['Alicate de presilha', 'Chave de fenda', 'Recipiente para líquido', 'Pano limpo'],
+    materials: ['Mangueiras do radiador novas', 'Líquido de arrefecimento', 'Abraçadeiras novas'],
+    steps: [
+      {
+        stepNumber: 1,
+        title: 'Drenagem do líquido',
+        description: 'Com o motor frio, drene o líquido de arrefecimento para um recipiente abrindo o dreno do radiador.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Guarde o líquido limpo se for reutilizar.'],
+        warnings: ['Nunca abra o sistema com o motor quente.']
+      },
+      {
+        stepNumber: 2,
+        title: 'Remoção das mangueiras antigas',
+        description: 'Solte as abraçadeiras e retire as mangueiras superior e inferior do radiador e do motor.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Gire levemente a mangueira para soltar do bocal.'],
+        warnings: ['Mangueiras ressecadas podem quebrar; tenha cuidado com o bocal.']
+      },
+      {
+        stepNumber: 3,
+        title: 'Instalação das mangueiras novas',
+        description: 'Encaixe as mangueiras novas nos bocais e fixe com abraçadeiras novas firmemente.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Posicione as abraçadeiras após o ressalto do bocal.'],
+        warnings: ['Não aperte demais a ponto de cortar a mangueira.']
+      },
+      {
+        stepNumber: 4,
+        title: 'Abastecimento e teste',
+        description: 'Reabasteça o sistema, faça a sangria do ar, ligue o motor e verifique vazamentos.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Acompanhe a temperatura no painel.'],
+        warnings: ['Elimine o ar do sistema para evitar superaquecimento.']
+      }
+    ],
+    precautions: [
+      'Trabalhe sempre com o motor frio.',
+      'Substitua as abraçadeiras desgastadas.',
+      'Faça a sangria do sistema após o abastecimento.'
+    ],
+    commonIssues: [
+      'Vazamento por abraçadeira mal posicionada.',
+      'Superaquecimento por ar no sistema.',
+      'Bocal danificado ao remover mangueira ressecada.'
+    ],
+    professionalHelp: 'Procure um mecânico se um bocal estiver danificado ou se o vazamento persistir.'
+  },
+  {
+    id: 'guide-fuel-pump',
+    partId: 'part-fuel-pump',
+    title: 'Troca da Bomba de Combustível',
+    description: 'Procedimento para substituir a bomba de combustível do Chevrolet Prisma 1.0 2009/2010, localizada dentro do tanque.',
+    difficulty: 'medium',
+    estimatedTime: '90min',
+    estimatedTimeMinutes: 90,
+    tools: ['Jogo de soquetes', 'Chave de fenda', 'Chave para anel da bomba', 'Multímetro', 'Pano limpo'],
+    materials: ['Bomba de combustível nova', 'Anel de vedação do flange', 'Pano limpo'],
+    steps: [
+      {
+        stepNumber: 1,
+        title: 'Despressurização e segurança',
+        description: 'Desligue o motor, retire o fusível da bomba e dê partida para aliviar a pressão. Desconecte a bateria.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Trabalhe com o tanque com pouco combustível.'],
+        warnings: ['Não fume nem use chamas próximas; combustível é inflamável.', 'Despressurize o sistema antes de abrir as conexões.']
+      },
+      {
+        stepNumber: 2,
+        title: 'Acesso ao tanque',
+        description: 'Remova o banco traseiro ou a tampa de acesso sob o assoalho para chegar ao flange da bomba.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Limpe a região ao redor do flange antes de abrir.'],
+        warnings: ['Evite a entrada de sujeira no tanque.']
+      },
+      {
+        stepNumber: 3,
+        title: 'Remoção da bomba antiga',
+        description: 'Desconecte o chicote e as mangueiras, solte o anel de fixação e retire o conjunto da bomba com cuidado.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Observe a posição da boia e do filtro de sucção.'],
+        warnings: ['Cuidado com o vazamento de combustível ao retirar o conjunto.']
+      },
+      {
+        stepNumber: 4,
+        title: 'Instalação da bomba nova',
+        description: 'Instale a bomba nova com o anel de vedação novo, reconecte mangueiras e chicote, e fixe o anel de retenção.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Alinhe a marca de posição do flange com o tanque.'],
+        warnings: ['Garanta a vedação correta para evitar vazamento de vapores.']
+      },
+      {
+        stepNumber: 5,
+        title: 'Teste do sistema',
+        description: 'Reconecte a bateria e o fusível, ligue a ignição algumas vezes para pressurizar e verifique vazamentos e partida.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['A bomba deve fazer um zumbido ao ligar a ignição.'],
+        warnings: ['Verifique a ausência de vazamentos antes de dar partida.']
+      }
+    ],
+    precautions: [
+      'Trabalhe em local ventilado e sem chamas.',
+      'Despressurize o sistema antes de abrir.',
+      'Evite contaminação do tanque com sujeira.'
+    ],
+    commonIssues: [
+      'Vazamento de combustível por vedação mal feita.',
+      'Falha de partida por conexão elétrica solta.',
+      'Medidor de combustível impreciso por boia mal posicionada.'
+    ],
+    professionalHelp: 'Procure um mecânico se houver cheiro de combustível persistente ou dificuldade no acesso ao tanque.'
+  },
+  {
+    id: 'guide-fuel-injectors',
+    partId: 'part-fuel-injectors',
+    title: 'Limpeza dos Injetores de Combustível',
+    description: 'Procedimento para limpar os bicos injetores do Chevrolet Prisma 1.0 2009/2010 e restaurar a pulverização do combustível.',
+    difficulty: 'medium',
+    estimatedTime: '60min',
+    estimatedTimeMinutes: 60,
+    tools: ['Jogo de soquetes', 'Chave de fenda', 'Kit de limpeza de injetores', 'Pano limpo'],
+    materials: ['Líquido de limpeza de injetores', 'Anéis de vedação dos bicos', 'Pano limpo'],
+    steps: [
+      {
+        stepNumber: 1,
+        title: 'Despressurização do sistema',
+        description: 'Retire o fusível da bomba e dê partida para aliviar a pressão, depois desconecte a bateria.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Trabalhe em local ventilado.'],
+        warnings: ['Despressurize o sistema antes de abrir as conexões de combustível.']
+      },
+      {
+        stepNumber: 2,
+        title: 'Remoção da flauta e injetores',
+        description: 'Desconecte os chicotes, solte a flauta de combustível e retire os bicos injetores com cuidado.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Identifique cada injetor pela ordem dos cilindros.'],
+        warnings: ['Evite a entrada de sujeira no coletor de admissão.']
+      },
+      {
+        stepNumber: 3,
+        title: 'Limpeza dos injetores',
+        description: 'Faça a limpeza dos bicos com o kit apropriado, removendo resíduos e testando a pulverização.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Substitua os anéis de vedação dos bicos por novos.'],
+        warnings: ['Não use objetos metálicos para desobstruir os orifícios.']
+      },
+      {
+        stepNumber: 4,
+        title: 'Remontagem e teste',
+        description: 'Reinstale os injetores e a flauta, reconecte os chicotes e a bateria, e verifique a marcha lenta e vazamentos.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['A marcha lenta deve estabilizar após a limpeza.'],
+        warnings: ['Confira a ausência de vazamentos de combustível antes de rodar.']
+      }
+    ],
+    precautions: [
+      'Trabalhe em local ventilado e sem chamas.',
+      'Substitua os anéis de vedação dos bicos.',
+      'Evite contaminar o coletor com sujeira.'
+    ],
+    commonIssues: [
+      'Vazamento por anel de vedação ressecado.',
+      'Marcha lenta irregular por injetor ainda obstruído.',
+      'Falha por chicote mal conectado.'
+    ],
+    professionalHelp: 'Procure um mecânico com máquina de ultrassom se os injetores estiverem muito entupidos ou com defeito.'
+  },
+  {
+    id: 'guide-lambda-sensor',
+    partId: 'part-lambda-sensor',
+    title: 'Troca do Sensor Lambda/O2',
+    description: 'Guia para substituir o sensor lambda (sonda de oxigênio) do Chevrolet Prisma 1.0 2009/2010.',
+    difficulty: 'medium',
+    estimatedTime: '45min',
+    estimatedTimeMinutes: 45,
+    tools: ['Chave para sonda lambda (22mm)', 'Jogo de soquetes', 'Scanner automotivo', 'Pano limpo'],
+    materials: ['Sensor lambda novo', 'Graxa anti-engripante para a rosca'],
+    steps: [
+      {
+        stepNumber: 1,
+        title: 'Localização do sensor',
+        description: 'Localize o sensor lambda no tubo de escape, próximo ao coletor, e desconecte seu chicote elétrico.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Trabalhe com o escapamento frio para evitar queimaduras.'],
+        warnings: ['Aguarde o sistema de escape esfriar completamente.']
+      },
+      {
+        stepNumber: 2,
+        title: 'Remoção do sensor antigo',
+        description: 'Com a chave apropriada, solte e remova o sensor lambda do tubo de escape.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Se estiver muito preso, aplique óleo desengripante e aguarde.'],
+        warnings: ['Não force a rosca do escapamento para não danificá-la.']
+      },
+      {
+        stepNumber: 3,
+        title: 'Instalação do sensor novo',
+        description: 'Aplique graxa anti-engripante na rosca e instale o sensor novo, apertando no torque correto.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Não deixe a graxa atingir a ponta sensora do sensor.'],
+        warnings: ['Aperto excessivo pode danificar o sensor ou a rosca.']
+      },
+      {
+        stepNumber: 4,
+        title: 'Reconexão e teste',
+        description: 'Reconecte o chicote, apague o código de falha com o scanner e teste a marcha lenta.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['A luz de injeção deve apagar após o reset.'],
+        warnings: ['Verifique se o conector está bem encaixado.']
+      }
+    ],
+    precautions: [
+      'Trabalhe com o escapamento frio.',
+      'Use graxa apropriada apenas na rosca.',
+      'Manuseie o sensor com cuidado, sem encostar na ponta.'
+    ],
+    commonIssues: [
+      'Rosca do escapamento danificada ao remover.',
+      'Luz de injeção persistente sem reset.',
+      'Consumo alto se instalado sensor incompatível.'
+    ],
+    professionalHelp: 'Procure um mecânico se a rosca estiver espanada ou se a luz de injeção não apagar após a troca.'
+  },
+  {
+    id: 'guide-alternator',
+    partId: 'part-alternator',
+    title: 'Troca do Alternador',
+    description: 'Procedimento para substituir o alternador do Chevrolet Prisma 1.0 2009/2010.',
+    difficulty: 'hard',
+    estimatedTime: '120min',
+    estimatedTimeMinutes: 120,
+    tools: ['Jogo de soquetes', 'Chave de boca', 'Chave para tensor da correia', 'Torquímetro', 'Multímetro'],
+    materials: ['Alternador novo', 'Correia auxiliar (recomendado trocar junto)'],
+    steps: [
+      {
+        stepNumber: 1,
+        title: 'Desconexão da bateria',
+        description: 'Desconecte o terminal negativo da bateria para trabalhar com segurança no sistema elétrico.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Anote o código do rádio se houver.'],
+        warnings: ['Sempre desconecte a bateria antes de mexer no alternador.']
+      },
+      {
+        stepNumber: 2,
+        title: 'Remoção da correia auxiliar',
+        description: 'Alivie o tensor da correia auxiliar (poly-V) e remova a correia da polia do alternador.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Fotografe o trajeto da correia para a remontagem.'],
+        warnings: ['Cuidado com o retorno do tensor sob tensão.']
+      },
+      {
+        stepNumber: 3,
+        title: 'Desconexão e remoção do alternador',
+        description: 'Desconecte os cabos elétricos do alternador, solte os parafusos de fixação e retire a peça.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Identifique cada cabo para reconectar corretamente.'],
+        warnings: ['O alternador é pesado; segure-o ao soltar o último parafuso.']
+      },
+      {
+        stepNumber: 4,
+        title: 'Instalação do alternador novo',
+        description: 'Posicione o alternador novo, aperte os parafusos no torque correto e reconecte os cabos elétricos.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Aproveite para trocar a correia auxiliar se estiver desgastada.'],
+        warnings: ['Garanta que os cabos estejam firmes para evitar mau contato.']
+      },
+      {
+        stepNumber: 5,
+        title: 'Remontagem e teste de carga',
+        description: 'Reinstale a correia, reconecte a bateria, ligue o motor e meça a tensão de carga com o multímetro.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['A tensão de carga deve ficar em torno de 13,8V a 14,4V.'],
+        warnings: ['A luz da bateria deve apagar após a partida.']
+      }
+    ],
+    precautions: [
+      'Desconecte a bateria antes do serviço.',
+      'Identifique os cabos elétricos antes de soltar.',
+      'Confira o alinhamento e a tensão da correia.'
+    ],
+    commonIssues: [
+      'Luz da bateria acesa por cabo mal conectado.',
+      'Ruído por correia mal tensionada.',
+      'Carga insuficiente se o alternador for incompatível.'
+    ],
+    professionalHelp: 'Procure um mecânico se a tensão de carga estiver fora da faixa ou se houver dificuldade no acesso ao alternador.'
+  },
+  {
+    id: 'guide-starter-motor',
+    partId: 'part-starter-motor',
+    title: 'Troca do Motor de Partida',
+    description: 'Procedimento para substituir o motor de partida (arranque) do Chevrolet Prisma 1.0 2009/2010.',
+    difficulty: 'hard',
+    estimatedTime: '120min',
+    estimatedTimeMinutes: 120,
+    tools: ['Jogo de soquetes', 'Chave de boca', 'Extensões e juntas', 'Torquímetro', 'Macaco e cavaletes'],
+    materials: ['Motor de partida novo', 'Pano limpo'],
+    steps: [
+      {
+        stepNumber: 1,
+        title: 'Desconexão da bateria',
+        description: 'Desconecte o terminal negativo da bateria para evitar curto-circuito durante o serviço.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Anote o código do rádio se houver.'],
+        warnings: ['Nunca mexa no motor de partida com a bateria conectada.']
+      },
+      {
+        stepNumber: 2,
+        title: 'Acesso ao motor de partida',
+        description: 'Eleve o veículo com segurança e localize o motor de partida na junção do motor com o câmbio.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Pode ser necessário remover componentes que bloqueiam o acesso.'],
+        warnings: ['Apoie o veículo em cavaletes.']
+      },
+      {
+        stepNumber: 3,
+        title: 'Desconexão e remoção',
+        description: 'Desconecte os cabos do solenoide, solte os parafusos de fixação e retire o motor de partida.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Identifique o cabo grosso (positivo) e o fino (solenoide).'],
+        warnings: ['O motor de partida é pesado; segure ao soltar o último parafuso.']
+      },
+      {
+        stepNumber: 4,
+        title: 'Instalação do motor novo',
+        description: 'Posicione o motor de partida novo, aperte os parafusos no torque correto e reconecte os cabos.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Confira o engrenamento com o volante do motor.'],
+        warnings: ['Aperte bem o cabo positivo para evitar aquecimento e mau contato.']
+      },
+      {
+        stepNumber: 5,
+        title: 'Reconexão e teste',
+        description: 'Reconecte a bateria, dê a partida e verifique se o motor aciona normalmente e sem ruídos.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['A partida deve ser firme e sem cliques.'],
+        warnings: ['Verifique se não há ruído metálico de engrenagem ao acionar.']
+      }
+    ],
+    precautions: [
+      'Desconecte a bateria antes do serviço.',
+      'Apoie o veículo com segurança.',
+      'Aperte firmemente os cabos do solenoide.'
+    ],
+    commonIssues: [
+      'Cliques na partida por cabo positivo mal apertado.',
+      'Ruído metálico por mau engrenamento.',
+      'Acesso difícil em alguns parafusos.'
+    ],
+    professionalHelp: 'Procure um mecânico se o acesso for muito restrito ou se o motor não acionar corretamente após a troca.'
+  },
+  {
+    id: 'guide-reverse-light-bulb',
+    partId: 'part-reverse-light-bulb',
+    title: 'Troca da Lâmpada de Ré',
+    description: 'Procedimento simples para substituir a lâmpada de marcha à ré do Chevrolet Prisma 1.0 2009/2010.',
+    difficulty: 'easy',
+    estimatedTime: '15min',
+    estimatedTimeMinutes: 15,
+    tools: ['Chave de fenda', 'Pano limpo'],
+    materials: ['Lâmpada de ré P21W nova'],
+    steps: [
+      {
+        stepNumber: 1,
+        title: 'Acesso à lanterna traseira',
+        description: 'Abra o porta-malas e remova a tampa de acesso ou os parafusos da lanterna traseira.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Identifique o soquete da lâmpada de ré pela cor do fio.'],
+        warnings: []
+      },
+      {
+        stepNumber: 2,
+        title: 'Substituição da lâmpada',
+        description: 'Gire o soquete para soltá-lo, retire a lâmpada queimada pressionando e girando, e instale a nova.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Não toque o vidro da lâmpada com os dedos.'],
+        warnings: ['Use a lâmpada correta de 21W para não danificar o soquete.']
+      },
+      {
+        stepNumber: 3,
+        title: 'Teste e fechamento',
+        description: 'Reinstale o soquete e a lanterna, engate a ré com a ignição ligada e confirme o acendimento.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Peça ajuda para confirmar a luz por fora do veículo.'],
+        warnings: []
+      }
+    ],
+    precautions: [
+      'Use a lâmpada da especificação correta.',
+      'Não toque o vidro da lâmpada com as mãos.'
+    ],
+    commonIssues: [
+      'Mau contato no soquete oxidado.',
+      'Lâmpada de potência errada.',
+      'Soquete mal recolocado.'
+    ],
+    professionalHelp: 'Procure um eletricista automotivo se a luz não acender mesmo com a lâmpada nova, pois pode ser falha no interruptor de ré.'
+  },
+  {
+    id: 'guide-license-plate-light',
+    partId: 'part-license-plate-light',
+    title: 'Troca da Lâmpada da Placa',
+    description: 'Procedimento simples para substituir a lâmpada de iluminação da placa traseira do Chevrolet Prisma 1.0 2009/2010.',
+    difficulty: 'easy',
+    estimatedTime: '10min',
+    estimatedTimeMinutes: 10,
+    tools: ['Chave de fenda pequena'],
+    materials: ['Lâmpada da placa C5W nova'],
+    steps: [
+      {
+        stepNumber: 1,
+        title: 'Remoção da luminária',
+        description: 'Solte os parafusos ou pressione as travas da luminária da placa para removê-la.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Use uma chave de fenda pequena para soltar as travas com cuidado.'],
+        warnings: ['Não force o plástico para não quebrar a luminária.']
+      },
+      {
+        stepNumber: 2,
+        title: 'Substituição da lâmpada',
+        description: 'Retire a lâmpada torpedo dos contatos pressionando levemente e instale a lâmpada nova.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Não toque o vidro da lâmpada com os dedos.'],
+        warnings: []
+      },
+      {
+        stepNumber: 3,
+        title: 'Teste e recolocação',
+        description: 'Recoloque a luminária, ligue os faróis e confirme o acendimento da iluminação da placa.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Verifique se a luz ilumina bem toda a placa.'],
+        warnings: []
+      }
+    ],
+    precautions: [
+      'Manuseie o plástico da luminária com cuidado.',
+      'Use a lâmpada torpedo correta.'
+    ],
+    commonIssues: [
+      'Trava da luminária quebrada.',
+      'Mau contato por oxidação.',
+      'Lâmpada de tamanho incompatível.'
+    ],
+    professionalHelp: 'Procure um eletricista automotivo se a luz não acender mesmo com a lâmpada nova.'
+  },
+  {
+    id: 'guide-front-brake-disc',
+    partId: 'part-front-brake-disc',
+    title: 'Troca do Disco de Freio Dianteiro',
+    description: 'Procedimento para substituir os discos de freio dianteiros do Chevrolet Prisma 1.0 2009/2010.',
+    difficulty: 'medium',
+    estimatedTime: '90min',
+    estimatedTimeMinutes: 90,
+    tools: ['Chave de roda', 'Jogo de soquetes', 'Chave de boca', 'Torquímetro', 'Macaco e cavaletes', 'Grampo para pistão da pinça'],
+    materials: ['Discos de freio dianteiros novos', 'Pastilhas novas (recomendado)', 'Limpa-freios'],
+    steps: [
+      {
+        stepNumber: 1,
+        title: 'Remoção da roda',
+        description: 'Afrouxe as porcas, eleve a dianteira com segurança, apoie em cavaletes e retire a roda.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Afrouxe as porcas antes de levantar o carro.'],
+        warnings: ['Apoie o veículo em cavaletes, nunca apenas no macaco.']
+      },
+      {
+        stepNumber: 2,
+        title: 'Remoção da pinça e pastilhas',
+        description: 'Solte os parafusos da pinça de freio, retire-a e remova as pastilhas, apoiando a pinça sem esticar a mangueira.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Pendure a pinça com um arame para não forçar a mangueira.'],
+        warnings: ['Não deixe a pinça pendurada pela mangueira de freio.']
+      },
+      {
+        stepNumber: 3,
+        title: 'Remoção do disco antigo',
+        description: 'Solte o suporte da pinça e os parafusos de fixação do disco, removendo o disco antigo do cubo.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Se o disco estiver preso, bata levemente com martelo de borracha.'],
+        warnings: ['Limpe a face de contato do cubo antes de instalar o novo disco.']
+      },
+      {
+        stepNumber: 4,
+        title: 'Instalação do disco novo',
+        description: 'Limpe o disco novo com limpa-freios, instale-o no cubo e recoloque o suporte e as pastilhas novas.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Recolha o pistão da pinça com o grampo para encaixar as pastilhas novas.'],
+        warnings: ['Remova a película protetora antiferrugem do disco novo.']
+      },
+      {
+        stepNumber: 5,
+        title: 'Montagem e teste',
+        description: 'Recoloque a roda, aperte as porcas no torque correto, bombeie o pedal e teste o freio em baixa velocidade.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Bombeie o pedal até ele firmar antes de rodar.'],
+        warnings: ['Faça a frenagem de assentamento com cuidado nos primeiros quilômetros.']
+      }
+    ],
+    precautions: [
+      'Apoie o veículo com segurança.',
+      'Troque os discos e pastilhas aos pares.',
+      'Bombeie o pedal antes de rodar.'
+    ],
+    commonIssues: [
+      'Vibração por disco empenado ou mal assentado.',
+      'Ruído por película protetora não removida.',
+      'Pedal baixo por não bombear antes de rodar.'
+    ],
+    professionalHelp: 'Procure um mecânico se houver vibração persistente na frenagem ou ruído anormal após a troca.'
+  },
+  {
+    id: 'guide-rear-brake-drum',
+    partId: 'part-rear-brake-drum',
+    title: 'Troca do Tambor de Freio Traseiro',
+    description: 'Procedimento para substituir os tambores de freio traseiros do Chevrolet Prisma 1.0 2009/2010.',
+    difficulty: 'medium',
+    estimatedTime: '90min',
+    estimatedTimeMinutes: 90,
+    tools: ['Chave de roda', 'Jogo de soquetes', 'Alicate de lonas', 'Martelo de borracha', 'Torquímetro', 'Macaco e cavaletes'],
+    materials: ['Tambores de freio traseiros novos', 'Lonas novas (recomendado)', 'Limpa-freios'],
+    steps: [
+      {
+        stepNumber: 1,
+        title: 'Remoção da roda',
+        description: 'Solte as porcas, eleve a traseira com segurança, apoie em cavaletes e retire a roda.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Solte o freio de mão antes de retirar o tambor.'],
+        warnings: ['Apoie o veículo em cavaletes, nunca apenas no macaco.']
+      },
+      {
+        stepNumber: 2,
+        title: 'Remoção do tambor antigo',
+        description: 'Retire o tambor de freio; se estiver preso, afrouxe o regulador das lonas e bata levemente.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Bata com martelo de borracha ao redor do tambor para soltar.'],
+        warnings: ['Não respire a poeira das lonas; pode conter material nocivo.']
+      },
+      {
+        stepNumber: 3,
+        title: 'Inspeção e limpeza',
+        description: 'Inspecione as lonas, molas e o cilindro de roda, limpando o conjunto com limpa-freios.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Aproveite para trocar as lonas se estiverem desgastadas.'],
+        warnings: ['Verifique se o cilindro de roda não está vazando fluido.']
+      },
+      {
+        stepNumber: 4,
+        title: 'Instalação do tambor novo',
+        description: 'Limpe o tambor novo com limpa-freios e instale-o no eixo, ajustando o regulador das lonas.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['O tambor deve girar com leve arraste das lonas.'],
+        warnings: ['Não deixe as lonas muito apertadas para não aquecer.']
+      },
+      {
+        stepNumber: 5,
+        title: 'Montagem e teste',
+        description: 'Recoloque a roda, aperte as porcas no torque correto, ajuste o freio de mão e teste a frenagem.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Bombeie o pedal e acione o freio de mão para assentar as lonas.'],
+        warnings: ['Teste a frenagem em baixa velocidade antes de rodar normalmente.']
+      }
+    ],
+    precautions: [
+      'Apoie o veículo com segurança.',
+      'Não respire a poeira das lonas.',
+      'Ajuste corretamente o regulador das lonas.'
+    ],
+    commonIssues: [
+      'Ruído por regulagem incorreta das lonas.',
+      'Frenagem fraca por lonas desgastadas.',
+      'Vazamento do cilindro de roda.'
+    ],
+    professionalHelp: 'Procure um mecânico se o cilindro de roda estiver vazando ou se a frenagem traseira continuar ineficiente.'
+  },
+  {
+    id: 'guide-handbrake',
+    partId: 'part-handbrake-cable',
+    title: 'Ajuste do Cabo do Freio de Mão',
+    description: 'Procedimento para ajustar o cabo do freio de estacionamento do Chevrolet Prisma 1.0 2009/2010.',
+    difficulty: 'easy',
+    estimatedTime: '30min',
+    estimatedTimeMinutes: 30,
+    tools: ['Jogo de soquetes', 'Chave de boca', 'Macaco e cavaletes'],
+    materials: ['Pano limpo', 'Óleo desengripante (se necessário)'],
+    steps: [
+      {
+        stepNumber: 1,
+        title: 'Preparação',
+        description: 'Eleve a traseira com segurança, apoie em cavaletes e libere totalmente a alavanca do freio de mão.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Conte quantos cliques a alavanca sobe atualmente.'],
+        warnings: ['Apoie o veículo em cavaletes antes de trabalhar embaixo.']
+      },
+      {
+        stepNumber: 2,
+        title: 'Acesso ao regulador',
+        description: 'Localize a porca de regulagem do cabo, geralmente sob o console ou no equalizador do cabo.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Remova a manopla ou console se necessário para acessar a regulagem.'],
+        warnings: []
+      },
+      {
+        stepNumber: 3,
+        title: 'Ajuste da tensão',
+        description: 'Aperte a porca de regulagem gradualmente até o freio atuar entre o 3º e o 5º clique da alavanca.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Gire as rodas traseiras para sentir o ponto de travamento.'],
+        warnings: ['Não deixe o cabo tenso demais para não arrastar as lonas.']
+      },
+      {
+        stepNumber: 4,
+        title: 'Teste',
+        description: 'Acione e libere o freio algumas vezes, confira o travamento e teste em uma leve rampa.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['As rodas devem girar livremente com o freio liberado.'],
+        warnings: ['Teste em rampa com o veículo seguro antes de confiar no ajuste.']
+      }
+    ],
+    precautions: [
+      'Apoie o veículo com segurança.',
+      'Ajuste o cabo de forma gradual.',
+      'Confira se as lonas não arrastam após o ajuste.'
+    ],
+    commonIssues: [
+      'Freio de mão fraco por cabo esticado.',
+      'Lonas arrastando por excesso de tensão.',
+      'Cabo enferrujado que precisa de troca.'
+    ],
+    professionalHelp: 'Procure um mecânico se o cabo estiver enferrujado, rompido ou se o ajuste não resolver.'
+  },
+  {
+    id: 'guide-tie-rods',
+    partId: 'part-tie-rods',
+    title: 'Troca dos Terminais de Direção',
+    description: 'Procedimento para substituir os terminais de direção do Chevrolet Prisma 1.0 2009/2010.',
+    difficulty: 'medium',
+    estimatedTime: '60min',
+    estimatedTimeMinutes: 60,
+    tools: ['Chave de roda', 'Jogo de soquetes', 'Chave de boca', 'Extrator de terminal', 'Torquímetro', 'Macaco e cavaletes'],
+    materials: ['Terminais de direção novos', 'Contrapinos/porcas novas (se aplicável)'],
+    steps: [
+      {
+        stepNumber: 1,
+        title: 'Preparação e remoção da roda',
+        description: 'Eleve a dianteira com segurança, apoie em cavaletes e retire a roda do lado a ser trabalhado.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Marque a posição atual do terminal na barra para manter o alinhamento aproximado.'],
+        warnings: ['Apoie o veículo em cavaletes antes de trabalhar.']
+      },
+      {
+        stepNumber: 2,
+        title: 'Soltura do terminal',
+        description: 'Solte a contraporca da barra axial e a porca do terminal na manga de eixo.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Conte as voltas ao desrosquear o terminal para reposicionar igual.'],
+        warnings: ['Não danifique a coifa do terminal próximo.']
+      },
+      {
+        stepNumber: 3,
+        title: 'Extração e substituição',
+        description: 'Use o extrator para soltar o cone do terminal da manga, retire o terminal antigo e instale o novo.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Rosqueie o terminal novo o mesmo número de voltas do antigo.'],
+        warnings: ['Não bata com martelo na manga para soltar o cone, use o extrator.']
+      },
+      {
+        stepNumber: 4,
+        title: 'Aperto e alinhamento',
+        description: 'Aperte a porca do terminal e a contraporca no torque correto, recoloque a roda e procure um alinhamento.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Após a troca é obrigatório fazer alinhamento da direção.'],
+        warnings: ['Não circule por muito tempo sem alinhar para não desgastar os pneus.']
+      }
+    ],
+    precautions: [
+      'Apoie o veículo com segurança.',
+      'Conte as voltas para manter o alinhamento aproximado.',
+      'Faça o alinhamento após a troca.'
+    ],
+    commonIssues: [
+      'Desgaste irregular dos pneus por falta de alinhamento.',
+      'Folga persistente se a barra axial também estiver gasta.',
+      'Coifa rasgada permitindo entrada de sujeira.'
+    ],
+    professionalHelp: 'Após a troca, procure sempre um serviço de alinhamento e balanceamento profissional.'
+  },
+  {
+    id: 'guide-stabilizer-bushings',
+    partId: 'part-stabilizer-bushings',
+    title: 'Troca das Buchas da Barra Estabilizadora',
+    description: 'Procedimento para substituir as buchas da barra estabilizadora do Chevrolet Prisma 1.0 2009/2010.',
+    difficulty: 'easy',
+    estimatedTime: '45min',
+    estimatedTimeMinutes: 45,
+    tools: ['Jogo de soquetes', 'Chave de boca', 'Torquímetro', 'Macaco e cavaletes'],
+    materials: ['Buchas da barra estabilizadora novas', 'Graxa apropriada'],
+    steps: [
+      {
+        stepNumber: 1,
+        title: 'Preparação',
+        description: 'Eleve a dianteira com segurança, apoie em cavaletes e localize a barra estabilizadora e suas buchas.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Inspecione também as bieletas (links) da barra.'],
+        warnings: ['Apoie o veículo em cavaletes antes de trabalhar embaixo.']
+      },
+      {
+        stepNumber: 2,
+        title: 'Remoção dos suportes',
+        description: 'Solte os parafusos dos suportes (grampos) que prendem as buchas ao subchassi.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Fotografe a posição dos grampos antes de soltar.'],
+        warnings: ['A barra pode descer levemente ao soltar os suportes.']
+      },
+      {
+        stepNumber: 3,
+        title: 'Substituição das buchas',
+        description: 'Retire as buchas antigas, aplique graxa apropriada e instale as buchas novas na barra.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Posicione o corte da bucha conforme orientação original.'],
+        warnings: ['Use graxa compatível com borracha para não deteriorar a bucha.']
+      },
+      {
+        stepNumber: 4,
+        title: 'Montagem e teste',
+        description: 'Recoloque os suportes, aperte no torque correto, baixe o veículo e teste em via com ondulações.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Os ruídos de batida na dianteira devem cessar.'],
+        warnings: ['Aperte os parafusos com o peso do carro no solo, se possível.']
+      }
+    ],
+    precautions: [
+      'Apoie o veículo com segurança.',
+      'Use graxa compatível com borracha.',
+      'Aperte os suportes no torque correto.'
+    ],
+    commonIssues: [
+      'Ruído persistente se as bieletas também estiverem gastas.',
+      'Bucha mal posicionada gerando folga.',
+      'Parafusos do suporte espanados.'
+    ],
+    professionalHelp: 'Procure um mecânico se o ruído continuar após a troca, pois pode ser desgaste em outros componentes da suspensão.'
+  },
+  {
+    id: 'guide-wheel-bearings',
+    partId: 'part-wheel-bearings',
+    title: 'Troca dos Rolamentos de Roda',
+    description: 'Procedimento para substituir os rolamentos de roda do Chevrolet Prisma 1.0 2009/2010.',
+    difficulty: 'hard',
+    estimatedTime: '120min',
+    estimatedTimeMinutes: 120,
+    tools: ['Chave de roda', 'Jogo de soquetes', 'Prensa hidráulica ou sacador de rolamento', 'Torquímetro', 'Macaco e cavaletes'],
+    materials: ['Rolamento de roda novo', 'Graxa apropriada', 'Anel de trava (se aplicável)'],
+    steps: [
+      {
+        stepNumber: 1,
+        title: 'Remoção da roda e cubo',
+        description: 'Eleve o veículo com segurança, retire a roda e o disco/tambor para acessar o cubo de roda.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Identifique o tipo de rolamento (cubo integrado ou prensado).'],
+        warnings: ['Apoie o veículo em cavaletes antes de trabalhar.']
+      },
+      {
+        stepNumber: 2,
+        title: 'Desmontagem dos componentes',
+        description: 'Solte a porca do cubo e remova os componentes necessários para liberar o conjunto do rolamento.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Fotografe a sequência de desmontagem.'],
+        warnings: ['A porca do cubo tem alto torque; use ferramenta adequada.']
+      },
+      {
+        stepNumber: 3,
+        title: 'Extração do rolamento antigo',
+        description: 'Com a prensa ou sacador, extraia o rolamento antigo da manga de eixo ou do cubo.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Aquecer levemente o alojamento facilita a extração em alguns casos.'],
+        warnings: ['Não danifique o alojamento da manga durante a extração.']
+      },
+      {
+        stepNumber: 4,
+        title: 'Instalação do rolamento novo',
+        description: 'Prense o rolamento novo no alojamento aplicando força apenas na pista externa e recoloque o anel de trava.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Aplique força na pista externa ao prensar para não danificar o rolamento.'],
+        warnings: ['Prensar pela pista errada destrói o rolamento novo.']
+      },
+      {
+        stepNumber: 5,
+        title: 'Montagem e teste',
+        description: 'Remonte o cubo, aperte a porca no torque correto, recoloque a roda e teste verificando ruídos e folga.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Gire a roda para confirmar giro suave e sem ruído.'],
+        warnings: ['Respeite o torque da porca do cubo para não danificar o rolamento.']
+      }
+    ],
+    precautions: [
+      'Apoie o veículo com segurança.',
+      'Prense o rolamento apenas pela pista correta.',
+      'Respeite o torque da porca do cubo.'
+    ],
+    commonIssues: [
+      'Ruído persistente por instalação incorreta.',
+      'Folga por porca do cubo sub-apertada.',
+      'Dano ao rolamento por prensagem errada.'
+    ],
+    professionalHelp: 'Por exigir prensa e torque elevado, recomenda-se a execução por um mecânico equipado.'
+  },
+  {
+    id: 'guide-washer-fluid',
+    partId: 'part-washer-fluid',
+    title: 'Reposição do Fluido do Limpador de Para-brisa',
+    description: 'Procedimento simples para abastecer o reservatório do esguicho do limpador do Chevrolet Prisma 1.0 2009/2010.',
+    difficulty: 'easy',
+    estimatedTime: '5min',
+    estimatedTimeMinutes: 5,
+    tools: ['Funil'],
+    materials: ['Fluido do limpador de para-brisa', 'Água limpa (se concentrado)'],
+    steps: [
+      {
+        stepNumber: 1,
+        title: 'Localização do reservatório',
+        description: 'Abra o capô e localize o reservatório do esguicho, identificado pelo símbolo de para-brisa na tampa.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Não confunda com o vaso de expansão do líquido de arrefecimento.'],
+        warnings: ['Nunca abasteça o reservatório do limpador com líquido de arrefecimento.']
+      },
+      {
+        stepNumber: 2,
+        title: 'Abastecimento e teste',
+        description: 'Abasteça com o fluido apropriado até o nível indicado, feche a tampa e teste os esguichos.',
+        imageUrl: '',
+        status: 'pending',
+        tips: ['Dilua o concentrado conforme as instruções do fabricante.'],
+        warnings: ['Não use água com sabão comum, pois pode entupir os esguichos.']
+      }
+    ],
+    precautions: [
+      'Use apenas fluido específico para para-brisa.',
+      'Não confunda com outros reservatórios.'
+    ],
+    commonIssues: [
+      'Esguicho entupido por uso de produtos inadequados.',
+      'Bico desalinhado direcionando mal o jato.'
+    ],
+    professionalHelp: 'Procure ajuda se os esguichos não funcionarem mesmo com o reservatório cheio, pois pode haver falha na bomba do esguicho.'
   }
 ] as const;
 

@@ -1,7 +1,7 @@
 // app/guides/[id]/page.tsx
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { ArrowLeft, Clock, Wrench, AlertTriangle } from 'lucide-react';
+import { ArrowLeft, Clock, Wrench, AlertTriangle, Youtube } from 'lucide-react';
 import { getGuideById, getPartById, getSystemById } from '../../../lib/selectors';
 import { formatTime } from '../../../lib/utils';
 import { getGuideImageUrl } from '../../../lib/guide-images';
@@ -20,6 +20,8 @@ export default async function GuidePage({ params }: GuidePageProps) {
 
   const part = await getPartById(guide.partId);
   const system = part ? await getSystemById(part.systemId) : null;
+
+  const youtubeSearchUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(`Chevrolet Prisma 1.0 ${guide.title}`)}`;
 
   const difficultyLabels = {
     easy: { label: 'Fácil', color: 'text-green-400', bg: 'bg-green-900/30' },
@@ -74,6 +76,15 @@ export default async function GuidePage({ params }: GuidePageProps) {
               <span className="bg-zinc-800 text-zinc-300 px-3 py-1 rounded-full text-sm">
                 {guide.steps.length} passos
               </span>
+              <a
+                href={youtubeSearchUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-red-900/40 hover:bg-red-800/60 text-red-400 hover:text-red-300 px-3 py-1 rounded-full text-sm font-medium transition border border-red-900/50 hover:border-red-700"
+              >
+                <Youtube size={14} />
+                Ver no YouTube
+              </a>
             </div>
           </div>
 
