@@ -31,7 +31,7 @@ export default async function GuidePage({ params }: GuidePageProps) {
     medium: { label: 'Médio', color: 'text-yellow-400', bg: 'bg-yellow-900/30' },
     hard: { label: 'Difícil', color: 'text-red-400', bg: 'bg-red-900/30' },
   };
-  const difficulty = difficultyLabels[guide.difficulty];
+  const difficulty = difficultyLabels[guide.difficulty as keyof typeof difficultyLabels] ?? difficultyLabels.medium;
 
   return (
     <div className="flex flex-col gap-8 max-w-4xl mx-auto">
