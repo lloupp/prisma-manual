@@ -1,4 +1,3 @@
-// lib/prisma.ts
 import { PrismaClient } from '@prisma/client';
 import { PrismaLibSql } from '@prisma/adapter-libsql';
 
@@ -15,7 +14,6 @@ export function getPrisma(): PrismaClient {
   return _prisma;
 }
 
-// Synchronous access via caching (first call blocks, subsequent calls return cached)
 export const prisma: PrismaClient = globalForPrisma.prisma ?? getPrisma();
 
 if (process.env.NODE_ENV !== 'production') {
