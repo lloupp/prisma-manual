@@ -1,7 +1,7 @@
 // app/guides/[id]/page.tsx
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { ArrowLeft, Clock, Wrench, AlertTriangle, PlayCircle } from 'lucide-react';
+import { ArrowLeft, Clock, Wrench, AlertTriangle, PlayCircle, ShoppingCart } from 'lucide-react';
 import { getGuideById, getPartById, getSystemById } from '../../../lib/selectors';
 import { formatTime } from '../../../lib/utils';
 import { getGuideImageUrl } from '../../../lib/guide-images';
@@ -22,6 +22,9 @@ export default async function GuidePage({ params }: GuidePageProps) {
   const system = part ? await getSystemById(part.systemId) : null;
 
   const youtubeSearchUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(`Chevrolet Prisma 1.0 ${guide.title}`)}`;
+  const mlSearchUrl = part
+    ? `https://lista.mercadolivre.com.br/${encodeURIComponent(`${part.name} Chevrolet Prisma`)}`
+    : `https://lista.mercadolivre.com.br/${encodeURIComponent(`${guide.title} Chevrolet Prisma`)}`;
 
   const difficultyLabels = {
     easy: { label: 'Fácil', color: 'text-green-400', bg: 'bg-green-900/30' },
@@ -84,6 +87,15 @@ export default async function GuidePage({ params }: GuidePageProps) {
               >
                 <PlayCircle size={14} />
                 Ver no YouTube
+              </a>
+              <a
+                href={mlSearchUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-yellow-900/40 hover:bg-yellow-800/60 text-yellow-400 hover:text-yellow-300 px-3 py-1 rounded-full text-sm font-medium transition border border-yellow-900/50 hover:border-yellow-700"
+              >
+                <ShoppingCart size={14} />
+                Ver no Mercado Livre
               </a>
             </div>
           </div>

@@ -1,7 +1,7 @@
 // app/parts/[id]/page.tsx
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { ArrowLeft, Wrench, Clock, AlertTriangle } from 'lucide-react';
+import { ArrowLeft, Wrench, Clock, AlertTriangle, ShoppingCart } from 'lucide-react';
 import { getPartById, getSystemById, getGuidesByPartId } from '../../../lib/selectors';
 import { getGuideImageUrl } from '../../../lib/guide-images';
 
@@ -68,6 +68,29 @@ export default async function PartPage({ params }: PartPageProps) {
         <div className="mt-4 flex items-center gap-2 text-sm text-zinc-500">
           <span>Posição:</span>
           <span className="text-zinc-300">{part.position}</span>
+        </div>
+
+        <div className="mt-5 flex flex-wrap gap-3">
+          <a
+            href={`https://lista.mercadolivre.com.br/${encodeURIComponent(`${part.name} Chevrolet Prisma`)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 bg-yellow-900/40 hover:bg-yellow-800/60 text-yellow-400 hover:text-yellow-300 px-4 py-2 rounded-lg text-sm font-medium transition border border-yellow-900/50 hover:border-yellow-700"
+          >
+            <ShoppingCart size={15} />
+            Buscar no Mercado Livre
+          </a>
+          {part.partNumber && (
+            <a
+              href={`https://lista.mercadolivre.com.br/${encodeURIComponent(`${part.partNumber} Prisma`)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-zinc-800 hover:bg-zinc-700 text-zinc-300 hover:text-yellow-300 px-4 py-2 rounded-lg text-sm font-medium transition border border-zinc-700"
+            >
+              <ShoppingCart size={15} />
+              Buscar por código {part.partNumber}
+            </a>
+          )}
         </div>
       </div>
 

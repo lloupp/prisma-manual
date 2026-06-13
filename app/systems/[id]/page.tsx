@@ -1,7 +1,7 @@
 // app/systems/[id]/page.tsx
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, ShoppingCart } from 'lucide-react';
 import { getSystemById, getPartsBySystemId } from '../../../lib/selectors';
 
 const CATEGORY_ICONS: Record<string, string> = {
@@ -89,13 +89,22 @@ export default async function SystemPage({ params }: SystemPageProps) {
                   </div>
                 </div>
 
-                <div className="mt-3 pt-3 border-t border-zinc-800">
-                  <p className="text-xs text-zinc-500 mb-2">Informações:</p>
+                <div className="mt-3 pt-3 border-t border-zinc-800 flex items-center justify-between gap-3">
                   <div className="flex flex-wrap gap-2">
-                    <span className="bg-zinc-800 px-2 py-1 rounded text-xs">
+                    <span className="bg-zinc-800 px-2 py-1 rounded text-xs text-zinc-400">
                       OEM: {part.oemNumber}
                     </span>
                   </div>
+                  <a
+                    href={`https://lista.mercadolivre.com.br/${encodeURIComponent(`${part.name} Chevrolet Prisma`)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={e => e.stopPropagation()}
+                    className="inline-flex items-center gap-1.5 bg-yellow-900/30 hover:bg-yellow-800/50 text-yellow-400 hover:text-yellow-300 px-2.5 py-1 rounded text-xs font-medium transition border border-yellow-900/40 hover:border-yellow-700 flex-shrink-0"
+                  >
+                    <ShoppingCart size={12} />
+                    Mercado Livre
+                  </a>
                 </div>
               </Link>
             );
