@@ -9,6 +9,17 @@ import { guides as staticGuides } from '../data/guides';
 const staticPartsById = new Map(staticParts.map((part) => [part.id, part]));
 const staticGuidesById = new Map(staticGuides.map((guide) => [guide.id, guide]));
 
+function safeParseArray(value: any): string[] {
+  if (!value) return [];
+  if (Array.isArray(value)) return value;
+  const s = String(value).trim();
+  if (!s || s === 'null') return [];
+  if (s.startsWith('[')) {
+    try { return JSON.parse(s); } catch { /* fall through */ }
+  }
+  return [s];
+}
+
 // Funções utilitárias para converter dados do banco
 function parseSystem(system: any) {
   return {
@@ -53,8 +64,8 @@ function parseGuide(guide: any) {
     imageUrl: guide.imageUrl,
     tools: staticGuide?.tools ?? [],
     materials: staticGuide?.materials ?? [],
-    precautions: JSON.parse(guide.precautions || '[]'),
-    commonIssues: JSON.parse(guide.commonIssues || '[]'),
+    precautions: safeParseArray(guide.precautions),
+    commonIssues: safeParseArray(guide.commonIssues),
     professionalHelp: guide.professionalHelp,
   };
 }
@@ -66,8 +77,8 @@ function parseGuideStep(step: any) {
     title: step.title,
     description: step.description,
     imageUrl: step.imageUrl,
-    tips: JSON.parse(step.tips || '[]'),
-    warnings: JSON.parse(step.warnings || '[]'),
+    tips: safeParseArray(step.tips),
+    warnings: safeParseArray(step.warnings),
   };
 }
 

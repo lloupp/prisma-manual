@@ -1,7 +1,8 @@
 // app/systems/[id]/page.tsx
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { ArrowLeft, ShoppingCart } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
+import { MLButton } from '../../../components/MLButton';
 import { getSystemById, getPartsBySystemId } from '../../../lib/selectors';
 
 const CATEGORY_ICONS: Record<string, string> = {
@@ -95,16 +96,9 @@ export default async function SystemPage({ params }: SystemPageProps) {
                       OEM: {part.oemNumber}
                     </span>
                   </div>
-                  <a
+                  <MLButton
                     href={`https://lista.mercadolivre.com.br/${encodeURIComponent(`${part.name} Chevrolet Prisma`)}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={e => e.stopPropagation()}
-                    className="inline-flex items-center gap-1.5 bg-yellow-900/30 hover:bg-yellow-800/50 text-yellow-400 hover:text-yellow-300 px-2.5 py-1 rounded text-xs font-medium transition border border-yellow-900/40 hover:border-yellow-700 flex-shrink-0"
-                  >
-                    <ShoppingCart size={12} />
-                    Mercado Livre
-                  </a>
+                  />
                 </div>
               </Link>
             );
