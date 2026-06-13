@@ -1,7 +1,7 @@
 // app/guides/[id]/page.tsx
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { ArrowLeft, Clock, Wrench, AlertTriangle, Youtube } from 'lucide-react';
+import { ArrowLeft, Clock, Wrench, AlertTriangle, PlayCircle } from 'lucide-react';
 import { getGuideById, getPartById, getSystemById } from '../../../lib/selectors';
 import { formatTime } from '../../../lib/utils';
 import { getGuideImageUrl } from '../../../lib/guide-images';
@@ -82,7 +82,7 @@ export default async function GuidePage({ params }: GuidePageProps) {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-red-900/40 hover:bg-red-800/60 text-red-400 hover:text-red-300 px-3 py-1 rounded-full text-sm font-medium transition border border-red-900/50 hover:border-red-700"
               >
-                <Youtube size={14} />
+                <PlayCircle size={14} />
                 Ver no YouTube
               </a>
             </div>
