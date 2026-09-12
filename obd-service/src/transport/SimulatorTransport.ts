@@ -11,6 +11,16 @@ export interface SimulatorFaults {
   alwaysNoResponse?: boolean;
   /** Após esse número de leituras, simula perda de conexão (LOST). */
   disconnectAfterReads?: number;
+  /** Se true, toda leitura de PID devolve menos bytes do que o PID exige -
+   * simula um quadro corrompido/truncado (ex.: ruído na linha serial real).
+   * O ConnectionManager já trata isso como PROTOCOL_ERROR, nunca como um
+   * valor decodificado. */
+  corruptedResponses?: boolean;
+  /** Após esse número de leituras, a leitura de PID passa a devolver o
+   * quadro congelado no instante dessa N-ésima leitura, marcado como
+   * `stale: true` - simula um adaptador que devolve um valor em cache em
+   * vez de reamostrar o barramento. */
+  staleAfterReads?: number;
 }
 
 const SIMULATED_PORT: PortDescriptor = {
@@ -31,6 +41,10 @@ export class SimulatorTransport implements OBDTransport {
   private readCount = 0;
   private listeners: Array<(event: ConnectionEvent) => void> = [];
   private scenario: SimulatorScenario;
+  /** Instante (t) congelado na leitura em que faults.staleAfterReads foi
+   * atingido - leituras seguintes reamostram nesse mesmo t em vez do t
+   * atual, simulando um valor em cache. */
+  private frozenAt: number | null = null;
 
   constructor(scenarioId: string = DEFAULT_SCENARIO_ID, private faults: SimulatorFaults = {}) {
     this.scenario = SCENARIOS[scenarioId] ?? SCENARIOS[DEFAULT_SCENARIO_ID];
@@ -93,14 +107,24 @@ export class SimulatorTransport implements OBDTransport {
       return { ok: false, error: 'NO_RESPONSE' };
     }
 
-    const t = (Date.now() - this.connectedAt) / 1000;
+    let t = (Date.now() - this.connectedAt) / 1000;
+    let stale = false;
+    if (this.faults.staleAfterReads !== undefined) {
+      if (this.readCount === this.faults.staleAfterReads) {
+        this.frozenAt = t;
+      } else if (this.readCount > this.faults.staleAfterReads && this.frozenAt !== null) {
+        t = this.frozenAt;
+        stale = true;
+      }
+    }
 
     switch (request.kind) {
       case 'READ_PROTOCOL':
         return { ok: true, bytes: [] };
       case 'READ_VOLTAGE': {
         const bytes = this.scenario.samplePid('42', t);
-        return bytes ? { ok: true, bytes } : { ok: false, error: 'UNSUPPORTED' };
+        if (!bytes) return { ok: false, error: 'UNSUPPORTED' };
+        return { ok: true, bytes: this.maybeCorrupt(bytes), stale };
       }
       case 'READ_SUPPORTED_PIDS': {
         const offset = parseInt(request.bank, 16);
@@ -112,7 +136,8 @@ export class SimulatorTransport implements OBDTransport {
           return { ok: false, error: 'UNSUPPORTED' };
         }
         const bytes = this.scenario.samplePid(request.pid, t);
-        return bytes ? { ok: true, bytes } : { ok: false, error: 'UNSUPPORTED' };
+        if (!bytes) return { ok: false, error: 'UNSUPPORTED' };
+        return { ok: true, bytes: this.maybeCorrupt(bytes), stale };
       }
       case 'READ_DTC': {
         const bytes: number[] = [];
@@ -138,6 +163,15 @@ export class SimulatorTransport implements OBDTransport {
       default:
         return { ok: false, error: 'UNSUPPORTED' };
     }
+  }
+
+  /** Trunca os bytes para simular um quadro corrompido, quando
+   * faults.corruptedResponses estiver ativo. Sempre deixa pelo menos 0
+   * bytes (nunca inventa dados adicionais) - o objetivo é exercitar o
+   * caminho de PROTOCOL_ERROR do ConnectionManager. */
+  private maybeCorrupt(bytes: number[]): number[] {
+    if (!this.faults.corruptedResponses) return bytes;
+    return bytes.slice(0, Math.max(0, bytes.length - 1));
   }
 
   private encodeSupportedBitmask(offset: number): number[] {

@@ -44,6 +44,20 @@ describe('ConnectionManager', () => {
     expect((result as any).value).toBeUndefined();
   });
 
+  it('readPid retorna TIMEOUT sem nenhum valor quando o transporte não responde a tempo - nunca interpreta ausência como zero', async () => {
+    // A descoberta de PIDs precisa suceder normalmente primeiro (senão '0C'
+    // nunca entraria em supportedPids e o teste testaria NOT_SUPPORTED, não
+    // TIMEOUT); o fault é ativado só depois, mutando o mesmo objeto de
+    // faults que o transporte já guarda por referência.
+    const faults = {};
+    const manager = new ConnectionManager(new SimulatorTransport('idle-healthy', faults));
+    await manager.connect('SIMULATOR');
+    Object.assign(faults, { alwaysTimeout: true });
+    const result = await manager.readPid('0C');
+    expect(result.status).toBe('TIMEOUT');
+    expect((result as any).value).toBeUndefined();
+  });
+
   it('readPid retorna OK com o valor decodificado para um PID suportado', async () => {
     const manager = new ConnectionManager(new SimulatorTransport('idle-healthy'));
     await manager.connect('SIMULATOR');

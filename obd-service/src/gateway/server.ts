@@ -1,8 +1,14 @@
 import http, { IncomingMessage, ServerResponse } from 'node:http';
+import { join } from 'node:path';
 import { WebSocketServer, WebSocket } from 'ws';
 import { ConnectionManager } from '../connection/ConnectionManager';
+import { OBDTransport } from '../transport/OBDTransport';
+import { SimulatorTransport } from '../transport/SimulatorTransport';
+import { RecordingTransport } from '../transport/RecordingTransport';
+import { SCENARIOS } from '../simulator/scenarios';
 import { STANDARD_PIDS } from '../protocol/pids';
 import { describeDtc } from '../protocol/dtcDescriptions';
+import { saveRecordingToFile, listRecordingFiles } from '../replay/storage';
 import { logger } from './logger';
 
 const LIVE_STREAM_INTERVAL_MS = 1000;
@@ -47,7 +53,20 @@ async function liveSnapshot(manager: ConnectionManager) {
   );
 }
 
-export function createServer(manager: ConnectionManager) {
+export interface GatewayOptions {
+  /** Transporte "cru" (não decorado) - usado só para checar se os
+   * endpoints /simulator/* fazem sentido (instanceof SimulatorTransport). */
+  transport?: OBDTransport;
+  /** Decorator que grava a sessão atual - usado pelos endpoints
+   * /recording/*. Ausente = gravação não está disponível nesta instância. */
+  recorder?: RecordingTransport;
+  /** Diretório onde POST /recording/save escreve os arquivos e GET
+   * /recording/list procura por eles. */
+  recordingsDir?: string;
+}
+
+export function createServer(manager: ConnectionManager, options: GatewayOptions = {}) {
+  const { transport, recorder, recordingsDir } = options;
   const server = http.createServer(async (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
@@ -128,6 +147,62 @@ export function createServer(manager: ConnectionManager) {
       if (req.method === 'POST' && url.pathname === '/disconnect') {
         await manager.disconnect();
         return sendJson(res, 200, { state: manager.getState() });
+      }
+
+      // Endpoints do simulador: só existem (e só fazem algo) quando o
+      // transporte ativo é o SimulatorTransport - nunca aparecem/afetam nada
+      // quando o serviço está rodando com hardware real (SerialTransport).
+      if (req.method === 'GET' && url.pathname === '/simulator/scenarios') {
+        if (!(transport instanceof SimulatorTransport)) {
+          return sendJson(res, 404, { error: 'SIMULADOR_INDISPONIVEL' });
+        }
+        return sendJson(res, 200, {
+          scenarios: Object.values(SCENARIOS).map(s => ({ id: s.id, label: s.label, description: s.description })),
+        });
+      }
+
+      if (req.method === 'POST' && url.pathname === '/simulator/scenario') {
+        if (!(transport instanceof SimulatorTransport)) {
+          return sendJson(res, 404, { error: 'SIMULADOR_INDISPONIVEL' });
+        }
+        const body = await readJsonBody(req);
+        const scenarioId = body.scenarioId;
+        if (typeof scenarioId !== 'string' || !(scenarioId in SCENARIOS)) {
+          return sendJson(res, 400, { error: 'CENARIO_INVALIDO' });
+        }
+        transport.setScenario(scenarioId);
+        logger.info('Cenário do simulador alterado', { scenarioId });
+        return sendJson(res, 200, { scenarioId });
+      }
+
+      // Endpoints de gravação/replay - RECORD -> SAVE do ciclo. O REPLAY em
+      // si (reler o arquivo salvo) acontece reiniciando o serviço com
+      // OBD_TRANSPORT=replay (ver src/index.ts), exatamente como já se troca
+      // entre simulador e hardware real - não é um recurso "a mais", é o
+      // mesmo mecanismo de seleção de transporte que já existia.
+      if (req.method === 'GET' && url.pathname === '/recording/current') {
+        if (!recorder) return sendJson(res, 404, { error: 'GRAVACAO_INDISPONIVEL' });
+        return sendJson(res, 200, { frameCount: recorder.getFrameCount() });
+      }
+
+      if (req.method === 'POST' && url.pathname === '/recording/save') {
+        if (!recorder || !recordingsDir) return sendJson(res, 404, { error: 'GRAVACAO_INDISPONIVEL' });
+        if (recorder.getFrameCount() === 0) {
+          return sendJson(res, 409, { error: 'NADA_GRAVADO_AINDA' });
+        }
+        const body = await readJsonBody(req);
+        const label = typeof body.label === 'string' && body.label.trim() ? body.label.trim() : undefined;
+        const recording = recorder.getRecording();
+        if (label) recording.label = label;
+        const fileName = `${recording.id}.json`;
+        saveRecordingToFile(recording, join(recordingsDir, fileName));
+        logger.info('Sessão gravada salva em disco', { fileName, frameCount: recording.frames.length });
+        return sendJson(res, 200, { fileName, id: recording.id, frameCount: recording.frames.length });
+      }
+
+      if (req.method === 'GET' && url.pathname === '/recording/list') {
+        if (!recordingsDir) return sendJson(res, 404, { error: 'GRAVACAO_INDISPONIVEL' });
+        return sendJson(res, 200, { recordings: listRecordingFiles(recordingsDir) });
       }
 
       return sendJson(res, 404, { error: 'ROTA_NAO_ENCONTRADA' });

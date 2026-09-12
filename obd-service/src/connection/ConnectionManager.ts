@@ -15,6 +15,7 @@ export interface VehicleProfile {
 
 export type PidReadResult =
   | { status: 'OK'; value: number; unit: string }
+  | { status: 'STALE'; value: number; unit: string }
   | { status: 'NOT_SUPPORTED' }
   | { status: 'NO_RESPONSE' }
   | { status: 'TIMEOUT' }
@@ -144,6 +145,14 @@ export class ConnectionManager {
     const value = definition.decode(response.bytes);
     if (!Number.isFinite(value)) {
       return { status: 'PROTOCOL_ERROR' };
+    }
+    // Um quadro sinalizado como "stale" pelo transporte não é uma leitura ao
+    // vivo, mesmo que os bytes decodifiquem normalmente - nunca deve ser
+    // confundido com um dado 'OK' fresco pelo agente ou pelo motor de
+    // diagnóstico (dado ausente/obsoleto tratado como zero é exatamente o
+    // tipo de erro que este status existe para evitar).
+    if (response.stale) {
+      return { status: 'STALE', value, unit: definition.unit };
     }
     return { status: 'OK', value, unit: definition.unit };
   }

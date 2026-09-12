@@ -27,6 +27,11 @@ export interface OBDResponse {
   error?: 'NO_RESPONSE' | 'TIMEOUT' | 'UNSUPPORTED' | 'PROTOCOL_ERROR';
   /** Presente apenas na resposta de READ_FREEZE_FRAME: bytes por PID capturados no instante da falha. */
   frame?: Record<string, number[]>;
+  /** true quando o transporte sabe que este valor não é uma leitura fresca
+   * (ex.: adaptador devolveu o último quadro em cache em vez de reamostrar).
+   * Nunca deve ser tratado como equivalente a uma leitura OK comum - ver
+   * ConnectionManager.readPid(), que propaga isso como status 'STALE'. */
+  stale?: boolean;
 }
 
 export type ConnectionEvent =
