@@ -1,10 +1,18 @@
 // app/search/page.tsx
 import Link from 'next/link';
+import { Metadata } from 'next';
 import { ArrowLeft, Search, Wrench, Cog, FileText } from 'lucide-react';
 import { searchAll } from '../../lib/search';
 
 interface SearchPageProps {
   searchParams: Promise<{ q?: string }>;
+}
+
+export async function generateMetadata({ searchParams }: SearchPageProps): Promise<Metadata> {
+  const { q } = await searchParams;
+  return {
+    title: q ? `Busca: ${q} | Manual de Manutenção Prisma` : 'Busca | Manual de Manutenção Prisma',
+  };
 }
 
 const TYPE_ICONS = {
@@ -43,7 +51,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
       <div className="bg-zinc-900 rounded-xl p-6 border border-zinc-800">
         <div className="flex items-center gap-3 mb-4">
           <Search className="text-cyan-400" size={28} />
-          <h1 className="text-2xl font-bold">Resultados para "{query}"</h1>
+          <h1 className="text-2xl font-bold">Resultados para &quot;{query}&quot;</h1>
         </div>
         <p className="text-zinc-400">
           {results.length} resultado{results.length !== 1 ? 's' : ''} encontrado{results.length !== 1 ? 's' : ''}
@@ -54,7 +62,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
       {results.length === 0 ? (
         <div className="text-center py-12">
           <p className="text-zinc-400 text-lg mb-4">
-            Nenhum resultado encontrado para "{query}"
+            Nenhum resultado encontrado para &quot;{query}&quot;
           </p>
           <p className="text-zinc-500 text-sm">
             Tente buscar por: nome da peça, sintoma, código ou sistema

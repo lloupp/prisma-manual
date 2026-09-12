@@ -25,8 +25,8 @@ Aplicação web interativa de manual de manutenção automotiva para o **Chevrol
 
 Manual de manutenção interativo com:
 - **10 sistemas de manutenção** catalogados (óleo, arrefecimento, freios, suspensão, etc.)
-- **23 peças** com informações técnicas (código, OEM, marca, posição)
-- **18 guias de reparo** com passo a passo detalhado (78 passos no total)
+- **49 peças** com informações técnicas (código, OEM, marca, posição)
+- **49 guias de reparo** com passo a passo detalhado (216 passos no total)
 - **Busca inteligente** com normalização de acentos em português
 - **Navegação hierárquica**: Sistema → Peça → Guia
 - **Visualização 3D** do veículo com hotspots interativos (6 vistas, 12 hotspots)
@@ -130,7 +130,7 @@ npm run start
 | `npm run dev` | Servidor de desenvolvimento |
 | `npm run build` | Build de produção |
 | `npm run start` | Executar build de produção |
-| `npm run lint` | Verificação TypeScript (tsc --noEmit) |
+| `npm run lint` | ESLint (eslint-config-next) |
 | `npm run typecheck` | Verificação TypeScript (tsc --noEmit) |
 | `npx prisma migrate dev` | Aplicar mudanças no schema ao banco |
 | `npx tsx prisma/seed.ts` | Repovoar banco com dados de `data/` |
@@ -204,27 +204,20 @@ Normalização de texto em português: remoção de acentos usando `normalize('N
 
 ## Guias de Reparo Disponíveis
 
-1. Troca de Óleo e Filtro
-2. Filtro de Ar
-3. Velas de Ignição
-4. Bobinas de Ignição
-5. Fluido de Arrefecimento
-6. Radiador
-7. Termostato
-8. Ventoinha do Radiador
-9. Filtro de Combustível
-10. Palhetas do Limpador
-11. Braços do Limpador
-12. Bateria
-13. Caixa de Fusíveis
-14. Fusíveis
-15. Lâmpada do Farol
-16. Lâmpada da Lanterna Traseira
-17. Lâmpada do Indicador de Direção
-18. Pastilhas de Freio (Dianteiras e Traseiras)
-19. Fluido de Freio
-20. Amortecedores
-21. Articulações da Suspensão
+| Sistema | Guias |
+|---------|-------|
+| Óleo do Motor | Troca do Filtro de Óleo · Vedador do Bujão do Cárter · Junta do Cárter · Coxins do Motor · Fluido do Câmbio Manual |
+| Ar do Motor | Filtro de Ar · Limpeza do Corpo de Borboleta · Válvula PCV |
+| Ignição | Velas de Ignição · Bobinas de Ignição · Correia Dentada · Cabo de Embreagem · Junta da Tampa de Válvulas |
+| Arrefecimento | Líquido de Arrefecimento · Radiador · Termostato · Eletroventilador · Bomba D'água · Mangueiras do Radiador |
+| Combustível | Filtro de Combustível · Bomba de Combustível · Injetores de Combustível · Sensor Lambda/O2 |
+| Palhetas | Palhetas do Limpador · Braços do Limpador · Fluido do Limpador |
+| Elétrico | Bateria · Caixa de Fusíveis · Fusíveis · Alternador · Motor de Partida |
+| Iluminação | Lâmpada do Farol · Lâmpada da Lanterna Traseira · Lâmpada do Indicador de Direção · Lâmpada de Ré · Lâmpada da Placa |
+| Freios | Pastilhas Dianteiras · Pastilhas Traseiras · Fluido de Freio · Disco de Freio Dianteiro · Tambor de Freio Traseiro · Cabo do Freio de Mão |
+| Suspensão | Amortecedores · Articulações da Suspensão · Coifas do Homocinético · Fluido da Direção Hidráulica · Terminais de Direção · Buchas da Barra Estabilizadora · Rolamentos de Roda |
+
+Lista completa e atualizada em [`data/guides.ts`](data/guides.ts).
 
 ---
 

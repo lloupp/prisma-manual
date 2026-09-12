@@ -7,7 +7,7 @@ This repository is a Next.js 16 app using the App Router and TypeScript. Route f
 - `npm run dev`: start the local Next.js dev server.
 - `npm run build`: create a production build.
 - `npm run start`: run the production build locally.
-- `npm run lint`: run Next.js lint checks.
+- `npm run lint`: run ESLint (`eslint-config-next` core-web-vitals + TypeScript rules).
 - `npm run typecheck`: run TypeScript without emitting files.
 - `npx prisma migrate dev`: apply local schema changes to SQLite.
 - `npx tsx prisma/seed.ts`: repopulate `dev.db` from the files in `data/`.

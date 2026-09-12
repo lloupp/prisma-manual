@@ -1,6 +1,7 @@
 // selectors.ts
 // Acesso a dados via Prisma/SQLite com fallback pontual para metadados estáticos
 
+import { cache } from 'react';
 import { getPrisma } from './prisma';
 import { vehicle as staticVehicle } from '../data/vehicle';
 import { parts as staticParts } from '../data/parts';
@@ -176,7 +177,9 @@ export async function getAreaById(id: string) {
   return areas.find((a) => a.id === id);
 }
 
-export async function getSystemById(id: string) {
+// cache() dedupes repeated calls with the same id within a single request,
+// since both generateMetadata and the page component look up the same entity.
+export const getSystemById = cache(async (id: string) => {
   const prisma = getPrisma();
   const system = await prisma.system.findUnique({
     where: { id },
@@ -187,15 +190,15 @@ export async function getSystemById(id: string) {
     ...parseSystem(system),
     partIds: system.parts.map(p => p.id),
   };
-}
+});
 
-export async function getPartById(id: string) {
+export const getPartById = cache(async (id: string) => {
   const prisma = getPrisma();
   const part = await prisma.part.findUnique({ where: { id } });
   return part ? parsePart(part) : null;
-}
+});
 
-export async function getGuideById(id: string) {
+export const getGuideById = cache(async (id: string) => {
   const prisma = getPrisma();
   const guide = await prisma.guide.findUnique({
     where: { id },
@@ -206,7 +209,7 @@ export async function getGuideById(id: string) {
     ...parseGuide(guide),
     steps: guide.steps.map(parseGuideStep),
   };
-}
+});
 
 export async function getPartsBySystemId(systemId: string) {
   const prisma = getPrisma();
