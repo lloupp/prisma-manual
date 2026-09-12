@@ -17,7 +17,8 @@ export type PidReadResult =
   | { status: 'OK'; value: number; unit: string }
   | { status: 'NOT_SUPPORTED' }
   | { status: 'NO_RESPONSE' }
-  | { status: 'TIMEOUT' };
+  | { status: 'TIMEOUT' }
+  | { status: 'PROTOCOL_ERROR' };
 
 const MAX_RECONNECT_ATTEMPTS = 3;
 const RECONNECT_BACKOFF_MS = [1000, 3000, 6000];
@@ -133,7 +134,18 @@ export class ConnectionManager {
       if (response.error === 'UNSUPPORTED') return { status: 'NOT_SUPPORTED' };
       return { status: 'NO_RESPONSE' };
     }
-    return { status: 'OK', value: definition.decode(response.bytes), unit: definition.unit };
+    // Uma resposta truncada/malformada (possível em hardware serial real,
+    // nunca em dados sintéticos do simulador) não pode virar um valor
+    // decodificado - decode() com bytes insuficientes produziria NaN, que
+    // pareceria uma leitura real. Trate como PROTOCOL_ERROR em vez disso.
+    if (response.bytes.length < definition.bytes) {
+      return { status: 'PROTOCOL_ERROR' };
+    }
+    const value = definition.decode(response.bytes);
+    if (!Number.isFinite(value)) {
+      return { status: 'PROTOCOL_ERROR' };
+    }
+    return { status: 'OK', value, unit: definition.unit };
   }
 
   async readAllSupportedPids(): Promise<Record<string, PidReadResult>> {

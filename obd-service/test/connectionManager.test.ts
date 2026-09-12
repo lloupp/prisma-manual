@@ -1,6 +1,32 @@
 import { describe, it, expect } from 'vitest';
 import { ConnectionManager } from '../src/connection/ConnectionManager';
 import { SimulatorTransport } from '../src/transport/SimulatorTransport';
+import { OBDTransport, ConnectionEvent, PortDescriptor } from '../src/transport/OBDTransport';
+import { assertReadOnly } from '../src/validation/readOnlyGuard';
+
+/** Fake transporte que sempre conecta e responde com bytes truncados -
+ * simula o tipo de resposta malformada que só apareceria em hardware
+ * serial real (nunca no simulador, cujos dados são sempre bem formados). */
+class TruncatedResponseTransport implements OBDTransport {
+  private connected = false;
+  async listPorts(): Promise<PortDescriptor[]> { return [{ path: 'FAKE' }]; }
+  async connect(): Promise<void> { this.connected = true; }
+  async disconnect(): Promise<void> { this.connected = false; }
+  isConnected(): boolean { return this.connected; }
+  onEvent(_listener: (event: ConnectionEvent) => void): void {}
+  async send(rawRequest: unknown) {
+    const request = assertReadOnly(rawRequest);
+    if (request.kind === 'READ_SUPPORTED_PIDS' && request.bank === '00') {
+      // Anuncia suporte ao PID 0C (RPM, que precisa de 2 bytes).
+      return { ok: true, bytes: [0x00, 0x10, 0x00, 0x00] };
+    }
+    if (request.kind === 'READ_PID' && request.pid === '0C') {
+      // RPM precisa de 2 bytes; devolve só 1 - resposta truncada/malformada.
+      return { ok: true, bytes: [0x1f] };
+    }
+    return { ok: false, error: 'UNSUPPORTED' as const };
+  }
+}
 
 describe('ConnectionManager', () => {
   it('descobre corretamente os PIDs suportados pelo cenário, incluindo banks acima de 0x20', async () => {
@@ -48,6 +74,14 @@ describe('ConnectionManager', () => {
     await manager.disconnect();
     expect(manager.getState()).toBe('DISCONNECTED');
     expect(manager.getProfile()).toBeNull();
+  });
+
+  it('readPid nunca decodifica uma resposta truncada como um valor OK (protege contra hardware real malformado)', async () => {
+    const manager = new ConnectionManager(new TruncatedResponseTransport());
+    await manager.connect('FAKE');
+    const result = await manager.readPid('0C');
+    expect(result.status).toBe('PROTOCOL_ERROR');
+    expect((result as any).value).toBeUndefined();
   });
 
   it('tenta reconectar automaticamente após perda de conexão inesperada', async () => {

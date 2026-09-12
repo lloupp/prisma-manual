@@ -10,6 +10,7 @@ const STATUS_LABELS: Record<string, string> = {
   NOT_SUPPORTED: 'NÃO SUPORTADO',
   NO_RESPONSE: 'SEM RESPOSTA',
   TIMEOUT: 'TEMPO ESGOTADO',
+  PROTOCOL_ERROR: 'RESPOSTA INVÁLIDA',
 };
 
 function formatValue(reading: PidReading): string {

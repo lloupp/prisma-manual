@@ -26,7 +26,7 @@ function fail<T = never>(error: string, message: string): ToolResult<T> {
   return { ok: false, error, message };
 }
 
-async function readSinglePid(shortName: string): Promise<ToolResult<{ value: number; unit: string } | { status: 'NOT_SUPPORTED' | 'NO_RESPONSE' | 'TIMEOUT' }>> {
+async function readSinglePid(shortName: string): Promise<ToolResult<{ value: number; unit: string } | { status: 'NOT_SUPPORTED' | 'NO_RESPONSE' | 'TIMEOUT' | 'PROTOCOL_ERROR' }>> {
   try {
     const status = await obd.getStatus();
     if (status.state !== 'CONNECTED') {

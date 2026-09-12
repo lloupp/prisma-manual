@@ -41,7 +41,8 @@ export type PidReading =
   | { status: 'OK'; value: number; unit: string; name?: string; shortName?: string }
   | { status: 'NOT_SUPPORTED'; name?: string; shortName?: string }
   | { status: 'NO_RESPONSE'; name?: string; shortName?: string }
-  | { status: 'TIMEOUT'; name?: string; shortName?: string };
+  | { status: 'TIMEOUT'; name?: string; shortName?: string }
+  | { status: 'PROTOCOL_ERROR'; name?: string; shortName?: string };
 
 export interface DtcEntry {
   code: string;
