@@ -1,7 +1,9 @@
 import Link from 'next/link';
 import { Metadata } from 'next';
-import { ArrowLeft, Clock, AlertTriangle } from 'lucide-react';
+import { ArrowLeft, Clock, AlertTriangle, Stethoscope } from 'lucide-react';
 import { getDiagnosticSessions } from '../../lib/selectors';
+import HypothesisList from '../../components/diagnostico/HypothesisList';
+import { DiagnosticReport } from '../../lib/diagnostics/types';
 
 export const metadata: Metadata = {
   title: 'Histórico do Veículo',
@@ -68,6 +70,19 @@ export default async function HistoricoPage() {
                 </div>
               ) : (
                 <p className="text-zinc-500 text-sm">Nenhum DTC nesta sessão.</p>
+              )}
+              {session.symptomsReported && (
+                <p className="text-zinc-400 text-sm mt-2">Sintoma relatado: {session.symptomsReported}</p>
+              )}
+              {session.hypothesesSnapshot && (
+                <details className="mt-3">
+                  <summary className="flex items-center gap-2 text-sm text-cyan-400 cursor-pointer">
+                    <Stethoscope size={14} /> Reabrir diagnóstico desta sessão
+                  </summary>
+                  <div className="mt-3">
+                    <HypothesisList report={session.hypothesesSnapshot as DiagnosticReport} />
+                  </div>
+                </details>
               )}
             </div>
           ))}

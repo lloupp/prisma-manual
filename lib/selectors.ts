@@ -320,6 +320,16 @@ export interface CreateDiagnosticSessionInput {
   freezeFrame?: Record<string, unknown> | null;
   finalSamples?: Record<string, unknown> | null;
   symptomsReported?: string;
+  /** Amostras rotuladas por regime (idle, higher_rpm...) usadas pelo motor
+   * de hipóteses - só presentes quando a sessão veio do fluxo de
+   * Diagnóstico, não do Scanner simples. */
+  diagnosticSamples?: unknown[] | null;
+  /** Testes guiados que o usuário reportou ter executado, com o resultado. */
+  reportedTests?: unknown[] | null;
+  /** O DiagnosticReport (hipóteses) no momento em que a sessão foi salva -
+   * permite reabrir a sessão depois mostrando exatamente o que foi visto,
+   * sem depender de recalcular com as mesmas regras. */
+  hypothesesSnapshot?: Record<string, unknown> | null;
 }
 
 export async function createDiagnosticSession(input: CreateDiagnosticSessionInput) {
@@ -337,6 +347,9 @@ export async function createDiagnosticSession(input: CreateDiagnosticSessionInpu
       freezeFrame: input.freezeFrame ? JSON.stringify(input.freezeFrame) : null,
       finalSamples: input.finalSamples ? JSON.stringify(input.finalSamples) : null,
       symptomsReported: input.symptomsReported,
+      diagnosticSamples: input.diagnosticSamples ? JSON.stringify(input.diagnosticSamples) : null,
+      reportedTests: input.reportedTests ? JSON.stringify(input.reportedTests) : null,
+      hypothesesSnapshot: input.hypothesesSnapshot ? JSON.stringify(input.hypothesesSnapshot) : null,
     },
   });
 }
@@ -354,6 +367,9 @@ function parseDiagnosticSession(session: any) {
     freezeFrame: session.freezeFrame ? JSON.parse(session.freezeFrame) : null,
     finalSamples: session.finalSamples ? JSON.parse(session.finalSamples) : null,
     symptomsReported: session.symptomsReported,
+    diagnosticSamples: session.diagnosticSamples ? JSON.parse(session.diagnosticSamples) : null,
+    reportedTests: session.reportedTests ? JSON.parse(session.reportedTests) : null,
+    hypothesesSnapshot: session.hypothesesSnapshot ? JSON.parse(session.hypothesesSnapshot) : null,
     notes: session.notes,
   };
 }

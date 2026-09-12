@@ -22,30 +22,30 @@ enum Confidence {
 }
 
 model Vehicle {
-  id          String   @id
-  name        String
-  year        Int
-  model       String
-  engine      String
-  fuelType    String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id        String   @id
+  name      String
+  year      Int
+  model     String
+  engine    String
+  fuelType  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-  systems     System[]
-  views       CarView[]
+  systems System[]
+  views   CarView[]
 }
 
 model System {
-  id            String   @id
-  vehicleId     String
-  name          String
-  categoryType  String
-  description   String
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  id           String   @id
+  vehicleId    String
+  name         String
+  categoryType String
+  description  String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 
-  vehicle       Vehicle  @relation(fields: [vehicleId], references: [id])
-  parts         Part[]
+  vehicle Vehicle @relation(fields: [vehicleId], references: [id])
+  parts   Part[]
 }
 
 model Part {
@@ -66,34 +66,34 @@ model Part {
   createdAt           DateTime   @default(now())
   updatedAt           DateTime   @updatedAt
 
-  system              System     @relation(fields: [systemId], references: [id])
-  guides              Guide[]
+  system System  @relation(fields: [systemId], references: [id])
+  guides Guide[]
 
   @@index([systemId])
 }
 
 model Guide {
-  id                  String     @id
-  partId              String
-  title               String
-  description         String
-  difficulty          String
-  estimatedTime       String
+  id                   String     @id
+  partId               String
+  title                String
+  description          String
+  difficulty           String
+  estimatedTime        String
   estimatedTimeMinutes Int
-  imageUrl            String?
-  precautions         String     // JSON array stored as string
-  commonIssues        String     // JSON array stored as string
-  professionalHelp    String
+  imageUrl             String?
+  precautions          String // JSON array stored as string
+  commonIssues         String // JSON array stored as string
+  professionalHelp     String
   // Veículo/motorização a que este procedimento se aplica.
-  applicability       String     @default("Chevrolet Prisma Maxx 1.0 8V Flexpower 2009/2010, câmbio manual 5 marchas")
+  applicability        String     @default("Chevrolet Prisma Maxx 1.0 8V Flexpower 2009/2010, câmbio manual 5 marchas")
   // Confiança do procedimento em si (sequência de passos). Os torques e medidas
   // citados dentro dos passos têm sua própria confiança via TorqueSpecification.
-  confidence          Confidence @default(UNVERIFIED)
-  createdAt           DateTime   @default(now())
-  updatedAt           DateTime   @updatedAt
+  confidence           Confidence @default(UNVERIFIED)
+  createdAt            DateTime   @default(now())
+  updatedAt            DateTime   @updatedAt
 
-  part                Part       @relation(fields: [partId], references: [id])
-  steps               GuideStep[]
+  part  Part        @relation(fields: [partId], references: [id])
+  steps GuideStep[]
 
   @@index([partId])
 }
@@ -105,12 +105,12 @@ model GuideStep {
   title       String
   description String
   imageUrl    String?
-  tips        String   // JSON array
-  warnings    String   // JSON array
+  tips        String // JSON array
+  warnings    String // JSON array
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
-  guide       Guide    @relation(fields: [guideId], references: [id], onDelete: Cascade)
+  guide Guide @relation(fields: [guideId], references: [id], onDelete: Cascade)
 
   @@index([guideId])
 }
@@ -131,18 +131,18 @@ model CarView {
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
 
-  vehicle         Vehicle  @relation(fields: [vehicleId], references: [id])
-  hotspots        Hotspot[]
+  vehicle  Vehicle   @relation(fields: [vehicleId], references: [id])
+  hotspots Hotspot[]
 }
 
 model Hotspot {
-  id      String  @id
-  viewId  String
-  area    String
-  x       Float
-  y       Float
+  id     String @id
+  viewId String
+  area   String
+  x      Float
+  y      Float
 
-  view    CarView @relation(fields: [viewId], references: [id])
+  view CarView @relation(fields: [viewId], references: [id])
 
   @@index([viewId])
 }
@@ -163,7 +163,7 @@ model Source {
   id              String   @id
   title           String
   publisher       String
-  documentType    String   // OWNER_MANUAL | WORKSHOP_MANUAL | OEM_CATALOG | TECHNICAL_BULLETIN | WIRING_DIAGRAM | OTHER
+  documentType    String // OWNER_MANUAL | WORKSHOP_MANUAL | OEM_CATALOG | TECHNICAL_BULLETIN | WIRING_DIAGRAM | OTHER
   publicationYear Int?
   url             String?
   file            String?
@@ -171,7 +171,7 @@ model Source {
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
 
-  references      SourceReference[]
+  references SourceReference[]
 }
 
 // Liga uma fonte a uma afirmação técnica específica (peça, especificação,
@@ -181,7 +181,7 @@ model Source {
 model SourceReference {
   id          String     @id
   sourceId    String
-  subjectType String     // PART | GUIDE | SPECIFICATION | FLUID_SPECIFICATION | MAINTENANCE_INTERVAL | TORQUE_SPECIFICATION
+  subjectType String // PART | GUIDE | SPECIFICATION | FLUID_SPECIFICATION | MAINTENANCE_INTERVAL | TORQUE_SPECIFICATION
   subjectId   String
   page        String?
   section     String?
@@ -189,7 +189,7 @@ model SourceReference {
   notes       String?
   createdAt   DateTime   @default(now())
 
-  source      Source     @relation(fields: [sourceId], references: [id])
+  source Source @relation(fields: [sourceId], references: [id])
 
   @@index([sourceId])
   @@index([subjectType, subjectId])
@@ -200,7 +200,7 @@ model SourceReference {
 // modelo/folga da vela, relação de marcha, pressão dos pneus.
 model Specification {
   id            String     @id
-  system        String     // MOTOR | SISTEMA_ELETRICO | TRANSMISSAO | FREIOS | PNEUS | DIRECAO | CARROCERIA
+  system        String // MOTOR | SISTEMA_ELETRICO | TRANSMISSAO | FREIOS | PNEUS | DIRECAO | CARROCERIA
   label         String
   value         String
   unit          String?
@@ -215,36 +215,36 @@ model Specification {
 
 // Fluido/lubrificante: tipo, capacidade e intervalo de verificação/troca.
 model FluidSpecification {
-  id              String     @id
-  system          String     // MOTOR | TRANSMISSAO_MANUAL | FREIOS | ARREFECIMENTO | DIRECAO_HIDRAULICA | AR_CONDICIONADO | LAVADOR_PARABRISA
-  fluidType       String
-  specGrade       String?
-  capacity        String?
-  checkInterval   String?
-  changeInterval  String?
-  applicability   String     @default("Chevrolet Prisma Maxx 1.0 8V Flexpower 2009/2010")
-  confidence      Confidence @default(UNVERIFIED)
-  notes           String?
-  createdAt       DateTime   @default(now())
-  updatedAt       DateTime   @updatedAt
+  id             String     @id
+  system         String // MOTOR | TRANSMISSAO_MANUAL | FREIOS | ARREFECIMENTO | DIRECAO_HIDRAULICA | AR_CONDICIONADO | LAVADOR_PARABRISA
+  fluidType      String
+  specGrade      String?
+  capacity       String?
+  checkInterval  String?
+  changeInterval String?
+  applicability  String     @default("Chevrolet Prisma Maxx 1.0 8V Flexpower 2009/2010")
+  confidence     Confidence @default(UNVERIFIED)
+  notes          String?
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
 
   @@index([system])
 }
 
 // Item do plano de manutenção preventiva (quadro de revisões oficial).
 model MaintenanceInterval {
-  id                String     @id
-  category          String     // MOTOR | ARREFECIMENTO | FREIOS | SUSPENSAO_DIRECAO | CARROCERIA | ELETRICA
-  service           String     // ex.: "Velas de ignição: substituir"
-  intervalKm        Int?
-  intervalMonths    Int?
-  severeConditionKm Int?
+  id                    String     @id
+  category              String // MOTOR | ARREFECIMENTO | FREIOS | SUSPENSAO_DIRECAO | CARROCERIA | ELETRICA
+  service               String // ex.: "Velas de ignição: substituir"
+  intervalKm            Int?
+  intervalMonths        Int?
+  severeConditionKm     Int?
   severeConditionMonths Int?
-  notes             String?
-  applicability     String     @default("Chevrolet Prisma Maxx 1.0 8V Flexpower 2009/2010")
-  confidence        Confidence @default(UNVERIFIED)
-  createdAt         DateTime   @default(now())
-  updatedAt         DateTime   @updatedAt
+  notes                 String?
+  applicability         String     @default("Chevrolet Prisma Maxx 1.0 8V Flexpower 2009/2010")
+  confidence            Confidence @default(UNVERIFIED)
+  createdAt             DateTime   @default(now())
+  updatedAt             DateTime   @updatedAt
 
   @@index([category])
 }
@@ -255,7 +255,7 @@ model MaintenanceInterval {
 // com confidence UNVERIFIED e ser exibida como valor confirmado.
 model TorqueSpecification {
   id            String     @id
-  system        String     // MOTOR | SUSPENSAO | FREIOS | TRANSMISSAO | DIRECAO | RODAS
+  system        String // MOTOR | SUSPENSAO | FREIOS | TRANSMISSAO | DIRECAO | RODAS
   component     String
   fastener      String
   valueNm       Float?
@@ -271,24 +271,33 @@ model TorqueSpecification {
 }
 
 // Prontuário do veículo: uma sessão de diagnóstico OBD (uma conexão do
-// Scanner). Guardamos um resumo, não uma amostra por segundo - registrar
-// LiveDataSample linha a linha para uma ferramenta de uso pessoal seria
-// overengineering (item 30 do escopo do projeto); o snapshot final de
-// leituras (finalSamples) já é suficiente para o agente e para o histórico.
+// Scanner ou do fluxo de Diagnóstico). Guardamos um resumo, não uma
+// amostra por segundo - registrar LiveDataSample linha a linha para uma
+// ferramenta de uso pessoal seria overengineering (item 30 do escopo do
+// projeto); o snapshot final de leituras (finalSamples) já é suficiente
+// para o histórico simples do Scanner. diagnosticSamples/reportedTests/
+// hypothesesSnapshot existem só quando a sessão passou pelo motor de
+// hipóteses (ver lib/diagnostics) - são as amostras rotuladas por regime,
+// os testes guiados que o usuário reportou e o relatório de hipóteses no
+// momento em que a sessão foi salva, o suficiente para reabrir e revisar
+// (replay) um caso de diagnóstico depois sem precisar recalcular nada.
 model DiagnosticSession {
-  id               String    @id
-  startedAt        DateTime  @default(now())
-  endedAt          DateTime?
-  port             String
-  protocol         String?
-  ecuResponded     Boolean   @default(false)
-  supportedPids    String    // JSON array de PIDs (hex)
-  dtcs             String    // JSON array de { code, description }
-  freezeFrame      String?   // JSON: snapshot dos PIDs no momento da falha, se houver
-  finalSamples     String?   // JSON: última leitura de /live antes de desconectar
-  symptomsReported String?   // texto livre informado pelo usuário, opcional
-  notes            String?
-  createdAt        DateTime  @default(now())
+  id                 String    @id
+  startedAt          DateTime  @default(now())
+  endedAt            DateTime?
+  port               String
+  protocol           String?
+  ecuResponded       Boolean   @default(false)
+  supportedPids      String // JSON array de PIDs (hex)
+  dtcs               String // JSON array de { code, description }
+  freezeFrame        String? // JSON: snapshot dos PIDs no momento da falha, se houver
+  finalSamples       String? // JSON: última leitura de /live antes de desconectar
+  symptomsReported   String? // texto livre informado pelo usuário, opcional
+  diagnosticSamples  String? // JSON: DiagnosticSample[] rotuladas (idle, higher_rpm...)
+  reportedTests      String? // JSON: ReportedTestResult[] - testes guiados que o usuário reportou
+  hypothesesSnapshot String? // JSON: DiagnosticReport no momento em que a sessão foi salva
+  notes              String?
+  createdAt          DateTime  @default(now())
 
   @@index([startedAt])
 }

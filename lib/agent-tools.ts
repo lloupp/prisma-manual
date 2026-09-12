@@ -13,6 +13,9 @@
 import * as obd from './obd-client';
 import { searchAll } from './search';
 import { getGuideById, getPartById, getSystemById, getDiagnosticSessions } from './selectors';
+import { runDiagnostics } from './diagnostics/engine';
+import { buildSampleFromLiveData } from './diagnostics/fromLiveData';
+import { DiagnosticCase, DiagnosticSample } from './diagnostics/types';
 
 export type ToolResult<T> =
   | { ok: true; data: T }
@@ -26,7 +29,7 @@ function fail<T = never>(error: string, message: string): ToolResult<T> {
   return { ok: false, error, message };
 }
 
-async function readSinglePid(shortName: string): Promise<ToolResult<{ value: number; unit: string } | { status: 'NOT_SUPPORTED' | 'NO_RESPONSE' | 'TIMEOUT' | 'PROTOCOL_ERROR' }>> {
+async function readSinglePid(shortName: string): Promise<ToolResult<{ value: number; unit: string } | { status: 'STALE'; value: number; unit: string } | { status: 'NOT_SUPPORTED' | 'NO_RESPONSE' | 'TIMEOUT' | 'PROTOCOL_ERROR' }>> {
   try {
     const status = await obd.getStatus();
     if (status.state !== 'CONNECTED') {
@@ -39,6 +42,12 @@ async function readSinglePid(shortName: string): Promise<ToolResult<{ value: num
     }
     if (entry.status === 'OK') {
       return ok({ value: entry.value, unit: entry.unit });
+    }
+    // STALE carrega um valor, mas nunca deve ser devolvido no mesmo formato
+    // que uma leitura OK - o agente precisa do status explícito para nunca
+    // tratar um dado obsoleto como uma leitura ao vivo confiável.
+    if (entry.status === 'STALE') {
+      return ok({ status: 'STALE' as const, value: entry.value, unit: entry.unit });
     }
     return ok({ status: entry.status });
   } catch (e) {
@@ -131,6 +140,46 @@ export async function get_technical_procedure(guideId: string): Promise<ToolResu
   return ok({ guide, part, system });
 }
 
+const SAMPLE_LABELS: readonly DiagnosticSample['label'][] = ['idle', 'higher_rpm', 'cold_start', 'warm', 'unspecified'];
+
+/** Captura uma amostra de dados ao vivo rotulada por regime (marcha lenta,
+ * rotação mais alta...) no formato que o motor de diagnóstico por
+ * hipóteses entende (ver lib/diagnostics). Só lê o que o OBD Service já
+ * exposto por /live - nunca inventa um valor para um PID sem leitura. */
+export async function capture_diagnostic_sample(label: DiagnosticSample['label'] = 'unspecified'): Promise<ToolResult<DiagnosticSample>> {
+  if (!SAMPLE_LABELS.includes(label)) {
+    return fail('ROTULO_INVALIDO', `Rótulo de amostra inválido: "${label}".`);
+  }
+  try {
+    const status = await obd.getStatus();
+    if (status.state !== 'CONNECTED') {
+      return fail('NAO_CONECTADO', 'O veículo não está conectado ao Scanner OBD.');
+    }
+    const live = await obd.getLive();
+    return ok(buildSampleFromLiveData(live, label));
+  } catch {
+    return fail('OBD_SERVICE_INDISPONIVEL', 'Não foi possível falar com o OBD Service local.');
+  }
+}
+
+/** Roda o motor de diagnóstico por hipóteses (determinístico, sem LLM -
+ * ver lib/diagnostics/engine.ts) sobre um caso montado a partir de
+ * read_dtc/read_freeze_frame/capture_diagnostic_sample e dos testes que o
+ * usuário reportou. Nunca conclui "troque a peça X" - devolve hipóteses
+ * com evidências, dados ausentes e o próximo teste recomendado. */
+export async function run_diagnosis(input: DiagnosticCase): Promise<ToolResult<ReturnType<typeof runDiagnostics>>> {
+  if (
+    !input ||
+    typeof input.symptom !== 'string' ||
+    !Array.isArray(input.dtcs) ||
+    !Array.isArray(input.samples) ||
+    !Array.isArray(input.reportedTests)
+  ) {
+    return fail('CASO_INVALIDO', 'Formato de caso de diagnóstico inválido - esperado { symptom, dtcs, samples, reportedTests }.');
+  }
+  return ok(runDiagnostics(input));
+}
+
 /**
  * Registro de ferramentas para uma futura integração com um provedor de
  * LLM (ex.: Anthropic Messages API com tool use). Isto NÃO está conectado
@@ -152,4 +201,6 @@ export const AGENT_TOOLS = [
   { name: 'get_vehicle_history', description: 'Sessões de diagnóstico anteriores.', handler: get_vehicle_history },
   { name: 'search_manual', description: 'Busca livre no manual técnico (sistemas, peças, guias).', handler: search_manual },
   { name: 'get_technical_procedure', description: 'Recupera um guia de reparo específico por id, com fonte e aplicabilidade.', handler: get_technical_procedure },
+  { name: 'capture_diagnostic_sample', description: 'Captura uma amostra de dados ao vivo rotulada por regime (idle, higher_rpm...) para o motor de diagnóstico.', handler: capture_diagnostic_sample },
+  { name: 'run_diagnosis', description: 'Roda o motor de diagnóstico por hipóteses sobre um caso (sintoma, DTCs, amostras, testes reportados).', handler: run_diagnosis },
 ] as const;

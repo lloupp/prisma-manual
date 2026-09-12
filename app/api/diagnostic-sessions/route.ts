@@ -24,6 +24,9 @@ export async function POST(req: NextRequest) {
       freezeFrame: body.freezeFrame ?? null,
       finalSamples: body.finalSamples ?? null,
       symptomsReported: body.symptomsReported,
+      diagnosticSamples: Array.isArray(body.diagnosticSamples) ? body.diagnosticSamples : null,
+      reportedTests: Array.isArray(body.reportedTests) ? body.reportedTests : null,
+      hypothesesSnapshot: body.hypothesesSnapshot ?? null,
     });
     return NextResponse.json({ session }, { status: 201 });
   } catch (e) {

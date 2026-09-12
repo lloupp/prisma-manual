@@ -11,6 +11,7 @@ const STATUS_LABELS: Record<string, string> = {
   NO_RESPONSE: 'SEM RESPOSTA',
   TIMEOUT: 'TEMPO ESGOTADO',
   PROTOCOL_ERROR: 'RESPOSTA INVÁLIDA',
+  STALE: 'DADO OBSOLETO',
 };
 
 function formatValue(reading: PidReading): string {

@@ -23,6 +23,8 @@ const EXPECTED_TOOL_NAMES = [
   'get_vehicle_history',
   'search_manual',
   'get_technical_procedure',
+  'capture_diagnostic_sample',
+  'run_diagnosis',
 ].sort();
 
 const FORBIDDEN_IDENTIFIERS = [

@@ -39,6 +39,7 @@ export interface StatusResponse {
 
 export type PidReading =
   | { status: 'OK'; value: number; unit: string; name?: string; shortName?: string }
+  | { status: 'STALE'; value: number; unit: string; name?: string; shortName?: string }
   | { status: 'NOT_SUPPORTED'; name?: string; shortName?: string }
   | { status: 'NO_RESPONSE'; name?: string; shortName?: string }
   | { status: 'TIMEOUT'; name?: string; shortName?: string }
@@ -116,6 +117,63 @@ export async function getFreezeFrame(): Promise<Record<string, PidReading> | nul
 
 export function getLiveWebSocketUrl(): string {
   return `${getBaseUrl().replace('http', 'ws')}/live/ws`;
+}
+
+export interface SimulatorScenarioDescriptor {
+  id: string;
+  label: string;
+  description: string;
+}
+
+/** Lista os cenários do simulador disponíveis. Só retorna algo quando o OBD
+ * Service está rodando com o transporte SIMULATOR - com hardware real
+ * (SERIAL) o endpoint não existe (404). */
+export async function listSimulatorScenarios(): Promise<SimulatorScenarioDescriptor[]> {
+  const { scenarios } = await request<{ scenarios: SimulatorScenarioDescriptor[] }>('/simulator/scenarios');
+  return scenarios;
+}
+
+/** Troca o cenário ativo do simulador em tempo real, sem precisar
+ * reiniciar o OBD Service. Sem efeito (e sem sentido) com hardware real. */
+export async function setSimulatorScenario(scenarioId: string): Promise<void> {
+  await request('/simulator/scenario', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ scenarioId }),
+  });
+}
+
+export interface RecordingFileDescriptor {
+  fileName: string;
+  id: string;
+  label: string;
+  recordedAt: string;
+  frameCount: number;
+}
+
+/** Quantos quadros já foram gravados na sessão atual (desde o connect()
+ * ou desde a última chamada de saveCurrentRecording()). */
+export async function getCurrentRecordingStatus(): Promise<{ frameCount: number }> {
+  return request<{ frameCount: number }>('/recording/current');
+}
+
+/** Salva a gravação da sessão atual em disco no OBD Service - o "SAVE" do
+ * ciclo RECORD -> SAVE -> REPLAY. Para reproduzir depois (REPLAY), o OBD
+ * Service precisa ser reiniciado com OBD_TRANSPORT=replay e
+ * OBD_REPLAY_FILE apontando para o arquivo salvo (ver obd-service/README.md) -
+ * o front-end não troca o transporte em tempo real. */
+export async function saveCurrentRecording(label?: string): Promise<{ fileName: string; id: string; frameCount: number }> {
+  return request('/recording/save', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ label }),
+  });
+}
+
+/** Lista as sessões já salvas em disco no OBD Service. */
+export async function listSavedRecordings(): Promise<RecordingFileDescriptor[]> {
+  const { recordings } = await request<{ recordings: RecordingFileDescriptor[] }>('/recording/list');
+  return recordings;
 }
 
 export { OBDServiceUnavailableError };
