@@ -42,3 +42,6 @@ npm-debug.log*
 
 # TypeScript build info
 *.tsbuildinfo
+
+# Sessões OBD gravadas (RECORD/SAVE/REPLAY) - dados de execução, não código
+obd-service/recordings/
