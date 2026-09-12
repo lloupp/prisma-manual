@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: PartPageProps): Promise<Metad
   const part = await getPartById(id);
   if (!part) return {};
   return {
-    title: `${part.name} | Manual de Manutenção Prisma`,
+    title: part.name,
     description: part.description,
   };
 }

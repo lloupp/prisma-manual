@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: GuidePageProps): Promise<Meta
   const guide = await getGuideById(id);
   if (!guide) return {};
   return {
-    title: `${guide.title} | Manual de Manutenção Prisma`,
+    title: guide.title,
     description: guide.description,
   };
 }

@@ -18,3 +18,10 @@ export function formatCurrency(valor: number) {
     ? valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
     : '';
 }
+
+/** URL base do site, usada por robots.ts e sitemap.ts */
+export function getBaseUrl(): string {
+  if (process.env.NEXT_PUBLIC_SITE_URL) return process.env.NEXT_PUBLIC_SITE_URL;
+  if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
+  return 'http://localhost:3000';
+}

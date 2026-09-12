@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: SystemPageProps): Promise<Met
   const system = await getSystemById(id);
   if (!system) return {};
   return {
-    title: `${system.name} | Manual de Manutenção Prisma`,
+    title: system.name,
     description: system.description,
   };
 }

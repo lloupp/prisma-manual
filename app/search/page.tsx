@@ -11,7 +11,7 @@ interface SearchPageProps {
 export async function generateMetadata({ searchParams }: SearchPageProps): Promise<Metadata> {
   const { q } = await searchParams;
   return {
-    title: q ? `Busca: ${q} | Manual de Manutenção Prisma` : 'Busca | Manual de Manutenção Prisma',
+    title: q ? `Busca: ${q}` : 'Busca',
   };
 }
 
