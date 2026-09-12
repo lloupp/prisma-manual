@@ -10,6 +10,12 @@ import * as dataParts from '../data/parts';
 import * as dataGuides from '../data/guides';
 import * as dataViews from '../data/views';
 import * as dataHotspots from '../data/hotspots';
+import * as dataSources from '../data/sources';
+import * as dataSourceReferences from '../data/source-references';
+import * as dataSpecifications from '../data/specifications';
+import * as dataFluidSpecifications from '../data/fluid-specifications';
+import * as dataMaintenanceIntervals from '../data/maintenance-intervals';
+import * as dataTorqueSpecifications from '../data/torque-specifications';
 
 async function main() {
   console.log('🔌 Setting up database connection...');
@@ -26,6 +32,12 @@ async function main() {
   await prisma.system.deleteMany();
   await prisma.vehicle.deleteMany();
   await prisma.user.deleteMany();
+  await prisma.sourceReference.deleteMany();
+  await prisma.source.deleteMany();
+  await prisma.specification.deleteMany();
+  await prisma.fluidSpecification.deleteMany();
+  await prisma.maintenanceInterval.deleteMany();
+  await prisma.torqueSpecification.deleteMany();
 
   // Create vehicle
   const vehicleData = {
@@ -128,6 +140,43 @@ async function main() {
     });
   }
   console.log(`✅ ${dataHotspots.hotspots.length} hotspots created`);
+
+  // Create sources
+  for (const source of dataSources.sources) {
+    await prisma.source.create({ data: source });
+  }
+  console.log(`✅ ${dataSources.sources.length} sources created`);
+
+  // Create specifications
+  for (const spec of dataSpecifications.specifications) {
+    await prisma.specification.create({ data: spec });
+  }
+  console.log(`✅ ${dataSpecifications.specifications.length} specifications created`);
+
+  // Create fluid specifications
+  for (const fluid of dataFluidSpecifications.fluidSpecifications) {
+    await prisma.fluidSpecification.create({ data: fluid });
+  }
+  console.log(`✅ ${dataFluidSpecifications.fluidSpecifications.length} fluid specifications created`);
+
+  // Create maintenance intervals
+  for (const interval of dataMaintenanceIntervals.maintenanceIntervals) {
+    await prisma.maintenanceInterval.create({ data: interval });
+  }
+  console.log(`✅ ${dataMaintenanceIntervals.maintenanceIntervals.length} maintenance intervals created`);
+
+  // Create torque specifications (empty until a real source is found)
+  for (const torque of dataTorqueSpecifications.torqueSpecifications) {
+    await prisma.torqueSpecification.create({ data: torque });
+  }
+  console.log(`✅ ${dataTorqueSpecifications.torqueSpecifications.length} torque specifications created`);
+
+  // Create source references (must come after Source and after the
+  // Part/Specification/FluidSpecification/MaintenanceInterval rows they point to)
+  for (const ref of dataSourceReferences.sourceReferences) {
+    await prisma.sourceReference.create({ data: ref });
+  }
+  console.log(`✅ ${dataSourceReferences.sourceReferences.length} source references created`);
 
   // Create default user
   await prisma.user.create({

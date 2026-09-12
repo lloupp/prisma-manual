@@ -48,6 +48,7 @@ function parsePart(part: any) {
     guideIds: staticPart?.guideIds ?? [],
     replacementInterval: part.replacementInterval,
     priceRange: part.priceRange,
+    confidence: part.confidence,
   };
 }
 
@@ -68,6 +69,8 @@ function parseGuide(guide: any) {
     precautions: safeParseArray(guide.precautions),
     commonIssues: safeParseArray(guide.commonIssues),
     professionalHelp: guide.professionalHelp,
+    applicability: guide.applicability,
+    confidence: guide.confidence,
   };
 }
 
@@ -228,3 +231,77 @@ export async function getHotspotsByViewId(viewId: string) {
   const hotspots = await prisma.hotspot.findMany({ where: { viewId } });
   return hotspots.map(parseHotspot);
 }
+
+// ── Especificações técnicas rastreáveis ──────────────────────────────────
+
+export async function getSpecifications() {
+  const prisma = getPrisma();
+  return prisma.specification.findMany({ orderBy: { system: 'asc' } });
+}
+
+export async function getFluidSpecifications() {
+  const prisma = getPrisma();
+  return prisma.fluidSpecification.findMany({ orderBy: { system: 'asc' } });
+}
+
+export async function getMaintenanceIntervals() {
+  const prisma = getPrisma();
+  return prisma.maintenanceInterval.findMany({ orderBy: [{ category: 'asc' }, { intervalKm: 'asc' }] });
+}
+
+export async function getTorqueSpecifications() {
+  const prisma = getPrisma();
+  return prisma.torqueSpecification.findMany({ orderBy: { system: 'asc' } });
+}
+
+function parseSourceReference(ref: any) {
+  return {
+    id: ref.id,
+    subjectId: ref.subjectId,
+    confidence: ref.confidence,
+    page: ref.page,
+    section: ref.section,
+    notes: ref.notes,
+    source: {
+      id: ref.source.id,
+      title: ref.source.title,
+      publisher: ref.source.publisher,
+      documentType: ref.source.documentType,
+      publicationYear: ref.source.publicationYear,
+      url: ref.source.url,
+    },
+  };
+}
+
+/**
+ * Fontes que sustentam uma afirmação específica (peça, guia, especificação...).
+ * Usado pela UI para exibir a citação e o nível de confiança de cada dado.
+ */
+export const getSourceReferences = cache(async (subjectType: string, subjectId: string) => {
+  const prisma = getPrisma();
+  const refs = await prisma.sourceReference.findMany({
+    where: { subjectType, subjectId },
+    include: { source: true },
+  });
+  return refs.map(parseSourceReference);
+});
+
+/**
+ * Todas as SourceReference de um tipo, agrupadas por subjectId. Evita N+1
+ * consultas em páginas que listam muitas especificações de uma vez.
+ */
+export const getSourceReferencesByType = cache(async (subjectType: string) => {
+  const prisma = getPrisma();
+  const refs = await prisma.sourceReference.findMany({
+    where: { subjectType },
+    include: { source: true },
+  });
+  const bySubjectId = new Map<string, ReturnType<typeof parseSourceReference>[]>();
+  for (const ref of refs) {
+    const parsed = parseSourceReference(ref);
+    const list = bySubjectId.get(parsed.subjectId) ?? [];
+    list.push(parsed);
+    bySubjectId.set(parsed.subjectId, list);
+  }
+  return bySubjectId;
+});

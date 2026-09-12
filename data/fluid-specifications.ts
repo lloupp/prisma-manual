@@ -1,0 +1,85 @@
+import { FluidSpecification } from '../types';
+import { Confidence } from '../types/enums';
+
+// "Capacidades de Lubrificantes e Fluidos em Geral" e "Lubrificantes e Fluidos
+// Recomendados" - Manual do Proprietário Chevrolet Prisma, Seção 12, p. 12-6/12-7.
+const APPLICABILITY = 'Chevrolet Prisma Maxx 1.0 8V Flexpower 2009/2010, câmbio manual 5 marchas';
+
+export const fluidSpecifications: FluidSpecification[] = [
+  {
+    id: 'fluid-engine-oil',
+    system: 'MOTOR',
+    fluidType: 'Óleo do motor',
+    specGrade: 'API-SL ou superior, SAE 5W30',
+    capacity: '3,25 litros (sem troca do filtro); 3,5 litros (com troca do filtro)',
+    checkInterval: 'Semanalmente',
+    changeInterval: 'A cada 10.000km ou 12 meses (o que ocorrer primeiro); a cada 5.000km ou 6 meses em condições severas de uso',
+    applicability: APPLICABILITY,
+    confidence: Confidence.OFFICIAL,
+  },
+  {
+    id: 'fluid-manual-transmission',
+    system: 'TRANSMISSAO_MANUAL',
+    fluidType: 'Óleo da transmissão manual',
+    specGrade: 'Óleo mineral SAE 75W85 para engrenagem helicoidal, coloração vermelha',
+    capacity: '1,6 litros',
+    checkInterval: 'Em todas as revisões (a cada 10.000km)',
+    changeInterval: 'Não necessita troca programada',
+    applicability: APPLICABILITY,
+    confidence: Confidence.OFFICIAL,
+  },
+  {
+    id: 'fluid-brake',
+    system: 'FREIOS',
+    fluidType: 'Fluido de freio',
+    specGrade: 'DOT 4 ACDelco',
+    capacity: '0,45 litro (sistema)',
+    checkInterval: 'Mensalmente',
+    changeInterval: 'A cada 30.000km ou 2 anos (o que ocorrer primeiro)',
+    applicability: APPLICABILITY,
+    confidence: Confidence.OFFICIAL,
+  },
+  {
+    id: 'fluid-coolant',
+    system: 'ARREFECIMENTO',
+    fluidType: 'Líquido de arrefecimento',
+    specGrade: 'Aditivo para radiador de longa duração ACDelco (alaranjado), 35% a 50% de aditivo + água potável',
+    capacity: '6,4 litros (sem aquecimento e sem A/C); 6,6 litros (com aquecimento e com A/C)',
+    checkInterval: 'Semanalmente',
+    changeInterval: 'A cada 150.000km ou 5 anos (o que ocorrer primeiro)',
+    applicability: APPLICABILITY,
+    confidence: Confidence.OFFICIAL,
+    notes: 'Não misturar com aditivo de coloração esverdeada (convencional) - reação forma borras e pode causar entupimento/superaquecimento.',
+  },
+  {
+    id: 'fluid-power-steering',
+    system: 'DIRECAO_HIDRAULICA',
+    fluidType: 'Óleo da direção hidráulica',
+    specGrade: 'Dexron II ACDelco',
+    capacity: '0,90 litro',
+    checkInterval: 'Em todas as revisões (a cada 10.000km)',
+    changeInterval: 'Não necessita troca programada',
+    applicability: APPLICABILITY,
+    confidence: Confidence.OFFICIAL,
+  },
+  {
+    id: 'fluid-ac-refrigerant',
+    system: 'AR_CONDICIONADO',
+    fluidType: 'Gás refrigerante do ar-condicionado',
+    specGrade: 'Gás 134A',
+    capacity: '400 gramas',
+    checkInterval: 'Eficiência verificada nas revisões',
+    changeInterval: 'Não necessita troca programada (nova carga se necessário)',
+    applicability: APPLICABILITY,
+    confidence: Confidence.OFFICIAL,
+  },
+  {
+    id: 'fluid-washer',
+    system: 'LAVADOR_PARABRISA',
+    fluidType: 'Fluido do lavador de para-brisa',
+    capacity: '2,6 litros',
+    checkInterval: 'Semanalmente',
+    applicability: APPLICABILITY,
+    confidence: Confidence.OFFICIAL,
+  },
+];

@@ -1,4 +1,6 @@
 // page.tsx
+import Link from 'next/link';
+import { Gauge } from 'lucide-react';
 import SearchBar from '../components/search/SearchBar';
 import CategoryCard from '../components/cards/CategoryCard';
 import CarPreviewCard from '../components/cards/CarPreviewCard';
@@ -14,6 +16,16 @@ export default async function HomePage() {
         <SearchBar />
         <CarPreviewCard />
       </div>
+      <Link
+        href="/especificacoes"
+        className="flex items-center gap-3 bg-zinc-900 border border-zinc-800 hover:border-cyan-500/50 rounded-xl p-5 transition no-underline"
+      >
+        <Gauge className="text-cyan-400 flex-shrink-0" size={28} />
+        <div>
+          <h2 className="text-lg font-semibold text-zinc-100">Especificações Técnicas</h2>
+          <p className="text-sm text-zinc-400">Motor, elétrica, fluidos, plano de manutenção preventiva e torques — cada dado com sua fonte.</p>
+        </div>
+      </Link>
       <section>
         <h2 className="text-2xl font-semibold mb-4">Categorias de Sistemas</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">

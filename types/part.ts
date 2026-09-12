@@ -1,3 +1,5 @@
+import { Confidence } from './enums';
+
 export interface Part {
   id: string;
   systemId: string;
@@ -11,4 +13,6 @@ export interface Part {
   guideIds: string[];
   replacementInterval: string;
   priceRange: string;
+  /** Confiança do código de peça/marca informados - ver AGENTS.md. */
+  confidence: Confidence;
 }

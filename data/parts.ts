@@ -1,4 +1,5 @@
 import { Part } from '../types';
+import { Confidence } from '../types/enums';
 
 export const parts: Part[] = [
   {
@@ -13,7 +14,8 @@ export const parts: Part[] = [
     symptoms: ['Motor com ruído anormal', 'Pressão de óleo baixa', 'Óleo escurecendo rápido'],
     guideIds: ['guide-oil-filter'],
     replacementInterval: 'A cada troca de óleo ou 10.000km',
-    priceRange: 'R$ 25 - R$ 45'
+    priceRange: 'R$ 25 - R$ 45',
+    confidence: Confidence.UNVERIFIED
   },
   {
     id: 'part-drain-plug',
@@ -27,7 +29,8 @@ export const parts: Part[] = [
     symptoms: ['Vazamento de óleo na parte inferior', 'Mancha de óleo no chão'],
     guideIds: ['guide-drain-plug'],
     replacementInterval: 'A cada troca de óleo',
-    priceRange: 'R$ 8 - R$ 15'
+    priceRange: 'R$ 8 - R$ 15',
+    confidence: Confidence.UNVERIFIED
   },
   {
     id: 'part-air-filter',
@@ -40,22 +43,24 @@ export const parts: Part[] = [
     description: 'Filtro de ar do motor 1.0L 8V',
     symptoms: ['Consumo de combustível aumentado', 'Perda de potência', 'Marcha lenta irregular'],
     guideIds: ['guide-air-filter'],
-    replacementInterval: 'A cada 20.000km ou 1 ano',
-    priceRange: 'R$ 35 - R$ 65'
+    replacementInterval: 'Substituir o elemento a cada 30.000km; inspecionar/limpar a cada 10.000km',
+    priceRange: 'R$ 35 - R$ 65',
+    confidence: Confidence.OFFICIAL
   },
   {
     id: 'part-spark-plugs',
     systemId: 'sys-engine-ignition',
     name: 'Velas de Ignição',
-    partNumber: 'BPR6ES',
-    oemNumber: 'NGK BPR6ES',
+    partNumber: 'BR8ES',
+    oemNumber: 'NGK BR8ES',
     brand: 'NGK',
     position: 'Cabeçote do motor - 4 velas',
-    description: 'Velas de ignição NGK BPR6ES para motor 1.0L 8V',
+    description: 'Velas de ignição NGK BR8ES, folga dos eletrodos 0,7 a 0,9mm, para motor 1.0L MPFI Flexpower',
     symptoms: ['Dificuldade para partir', 'Motor falhando', 'Consumo de combustível aumentado', 'Marcha lenta irregular'],
     guideIds: ['guide-spark-plugs'],
-    replacementInterval: 'A cada 30.000km',
-    priceRange: 'R$ 25 - R$ 45 cada'
+    replacementInterval: 'A cada 30.000km (substituir na 3ª, 6ª e 9ª revisão)',
+    priceRange: 'R$ 25 - R$ 45 cada',
+    confidence: Confidence.OFFICIAL
   },
   {
     id: 'part-ignition-coils',
@@ -69,7 +74,8 @@ export const parts: Part[] = [
     symptoms: ['Motor falhando', 'Luz de injeção acesa', 'Dificuldade para partir'],
     guideIds: ['guide-ignition-coils'],
     replacementInterval: 'A cada 60.000km',
-    priceRange: 'R$ 180 - R$ 350 cada'
+    priceRange: 'R$ 180 - R$ 350 cada',
+    confidence: Confidence.UNVERIFIED
   },
   {
     id: 'part-coolant',
@@ -82,8 +88,9 @@ export const parts: Part[] = [
     description: 'Fluido de arrefecimento Aditivo para Arrefecimento OEM',
     symptoms: ['Motor esquentando além do normal', 'Vazamento sob o veículo', 'Nível baixo no vaso expansor'],
     guideIds: ['guide-coolant'],
-    replacementInterval: 'A cada 2 anos ou 40.000km',
-    priceRange: 'R$ 35 - R$ 80'
+    replacementInterval: 'A cada 150.000km ou 5 anos',
+    priceRange: 'R$ 35 - R$ 80',
+    confidence: Confidence.OFFICIAL
   },
   {
     id: 'part-radiator',
@@ -97,7 +104,8 @@ export const parts: Part[] = [
     symptoms: ['Motor esquentando', 'Vazamento de líquido', 'Aquecimento excessivo'],
     guideIds: ['guide-radiator'],
     replacementInterval: 'A cada 100.000km',
-    priceRange: 'R$ 450 - R$ 850'
+    priceRange: 'R$ 450 - R$ 850',
+    confidence: Confidence.UNVERIFIED
   },
   {
     id: 'part-thermostat',
@@ -111,7 +119,8 @@ export const parts: Part[] = [
     symptoms: ['Motor demorando para aquecer', 'Motor esquentando', 'Aquecimento irregular'],
     guideIds: ['guide-thermostat'],
     replacementInterval: 'A cada 80.000km',
-    priceRange: 'R$ 65 - R$ 120'
+    priceRange: 'R$ 65 - R$ 120',
+    confidence: Confidence.UNVERIFIED
   },
   {
     id: 'part-cooling-fan',
@@ -125,7 +134,8 @@ export const parts: Part[] = [
     symptoms: ['Motor esquentando em marcha lenta', 'Ventoinha não liga', 'Ruído anormal da ventoinha'],
     guideIds: ['guide-cooling-fan'],
     replacementInterval: 'A cada 100.000km',
-    priceRange: 'R$ 280 - R$ 500'
+    priceRange: 'R$ 280 - R$ 500',
+    confidence: Confidence.UNVERIFIED
   },
   {
     id: 'part-fuel-filter',
@@ -135,11 +145,12 @@ export const parts: Part[] = [
     oemNumber: 'GM 93321598',
     brand: 'GM Original',
     position: 'Próximo ao tanque de combustível',
-    description: 'Filtro de combustível inline para motores Flex',
+    description: 'Filtro de combustível externo inline para motores Flexpower',
     symptoms: ['Dificuldade para partir', 'Motor parando', 'Perda de potência'],
     guideIds: ['guide-fuel-filter'],
-    replacementInterval: 'A cada 60.000km',
-    priceRange: 'R$ 45 - R$ 90'
+    replacementInterval: 'A cada 10.000km (filtro externo, todas as revisões); o pré-filtro interno ao tanque é substituído separadamente a cada 80.000km',
+    priceRange: 'R$ 45 - R$ 90',
+    confidence: Confidence.OFFICIAL
   },
   {
     id: 'part-wiper-blades',
@@ -153,7 +164,8 @@ export const parts: Part[] = [
     symptoms: ['Ruído ao limpar', 'Limpeza inadequada', 'Visibilidade reduzida com chuva'],
     guideIds: ['guide-wiper-blades'],
     replacementInterval: 'A cada 1 ano ou 20.000 ciclos',
-    priceRange: 'R$ 45 - R$ 120 o par'
+    priceRange: 'R$ 45 - R$ 120 o par',
+    confidence: Confidence.UNVERIFIED
   },
   {
     id: 'part-wiper-arms',
@@ -167,7 +179,8 @@ export const parts: Part[] = [
     symptoms: ['Palheta não encostando no vidro', 'Movimento irregular'],
     guideIds: ['guide-wiper-arms'],
     replacementInterval: 'A cada 3 anos ou conforme necessidade',
-    priceRange: 'R$ 65 - R$ 150 cada'
+    priceRange: 'R$ 65 - R$ 150 cada',
+    confidence: Confidence.UNVERIFIED
   },
   {
     id: 'part-battery',
@@ -177,11 +190,12 @@ export const parts: Part[] = [
     oemNumber: 'Moura 50Ah',
     brand: 'Moura / Tudor / Heliar',
     position: 'Compartimento do motor - lado direito',
-    description: 'Bateria 50Ah 12V para Prisma 1.0L',
+    description: 'Especificação de fábrica: 12V 42Ah. Baterias de reposição 50Ah (como esta) são comumente vendidas como compatíveis, mas essa compatibilidade de capacidade maior não está confirmada por documentação oficial GM/Chevrolet nesta pesquisa.',
     symptoms: ['Dificuldade para partir', 'Luzes fracas', 'Radio reiniciando', 'Bateria com mais de 3 anos'],
     guideIds: ['guide-battery'],
     replacementInterval: 'A cada 2-3 anos ou quando apresentar sinais de falha',
-    priceRange: 'R$ 250 - R$ 450'
+    priceRange: 'R$ 250 - R$ 450',
+    confidence: Confidence.UNVERIFIED
   },
   {
     id: 'part-fuse-box',
@@ -195,7 +209,8 @@ export const parts: Part[] = [
     symptoms: ['Fusíveis queimando frequentemente', 'Componentes elétricos parando de funcionar'],
     guideIds: ['guide-fuse-box'],
     replacementInterval: 'Somente quando necessário',
-    priceRange: 'R$ 180 - R$ 350'
+    priceRange: 'R$ 180 - R$ 350',
+    confidence: Confidence.UNVERIFIED
   },
   {
     id: 'part-fuses',
@@ -209,7 +224,8 @@ export const parts: Part[] = [
     symptoms: ['Componentes parando de funcionar', 'Fusível queimado visível'],
     guideIds: ['guide-fuses'],
     replacementInterval: 'Quando queimado',
-    priceRange: 'R$ 2 - R$ 15 cada'
+    priceRange: 'R$ 2 - R$ 15 cada',
+    confidence: Confidence.UNVERIFIED
   },
   {
     id: 'part-headlight-bulb',
@@ -223,7 +239,8 @@ export const parts: Part[] = [
     symptoms: ['Farol não acendendo', 'Iluminação fraca', 'Lâmpada queimada'],
     guideIds: ['guide-headlight-bulb'],
     replacementInterval: 'Quando queimada ou a cada 2 anos',
-    priceRange: 'R$ 35 - R$ 90 o par'
+    priceRange: 'R$ 35 - R$ 90 o par',
+    confidence: Confidence.UNVERIFIED
   },
   {
     id: 'part-tail-light-bulb',
@@ -237,7 +254,8 @@ export const parts: Part[] = [
     symptoms: ['Luz de freio não acendendo', 'Lanterna apagada'],
     guideIds: ['guide-tail-light-bulb'],
     replacementInterval: 'Quando queimada',
-    priceRange: 'R$ 15 - R$ 35 cada'
+    priceRange: 'R$ 15 - R$ 35 cada',
+    confidence: Confidence.UNVERIFIED
   },
   {
     id: 'part-turn-signal-bulb',
@@ -251,7 +269,8 @@ export const parts: Part[] = [
     symptoms: ['Seta não piscando', 'Pisca rápido demais', 'Lâmpada queimada'],
     guideIds: ['guide-turn-signal-bulb'],
     replacementInterval: 'Quando queimada',
-    priceRange: 'R$ 20 - R$ 45 cada'
+    priceRange: 'R$ 20 - R$ 45 cada',
+    confidence: Confidence.UNVERIFIED
   },
   {
     id: 'part-front-brake-pads',
@@ -265,7 +284,8 @@ export const parts: Part[] = [
     symptoms: ['Ruído ao frear', 'Vibração no pedal', 'Freio desgastando rápido', 'Indicador de desgaste'],
     guideIds: ['guide-front-brake-pads'],
     replacementInterval: 'A cada 30.000 - 50.000km',
-    priceRange: 'R$ 120 - R$ 280 o jogo'
+    priceRange: 'R$ 120 - R$ 280 o jogo',
+    confidence: Confidence.UNVERIFIED
   },
   {
     id: 'part-rear-brake-pads',
@@ -279,7 +299,8 @@ export const parts: Part[] = [
     symptoms: ['Ruído ao frear', 'Freio desgastando de um lado', 'Indicador de desgaste'],
     guideIds: ['guide-rear-brake-pads'],
     replacementInterval: 'A cada 40.000 - 60.000km',
-    priceRange: 'R$ 100 - R$ 220 o jogo'
+    priceRange: 'R$ 100 - R$ 220 o jogo',
+    confidence: Confidence.UNVERIFIED
   },
   {
     id: 'part-brake-fluid',
@@ -289,11 +310,12 @@ export const parts: Part[] = [
     oemNumber: 'Bosch DOT 4',
     brand: 'Bosch / TRW / Varga',
     position: 'Cilindro mestre de freio',
-    description: 'Fluido de freio DOT 4 para sistema hidráulico',
-    symptoms: ['Pedal macio', 'Freio respondendo mal', 'Abs operando incorretamente'],
+    description: 'Fluido de freio DOT 4 ACDelco para sistema hidráulico com 2 circuitos independentes cruzados e auxiliar a vácuo',
+    symptoms: ['Pedal macio', 'Freio respondendo mal ou com curso maior'],
     guideIds: ['guide-brake-fluid'],
-    replacementInterval: 'A cada 2 anos ou 40.000km',
-    priceRange: 'R$ 25 - R$ 55 o litro'
+    replacementInterval: 'A cada 30.000km ou 2 anos',
+    priceRange: 'R$ 25 - R$ 55 o litro',
+    confidence: Confidence.OFFICIAL
   },
   {
     id: 'part-shock-absorbers',
@@ -307,7 +329,8 @@ export const parts: Part[] = [
     symptoms: ['Chacoalho em buracos', 'Suspensão muito macia ou dura', 'Desgaste irregular dos pneus'],
     guideIds: ['guide-shock-absorbers'],
     replacementInterval: 'A cada 80.000km',
-    priceRange: 'R$ 180 - R$ 450 cada'
+    priceRange: 'R$ 180 - R$ 450 cada',
+    confidence: Confidence.UNVERIFIED
   },
   {
     id: 'part-ball-joints',
@@ -321,7 +344,8 @@ export const parts: Part[] = [
     symptoms: ['Ruído na suspensão', 'Folga no volante', 'Desgaste irregular dos pneus'],
     guideIds: ['guide-ball-joints'],
     replacementInterval: 'A cada 100.000km',
-    priceRange: 'R$ 80 - R$ 200 cada'
+    priceRange: 'R$ 80 - R$ 200 cada',
+    confidence: Confidence.UNVERIFIED
   },
   {
     id: 'part-throttle-body',
@@ -335,7 +359,8 @@ export const parts: Part[] = [
     symptoms: ['Marcha lenta irregular', 'Dificuldade para partir', 'Motor apagando em semáforos', 'Aceleração irregular'],
     guideIds: ['guide-throttle-body'],
     replacementInterval: 'Limpeza a cada 30.000km',
-    priceRange: 'R$ 350 - R$ 750'
+    priceRange: 'R$ 350 - R$ 750',
+    confidence: Confidence.UNVERIFIED
   },
   {
     id: 'part-timing-belt',
@@ -346,10 +371,11 @@ export const parts: Part[] = [
     brand: 'Gates / Continental',
     position: 'Lado direito do motor, cobertura da correia',
     description: 'Correia dentada do motor 1.0L 8V com kit tensor e bomba d\'água',
-    symptoms: ['Motor com ruído de batida', 'Tensão irregular', 'Acima de 60.000km sem troca'],
+    symptoms: ['Motor com ruído de batida', 'Tensão irregular'],
     guideIds: ['guide-timing-belt'],
-    replacementInterval: 'A cada 60.000km',
-    priceRange: 'R$ 280 - R$ 550 (kit completo)'
+    replacementInterval: 'Substituir a cada 50.000km; verificar o tensionador automático a cada 20.000km',
+    priceRange: 'R$ 280 - R$ 550 (kit completo)',
+    confidence: Confidence.OFFICIAL
   },
   {
     id: 'part-cv-boot',
@@ -363,21 +389,23 @@ export const parts: Part[] = [
     symptoms: ['Ruído na curva', 'Graxa espalhada na roda', 'Vibração na aceleração'],
     guideIds: ['guide-cv-boot'],
     replacementInterval: 'Inspecionar a cada 20.000km',
-    priceRange: 'R$ 35 - R$ 90 cada'
+    priceRange: 'R$ 35 - R$ 90 cada',
+    confidence: Confidence.UNVERIFIED
   },
   {
     id: 'part-power-steering-fluid',
     systemId: 'sys-suspension',
     name: 'Fluido da Direção Hidráulica',
-    partNumber: 'DIR-HIDRO-1L',
-    oemNumber: 'Texaco Havoline',
-    brand: 'Texaco / Bosch / LPS',
+    partNumber: 'DEXRON-II-1L',
+    oemNumber: 'ACDelco Dexron II',
+    brand: 'ACDelco',
     position: 'Reservatório da bomba de direção hidráulica',
-    description: 'Fluido hidráulico para sistema de direção assistida',
+    description: 'Óleo Dexron II ACDelco para sistema de direção assistida',
     symptoms: ['Volante pesado', 'Ruído ao girar o volante', 'Nível baixo no reservatório'],
     guideIds: ['guide-power-steering-fluid'],
-    replacementInterval: 'A cada 2 anos ou 40.000km',
-    priceRange: 'R$ 30 - R$ 65'
+    replacementInterval: 'Verificar o nível a cada revisão (10.000km); não necessita troca programada, exceto em caso de vazamento',
+    priceRange: 'R$ 30 - R$ 65',
+    confidence: Confidence.OFFICIAL
   },
   {
     id: 'part-clutch-cable',
@@ -391,7 +419,8 @@ export const parts: Part[] = [
     symptoms: ['Embreagem pesada', 'Marcha difícil de engatar', 'Cabo partido', 'Pedal com folga excessiva'],
     guideIds: ['guide-clutch-cable'],
     replacementInterval: 'A cada 60.000km',
-    priceRange: 'R$ 40 - R$ 90'
+    priceRange: 'R$ 40 - R$ 90',
+    confidence: Confidence.UNVERIFIED
   },
   {
     id: 'part-oil-pan-gasket',
@@ -405,7 +434,8 @@ export const parts: Part[] = [
     symptoms: ['Vazamento de óleo na junção do cárter com o bloco', 'Mancha de óleo no chão', 'Consumo de óleo elevado', 'Óleo acumulado na parte inferior do motor'],
     guideIds: ['guide-oil-pan-gasket'],
     replacementInterval: 'Quando apresentar vazamento ou a cada remoção do cárter',
-    priceRange: 'R$ 40 - R$ 90'
+    priceRange: 'R$ 40 - R$ 90',
+    confidence: Confidence.UNVERIFIED
   },
   {
     id: 'part-engine-mounts',
@@ -419,21 +449,23 @@ export const parts: Part[] = [
     symptoms: ['Vibração excessiva na marcha lenta', 'Trancos ao acelerar ou trocar de marcha', 'Ruído de batida ao passar em buracos', 'Motor balançando demais no compartimento'],
     guideIds: ['guide-engine-mounts'],
     replacementInterval: 'A cada 80.000km ou quando apresentar desgaste',
-    priceRange: 'R$ 80 - R$ 250 cada'
+    priceRange: 'R$ 80 - R$ 250 cada',
+    confidence: Confidence.UNVERIFIED
   },
   {
     id: 'part-transmission-fluid',
     systemId: 'sys-engine-oil',
     name: 'Fluido do Câmbio Manual',
     partNumber: '93165290',
-    oemNumber: 'GM 93165290 (75W90)',
-    brand: 'GM Original / Lubrax',
+    oemNumber: 'GM 93165290',
+    brand: 'GM Original',
     position: 'Caixa de câmbio manual',
-    description: 'Óleo lubrificante para a transmissão manual de 5 marchas, especificação 75W90 API GL-4',
+    description: 'Óleo mineral para transmissão manual de 5 marchas, engrenagem helicoidal, SAE 75W85, coloração vermelha',
     symptoms: ['Dificuldade para engatar marchas', 'Ruído na caixa de câmbio', 'Câmbio áspero ou duro', 'Engate de marcha falhando'],
     guideIds: ['guide-transmission-fluid'],
-    replacementInterval: 'A cada 80.000km ou conforme inspeção',
-    priceRange: 'R$ 45 - R$ 90'
+    replacementInterval: 'Verificar o nível a cada revisão (10.000km); não necessita troca programada, exceto em caso de vazamento',
+    priceRange: 'R$ 45 - R$ 90',
+    confidence: Confidence.OFFICIAL
   },
   {
     id: 'part-pcv-valve',
@@ -447,7 +479,8 @@ export const parts: Part[] = [
     symptoms: ['Marcha lenta irregular', 'Consumo de óleo aumentado', 'Fumaça pelo escapamento', 'Pressão excessiva no cárter'],
     guideIds: ['guide-pcv-valve'],
     replacementInterval: 'A cada 40.000km',
-    priceRange: 'R$ 25 - R$ 60'
+    priceRange: 'R$ 25 - R$ 60',
+    confidence: Confidence.UNVERIFIED
   },
   {
     id: 'part-valve-cover-gasket',
@@ -461,7 +494,8 @@ export const parts: Part[] = [
     symptoms: ['Vazamento de óleo no topo do motor', 'Óleo acumulado ao redor das velas', 'Cheiro de óleo queimado', 'Mancha de óleo no cabeçote'],
     guideIds: ['guide-valve-cover-gasket'],
     replacementInterval: 'Quando apresentar vazamento ou a cada 60.000km',
-    priceRange: 'R$ 35 - R$ 80'
+    priceRange: 'R$ 35 - R$ 80',
+    confidence: Confidence.UNVERIFIED
   },
   {
     id: 'part-water-pump',
@@ -475,7 +509,8 @@ export const parts: Part[] = [
     symptoms: ['Superaquecimento do motor', 'Vazamento de líquido de arrefecimento', 'Ruído de rolamento na bomba', 'Nível do líquido de arrefecimento baixando'],
     guideIds: ['guide-water-pump'],
     replacementInterval: 'A cada 60.000km, junto com a correia dentada',
-    priceRange: 'R$ 90 - R$ 220'
+    priceRange: 'R$ 90 - R$ 220',
+    confidence: Confidence.UNVERIFIED
   },
   {
     id: 'part-radiator-hoses',
@@ -489,7 +524,8 @@ export const parts: Part[] = [
     symptoms: ['Vazamento de líquido de arrefecimento', 'Mangueira ressecada ou inchada', 'Superaquecimento do motor', 'Líquido de arrefecimento sob o veículo'],
     guideIds: ['guide-radiator-hoses'],
     replacementInterval: 'A cada 60.000km ou quando ressecadas',
-    priceRange: 'R$ 40 - R$ 120 o par'
+    priceRange: 'R$ 40 - R$ 120 o par',
+    confidence: Confidence.UNVERIFIED
   },
   {
     id: 'part-fuel-pump',
@@ -503,7 +539,8 @@ export const parts: Part[] = [
     symptoms: ['Motor não pega ou pega com dificuldade', 'Falhas e perda de potência em aceleração', 'Ruído anormal vindo do tanque', 'Motor morre durante a condução'],
     guideIds: ['guide-fuel-pump'],
     replacementInterval: 'A cada 100.000km ou quando apresentar falha',
-    priceRange: 'R$ 200 - R$ 550'
+    priceRange: 'R$ 200 - R$ 550',
+    confidence: Confidence.UNVERIFIED
   },
   {
     id: 'part-fuel-injectors',
@@ -517,7 +554,8 @@ export const parts: Part[] = [
     symptoms: ['Marcha lenta irregular', 'Consumo de combustível aumentado', 'Falhas na aceleração', 'Motor engasgando'],
     guideIds: ['guide-fuel-injectors'],
     replacementInterval: 'Limpeza a cada 40.000km, troca conforme necessidade',
-    priceRange: 'R$ 120 - R$ 280 cada'
+    priceRange: 'R$ 120 - R$ 280 cada',
+    confidence: Confidence.UNVERIFIED
   },
   {
     id: 'part-lambda-sensor',
@@ -531,7 +569,8 @@ export const parts: Part[] = [
     symptoms: ['Luz de injeção acesa no painel', 'Consumo de combustível aumentado', 'Marcha lenta irregular', 'Falha na emissão de poluentes'],
     guideIds: ['guide-lambda-sensor'],
     replacementInterval: 'A cada 60.000km a 80.000km',
-    priceRange: 'R$ 120 - R$ 350'
+    priceRange: 'R$ 120 - R$ 350',
+    confidence: Confidence.UNVERIFIED
   },
   {
     id: 'part-alternator',
@@ -545,7 +584,8 @@ export const parts: Part[] = [
     symptoms: ['Luz da bateria acesa no painel', 'Faróis fracos ou oscilando', 'Bateria descarregando constantemente', 'Motor morrendo por falta de carga'],
     guideIds: ['guide-alternator'],
     replacementInterval: 'A cada 120.000km ou quando apresentar falha',
-    priceRange: 'R$ 350 - R$ 750'
+    priceRange: 'R$ 350 - R$ 750',
+    confidence: Confidence.UNVERIFIED
   },
   {
     id: 'part-starter-motor',
@@ -559,7 +599,8 @@ export const parts: Part[] = [
     symptoms: ['Motor não dá partida ao girar a chave', 'Ruído de clique ao tentar ligar', 'Partida lenta ou intermitente', 'Barulho metálico ao acionar a chave'],
     guideIds: ['guide-starter-motor'],
     replacementInterval: 'A cada 120.000km ou quando apresentar falha',
-    priceRange: 'R$ 300 - R$ 650'
+    priceRange: 'R$ 300 - R$ 650',
+    confidence: Confidence.UNVERIFIED
   },
   {
     id: 'part-reverse-light-bulb',
@@ -573,7 +614,8 @@ export const parts: Part[] = [
     symptoms: ['Luz de ré não acende', 'Dificuldade de visibilidade ao dar ré', 'Lâmpada queimada na lanterna'],
     guideIds: ['guide-reverse-light-bulb'],
     replacementInterval: 'Quando queimar',
-    priceRange: 'R$ 8 - R$ 20'
+    priceRange: 'R$ 8 - R$ 20',
+    confidence: Confidence.UNVERIFIED
   },
   {
     id: 'part-license-plate-light',
@@ -587,7 +629,8 @@ export const parts: Part[] = [
     symptoms: ['Placa traseira sem iluminação à noite', 'Lâmpada queimada', 'Risco de multa por placa não iluminada'],
     guideIds: ['guide-license-plate-light'],
     replacementInterval: 'Quando queimar',
-    priceRange: 'R$ 5 - R$ 15'
+    priceRange: 'R$ 5 - R$ 15',
+    confidence: Confidence.UNVERIFIED
   },
   {
     id: 'part-front-brake-disc',
@@ -601,7 +644,8 @@ export const parts: Part[] = [
     symptoms: ['Vibração no pedal ao frear', 'Trepidação no volante em frenagem', 'Ruído ao frear', 'Desgaste irregular das pastilhas'],
     guideIds: ['guide-front-brake-disc'],
     replacementInterval: 'A cada 60.000km ou conforme espessura mínima',
-    priceRange: 'R$ 90 - R$ 200 cada'
+    priceRange: 'R$ 90 - R$ 200 cada',
+    confidence: Confidence.UNVERIFIED
   },
   {
     id: 'part-rear-brake-drum',
@@ -615,7 +659,8 @@ export const parts: Part[] = [
     symptoms: ['Frenagem traseira ineficiente', 'Ruído ao frear', 'Ovalização do tambor', 'Trepidação na frenagem'],
     guideIds: ['guide-rear-brake-drum'],
     replacementInterval: 'A cada 80.000km ou conforme desgaste',
-    priceRange: 'R$ 90 - R$ 180 cada'
+    priceRange: 'R$ 90 - R$ 180 cada',
+    confidence: Confidence.UNVERIFIED
   },
   {
     id: 'part-handbrake-cable',
@@ -629,7 +674,8 @@ export const parts: Part[] = [
     symptoms: ['Freio de mão sem firmeza', 'Alavanca subindo demais', 'Veículo desliza em rampa com freio acionado', 'Cabo enferrujado ou rompido'],
     guideIds: ['guide-handbrake'],
     replacementInterval: 'Ajuste conforme necessário, troca quando desgastado',
-    priceRange: 'R$ 40 - R$ 110'
+    priceRange: 'R$ 40 - R$ 110',
+    confidence: Confidence.UNVERIFIED
   },
   {
     id: 'part-tie-rods',
@@ -643,7 +689,8 @@ export const parts: Part[] = [
     symptoms: ['Folga na direção', 'Ruído ao esterçar o volante', 'Pneus com desgaste irregular', 'Volante trepidando'],
     guideIds: ['guide-tie-rods'],
     replacementInterval: 'A cada 60.000km ou quando apresentar folga',
-    priceRange: 'R$ 35 - R$ 90 cada'
+    priceRange: 'R$ 35 - R$ 90 cada',
+    confidence: Confidence.UNVERIFIED
   },
   {
     id: 'part-stabilizer-bushings',
@@ -657,7 +704,8 @@ export const parts: Part[] = [
     symptoms: ['Ruído de batida ao passar em buracos', 'Barulho na dianteira em curvas', 'Estabilidade reduzida em curvas', 'Trepidação na suspensão'],
     guideIds: ['guide-stabilizer-bushings'],
     replacementInterval: 'A cada 40.000km ou quando ressecadas',
-    priceRange: 'R$ 20 - R$ 60 o jogo'
+    priceRange: 'R$ 20 - R$ 60 o jogo',
+    confidence: Confidence.UNVERIFIED
   },
   {
     id: 'part-wheel-bearings',
@@ -671,7 +719,8 @@ export const parts: Part[] = [
     symptoms: ['Ruído de zumbido aumentando com a velocidade', 'Folga na roda', 'Vibração na direção', 'Aquecimento do cubo de roda'],
     guideIds: ['guide-wheel-bearings'],
     replacementInterval: 'A cada 100.000km ou quando apresentar ruído',
-    priceRange: 'R$ 60 - R$ 180 cada'
+    priceRange: 'R$ 60 - R$ 180 cada',
+    confidence: Confidence.UNVERIFIED
   },
   {
     id: 'part-washer-fluid',
@@ -685,6 +734,7 @@ export const parts: Part[] = [
     symptoms: ['Esguicho sem jato de água', 'Para-brisa sujo sem limpeza adequada', 'Reservatório vazio', 'Manchas no vidro'],
     guideIds: ['guide-washer-fluid'],
     replacementInterval: 'Reposição conforme necessário',
-    priceRange: 'R$ 10 - R$ 30'
+    priceRange: 'R$ 10 - R$ 30',
+    confidence: Confidence.UNVERIFIED
   }
 ];

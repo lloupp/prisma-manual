@@ -9,6 +9,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: baseUrl, changeFrequency: 'monthly' },
     { url: `${baseUrl}/search`, changeFrequency: 'monthly' },
+    { url: `${baseUrl}/especificacoes`, changeFrequency: 'monthly' },
   ];
 
   const systemRoutes = systems.map((s) => ({ url: `${baseUrl}/systems/${s.id}`, changeFrequency: 'yearly' as const }));

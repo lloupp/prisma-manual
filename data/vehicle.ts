@@ -1,4 +1,4 @@
-import { Vehicle, VehicleSpecs } from '../types';
+import { Vehicle } from '../types';
 
 export const vehicle: Vehicle = {
   id: 'prisma-2009-2010',
@@ -17,21 +17,10 @@ export const vehicle: Vehicle = {
   color: 'Preto'
 };
 
-export const vehicleSpecs: VehicleSpecs = {
-  oilType: 'Semi Sintético 5W30',
-  oilViscosity: '5W30',
-  oilCapacity: '3,75L',
-  oilFilterThread: 'M22x1.5',
-  sparkPlugModel: 'NGK BPR6ES',
-  sparkPlugQuantity: 4,
-  batteryAh: 50,
-  batteryVoltage: 12,
-  coolantType: 'Adesivo para Arrefecimento OEM',
-  coolantCapacity: '4,5L',
-  brakeFluidType: 'DOT 4',
-  brakePadFront: 'Pagid 5375-5358',
-  brakePadRear: 'Pagid 5374',
-  wiperBladeSize: '18 polegadas / 450mm',
-  airFilterType: 'Original GM 93330597',
-  fuelFilterType: 'Original GM 93321598'
-};
+// As especificações técnicas do veículo (óleo, velas, fluidos, capacidades)
+// vivem agora em Specification/FluidSpecification/MaintenanceInterval (banco),
+// cada uma com sua fonte rastreável - ver data/specifications.ts,
+// data/fluid-specifications.ts e data/maintenance-intervals.ts. O antigo
+// `vehicleSpecs` estático era código morto (sem nenhuma referência no app)
+// e continha valores não confirmados/divergentes da fonte oficial, por isso
+// foi removido em vez de mantido lado a lado com os dados corretos.

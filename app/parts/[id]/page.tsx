@@ -4,8 +4,10 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import { ArrowLeft, Wrench, Clock, AlertTriangle, ShoppingCart } from 'lucide-react';
-import { getPartById, getSystemById, getGuidesByPartId } from '../../../lib/selectors';
+import { getPartById, getSystemById, getGuidesByPartId, getSourceReferences } from '../../../lib/selectors';
 import { getGuideImageUrl } from '../../../lib/guide-images';
+import ConfidenceBadge from '../../../components/badges/ConfidenceBadge';
+import SourceCitation from '../../../components/badges/SourceCitation';
 
 interface PartPageProps {
   params: Promise<{ id: string }>;
@@ -31,6 +33,7 @@ export default async function PartPage({ params }: PartPageProps) {
 
   const system = await getSystemById(part.systemId);
   const guides = await getGuidesByPartId(id);
+  const sourceRefs = await getSourceReferences('PART', id);
 
   return (
     <div className="flex flex-col gap-8 max-w-4xl mx-auto">
@@ -54,7 +57,10 @@ export default async function PartPage({ params }: PartPageProps) {
 
       {/* Part Header */}
       <div className="bg-zinc-900 rounded-xl p-6 border border-zinc-800">
-        <h1 className="text-3xl font-bold mb-4">{part.name}</h1>
+        <div className="flex items-center gap-3 mb-4">
+          <h1 className="text-3xl font-bold">{part.name}</h1>
+          <ConfidenceBadge confidence={part.confidence} />
+        </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
           <div className="bg-zinc-800 rounded-lg p-3">
@@ -81,6 +87,8 @@ export default async function PartPage({ params }: PartPageProps) {
           <span>Posição:</span>
           <span className="text-zinc-300">{part.position}</span>
         </div>
+
+        <SourceCitation references={sourceRefs} />
 
         <div className="mt-5 flex flex-wrap gap-3">
           <a

@@ -11,14 +11,15 @@ This repository is a Next.js 16 app using the App Router and TypeScript. Route f
 - `npm run typecheck`: run TypeScript without emitting files.
 - `npx prisma migrate dev`: apply local schema changes to SQLite.
 - `npx tsx prisma/seed.ts`: repopulate `dev.db` from the files in `data/`.
+- `npm run test`: run the content-integrity test suite (vitest).
 
-Run `npm run lint && npm run typecheck` before opening a PR. Use `.env` for `DATABASE_URL`; `lib/prisma.ts` currently defaults to `file:./dev.db` for local work.
+Run `npm run lint && npm run typecheck && npm run test` before opening a PR. Use `.env` for `DATABASE_URL`; `lib/prisma.ts` currently defaults to `file:./dev.db` for local work.
 
 ## Coding Style & Naming Conventions
 Use TypeScript and React function components. Follow the existing code style: single quotes, semicolons, and simple named exports in shared modules. Keep route components and UI components in `PascalCase` (`CategoryCard.tsx`), utilities in lowercase files (`lib/utils.ts`), and data/type files in lowercase or camelCase by domain (`data/guides.ts`, `types/repairGuide.ts`). Prefer small, focused edits over broad rewrites.
 
 ## Testing Guidelines
-There is no automated test suite in the repository yet. Treat `lint`, `typecheck`, and a local smoke test in `npm run dev` as the minimum validation. When adding behavior, verify the affected route and any Prisma-backed reads manually. If you add tests later, place them near the feature or in a dedicated `tests/` folder and name them `*.test.ts` or `*.test.tsx`.
+`tests/content-integrity.test.ts` (vitest) enforces the technical-accuracy rules for this project: every specification/part/fluid/interval/torque marked with a confidence above `UNVERIFIED` must have a matching `SourceReference`, `OFFICIAL` claims need an `OFFICIAL`-confidence reference, every `TorqueSpecification` row must cite a source (the table may simply stay empty instead), and every guide needs a non-empty `precautions` list, a valid `partId`, and sequential step numbers. Run `npm run test` before adding or changing anything in `data/parts.ts`, `data/guides.ts`, `data/specifications.ts`, `data/fluid-specifications.ts`, `data/maintenance-intervals.ts`, `data/torque-specifications.ts`, or `data/source-references.ts`. Never add a specification with `confidence` above `UNVERIFIED` without a real, checkable source in `data/sources.ts` — see the "Rastreabilidade" rules for this project. Beyond content integrity, treat `lint`, `typecheck`, and a local smoke test in `npm run dev` as the minimum validation for app-code changes.
 
 ## Commit & Pull Request Guidelines
 Git history is not available in this directory, so no local commit convention can be inferred. Use short, imperative commit messages such as `feat: add guide search filters` or `fix: handle empty systems list`. PRs should include a concise description, affected paths, validation commands, and screenshots for UI changes. Link the related issue when one exists.

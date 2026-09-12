@@ -1171,7 +1171,7 @@ export const guides = [
   precautions: [
     'Nunca abra o sistema de arrefecimento com motor quente.',
     'Descarte o líquido drenado corretamente.',
-    'Use termostato com temperatura de abertura correta (geralmente 88°C).'
+    'Use um termostato com a temperatura de abertura especificada para o motor 1.0L Flexpower. Informação ainda não confirmada por documentação técnica nesta pesquisa — não foi possível localizar a temperatura exata em fonte oficial; confirme com a peça original removida ou uma Concessionária Chevrolet antes de comprar a peça nova.'
   ],
   commonIssues: [
     'Termostato instalado invertido causando superaquecimento imediato.',
@@ -1569,7 +1569,7 @@ export const guides = [
     precautions: [
       'A correia dentada é componente crítico de segurança — não economize com peças de procedência duvidosa.',
       'Troque sempre o kit completo: correia + tensor + bomba d\'água.',
-      'Respeite rigorosamente o intervalo de troca de 60.000km.'
+      'Respeite rigorosamente o intervalo oficial: substituir a cada 50.000km (Manual do Proprietário Chevrolet Prisma, Seção 13).'
     ],
     commonIssues: [
       'Motor não parte após a troca por marcas de PMS fora de posição.',
@@ -1712,7 +1712,7 @@ export const guides = [
         description: 'Localize o pedal de embreagem e a porca de regulagem na extremidade do cabo. Anote ou fotografe a posição atual da regulagem.',
         imageUrl: '',
         status: 'pending',
-        tips: ['A folga correta do pedal é de 15 a 25mm antes de sentir resistência.'],
+        tips: ['O Manual do Proprietário recomenda verificar o curso livre do pedal periodicamente, mas não especifica a medida em mm. Informação ainda não confirmada por documentação técnica nesta pesquisa.'],
         warnings: []
       },
       {
@@ -1736,7 +1736,7 @@ export const guides = [
       {
         stepNumber: 4,
         title: 'Regulagem da folga',
-        description: 'Ajuste a porca de regulagem até obter 15-25mm de folga no pedal antes de sentir resistência. Confirme que as marchas engajam suavemente.',
+        description: 'Ajuste a porca de regulagem até obter uma folga perceptível no pedal antes de sentir resistência (a medida exata em mm não foi confirmada por documentação técnica nesta pesquisa — regule por sensibilidade e teste o engate das marchas). Confirme que as marchas engajam suavemente.',
         imageUrl: '',
         status: 'pending',
         tips: ['Faça o teste com o motor desligado antes e depois com motor ligado.'],

@@ -1,4 +1,4 @@
-import { DifficultyLevel, GuideStepStatus } from './enums';
+import { DifficultyLevel, GuideStepStatus, Confidence } from './enums';
 
 export interface GuideStep {
   stepNumber: number;
@@ -26,4 +26,8 @@ export interface RepairGuide {
   professionalHelp: string;
   /** URL da imagem principal do guia (para preview) */
   imageUrl?: string;
+  /** Veículo/motorização a que este procedimento se aplica. */
+  applicability: string;
+  /** Confiança do procedimento em si - ver AGENTS.md. */
+  confidence: Confidence;
 }

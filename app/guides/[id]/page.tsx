@@ -7,6 +7,7 @@ import { ArrowLeft, Clock, Wrench, AlertTriangle, PlayCircle, ShoppingCart } fro
 import { getGuideById, getPartById, getSystemById } from '../../../lib/selectors';
 import { formatTime } from '../../../lib/utils';
 import { getGuideImageUrl } from '../../../lib/guide-images';
+import ConfidenceBadge from '../../../components/badges/ConfidenceBadge';
 
 interface GuidePageProps {
   params: Promise<{ id: string }>;
@@ -77,8 +78,12 @@ export default async function GuidePage({ params }: GuidePageProps) {
       <div className="bg-zinc-900 rounded-xl p-6 border border-zinc-800">
         <div className="flex flex-col md:flex-row gap-6">
           <div className="flex-1">
-            <h1 className="text-3xl font-bold mb-3">{guide.title}</h1>
-            <p className="text-zinc-400 mb-6">{guide.description}</p>
+            <div className="flex items-center gap-3 mb-3">
+              <h1 className="text-3xl font-bold">{guide.title}</h1>
+              <ConfidenceBadge confidence={guide.confidence} />
+            </div>
+            <p className="text-zinc-400 mb-1">{guide.description}</p>
+            <p className="text-zinc-500 text-xs mb-6">Aplicável a: {guide.applicability}</p>
 
             <div className="flex flex-wrap gap-3">
               <span className={`${difficulty.bg} ${difficulty.color} px-3 py-1 rounded-full text-sm font-medium`}>

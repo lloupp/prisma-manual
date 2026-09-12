@@ -9,6 +9,18 @@ datasource db {
   provider = "sqlite"
 }
 
+// Nível de confiança de uma especificação técnica ou procedimento.
+// OFFICIAL: confirmado em documentação oficial GM/Chevrolet.
+// OEM: confirmado pelo fabricante original do componente.
+// CROSS_VERIFIED: confirmado por múltiplas fontes técnicas independentes.
+// UNVERIFIED: ainda sem confirmação suficiente - nunca deve ser exibido como fato ao usuário.
+enum Confidence {
+  OFFICIAL
+  OEM
+  CROSS_VERIFIED
+  UNVERIFIED
+}
+
 model Vehicle {
   id          String   @id
   name        String
@@ -37,7 +49,7 @@ model System {
 }
 
 model Part {
-  id                  String   @id
+  id                  String     @id
   systemId            String
   name                String
   partNumber          String
@@ -47,17 +59,21 @@ model Part {
   description         String
   replacementInterval String
   priceRange          String
-  createdAt           DateTime @default(now())
-  updatedAt           DateTime @updatedAt
+  // Confiança do código de peça (partNumber/oemNumber) e da marca informados.
+  // Sem SourceReference correspondente, permanece UNVERIFIED por padrão -
+  // ver testes de integridade em prisma/validate-content.ts.
+  confidence          Confidence @default(UNVERIFIED)
+  createdAt           DateTime   @default(now())
+  updatedAt           DateTime   @updatedAt
 
-  system              System   @relation(fields: [systemId], references: [id])
+  system              System     @relation(fields: [systemId], references: [id])
   guides              Guide[]
 
   @@index([systemId])
 }
 
 model Guide {
-  id                  String   @id
+  id                  String     @id
   partId              String
   title               String
   description         String
@@ -65,13 +81,18 @@ model Guide {
   estimatedTime       String
   estimatedTimeMinutes Int
   imageUrl            String?
-  precautions         String   // JSON array stored as string
-  commonIssues        String   // JSON array stored as string
+  precautions         String     // JSON array stored as string
+  commonIssues        String     // JSON array stored as string
   professionalHelp    String
-  createdAt           DateTime @default(now())
-  updatedAt           DateTime @updatedAt
+  // Veículo/motorização a que este procedimento se aplica.
+  applicability       String     @default("Chevrolet Prisma Maxx 1.0 8V Flexpower 2009/2010, câmbio manual 5 marchas")
+  // Confiança do procedimento em si (sequência de passos). Os torques e medidas
+  // citados dentro dos passos têm sua própria confiança via TorqueSpecification.
+  confidence          Confidence @default(UNVERIFIED)
+  createdAt           DateTime   @default(now())
+  updatedAt           DateTime   @updatedAt
 
-  part                Part     @relation(fields: [partId], references: [id])
+  part                Part       @relation(fields: [partId], references: [id])
   steps               GuideStep[]
 
   @@index([partId])
@@ -133,4 +154,118 @@ model User {
   name      String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+// ── Rastreabilidade técnica ──────────────────────────────────────────────
+// Um documento (manual do proprietário, manual de reparação, boletim técnico,
+// catálogo OEM etc.) usado como base para uma ou mais especificações.
+model Source {
+  id              String   @id
+  title           String
+  publisher       String
+  documentType    String   // OWNER_MANUAL | WORKSHOP_MANUAL | OEM_CATALOG | TECHNICAL_BULLETIN | WIRING_DIAGRAM | OTHER
+  publicationYear Int?
+  url             String?
+  file            String?
+  notes           String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  references      SourceReference[]
+}
+
+// Liga uma fonte a uma afirmação técnica específica (peça, especificação,
+// fluido, intervalo, torque, guia...) identificada por subjectType+subjectId,
+// já que cada tipo de afirmação já tem seu próprio modelo/tabela.
+// Uma mesma afirmação pode ter várias SourceReference (múltiplas fontes).
+model SourceReference {
+  id          String     @id
+  sourceId    String
+  subjectType String     // PART | GUIDE | SPECIFICATION | FLUID_SPECIFICATION | MAINTENANCE_INTERVAL | TORQUE_SPECIFICATION
+  subjectId   String
+  page        String?
+  section     String?
+  confidence  Confidence
+  notes       String?
+  createdAt   DateTime   @default(now())
+
+  source      Source     @relation(fields: [sourceId], references: [id])
+
+  @@index([sourceId])
+  @@index([subjectType, subjectId])
+}
+
+// Especificação técnica pontual (motor, sistema elétrico, transmissão, freios,
+// pneus...) que não é um fluido nem um torque - ex.: capacidade da bateria,
+// modelo/folga da vela, relação de marcha, pressão dos pneus.
+model Specification {
+  id            String     @id
+  system        String     // MOTOR | SISTEMA_ELETRICO | TRANSMISSAO | FREIOS | PNEUS | DIRECAO | CARROCERIA
+  label         String
+  value         String
+  unit          String?
+  applicability String     @default("Chevrolet Prisma Maxx 1.0 8V Flexpower 2009/2010")
+  confidence    Confidence @default(UNVERIFIED)
+  notes         String?
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+
+  @@index([system])
+}
+
+// Fluido/lubrificante: tipo, capacidade e intervalo de verificação/troca.
+model FluidSpecification {
+  id              String     @id
+  system          String     // MOTOR | TRANSMISSAO_MANUAL | FREIOS | ARREFECIMENTO | DIRECAO_HIDRAULICA | AR_CONDICIONADO | LAVADOR_PARABRISA
+  fluidType       String
+  specGrade       String?
+  capacity        String?
+  checkInterval   String?
+  changeInterval  String?
+  applicability   String     @default("Chevrolet Prisma Maxx 1.0 8V Flexpower 2009/2010")
+  confidence      Confidence @default(UNVERIFIED)
+  notes           String?
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
+
+  @@index([system])
+}
+
+// Item do plano de manutenção preventiva (quadro de revisões oficial).
+model MaintenanceInterval {
+  id                String     @id
+  category          String     // MOTOR | ARREFECIMENTO | FREIOS | SUSPENSAO_DIRECAO | CARROCERIA | ELETRICA
+  service           String     // ex.: "Velas de ignição: substituir"
+  intervalKm        Int?
+  intervalMonths    Int?
+  severeConditionKm Int?
+  severeConditionMonths Int?
+  notes             String?
+  applicability     String     @default("Chevrolet Prisma Maxx 1.0 8V Flexpower 2009/2010")
+  confidence        Confidence @default(UNVERIFIED)
+  createdAt         DateTime   @default(now())
+  updatedAt         DateTime   @updatedAt
+
+  @@index([category])
+}
+
+// Torque de aperto. A tabela existe para dar suporte à funcionalidade -
+// só deve ser populada quando houver fonte real (manual de reparação
+// oficial, boletim técnico ou catálogo OEM); nenhuma linha aqui pode ficar
+// com confidence UNVERIFIED e ser exibida como valor confirmado.
+model TorqueSpecification {
+  id            String     @id
+  system        String     // MOTOR | SUSPENSAO | FREIOS | TRANSMISSAO | DIRECAO | RODAS
+  component     String
+  fastener      String
+  valueNm       Float?
+  valueKgfm     Float?
+  condition     String?
+  applicability String     @default("Chevrolet Prisma Maxx 1.0 8V Flexpower 2009/2010")
+  confidence    Confidence @default(UNVERIFIED)
+  notes         String?
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+
+  @@index([system])
 }

@@ -39,3 +39,12 @@ export enum GuideStepStatus {
   IN_PROGRESS = 'in_progress',
   COMPLETED = 'completed'
 }
+
+// Nível de confiança de uma especificação/procedimento - ver AGENTS.md.
+// UNVERIFIED nunca deve ser apresentado ao usuário como um fato confirmado.
+export enum Confidence {
+  OFFICIAL = 'OFFICIAL',
+  OEM = 'OEM',
+  CROSS_VERIFIED = 'CROSS_VERIFIED',
+  UNVERIFIED = 'UNVERIFIED'
+}

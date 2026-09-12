@@ -132,6 +132,7 @@ npm run start
 | `npm run start` | Executar build de produção |
 | `npm run lint` | ESLint (eslint-config-next) |
 | `npm run typecheck` | Verificação TypeScript (tsc --noEmit) |
+| `npm run test` | Testes de integridade de conteúdo (vitest) — ver AGENTS.md |
 | `npx prisma migrate dev` | Aplicar mudanças no schema ao banco |
 | `npx tsx prisma/seed.ts` | Repovoar banco com dados de `data/` |
 
@@ -144,23 +145,42 @@ npm run start
 ```
 Vehicle (1) ──< System (10)
                 │
-                └──< Part (23)
+                └──< Part (49)
                       │
-                      └──< Guide (18)
+                      └──< Guide (49)
                             │
-                            └──< GuideStep (78)
+                            └──< GuideStep (216)
 
 Vehicle (1) ──< CarView (6)
                  │
                  └──< Hotspot (12)
+
+Source (1) ──< SourceReference (>=1 por especificação/peça verificada)
+                │
+                ├─ referencia Part
+                ├─ referencia Specification
+                ├─ referencia FluidSpecification
+                ├─ referencia MaintenanceInterval
+                └─ referencia TorqueSpecification
 ```
 
 ### Padrão de Dados
 
 O projeto usa **dados híbridos**:
-- **Banco SQLite** (via Prisma + LibSQL): entidades relacionais (vehicle, systems, parts, guides, views, hotspots)
+- **Banco SQLite** (via Prisma + LibSQL): entidades relacionais (vehicle, systems, parts, guides, views, hotspots, specifications, fluid specifications, maintenance intervals, torque specifications, sources)
 - **Dados estáticos TypeScript** (`data/`): metadados ricos como symptoms, tools, materials, tips, warnings que não fazem sentido armazenar no banco relacional
 - A função `parsePart()` e `parseGuide()` em `lib/selectors.ts` mescla dados do banco com dados estáticos
+
+### Rastreabilidade Técnica
+
+Toda especificação (torque, fluido, capacidade, intervalo, código de peça) tem um campo `confidence`
+(`OFFICIAL` / `OEM` / `CROSS_VERIFIED` / `UNVERIFIED`) e pode referenciar uma ou mais `Source` através
+de `SourceReference` — ver os models em `prisma/schema.prisma`. `UNVERIFIED` é o padrão e nunca deve
+aparecer como fato confirmado na UI (componente `ConfidenceBadge`); a fonte usada nesta pesquisa está
+documentada em `data/sources.ts`, e o mapeamento de cada afirmação para sua página exata está em
+`data/source-references.ts`. `npm run test` valida automaticamente que nenhuma linha com confiança
+acima de `UNVERIFIED` fica sem fonte — ver `tests/content-integrity.test.ts` e a seção "Testing
+Guidelines" do AGENTS.md.
 
 ### Busca
 
@@ -177,6 +197,7 @@ Normalização de texto em português: remoção de acentos usando `normalize('N
 | `/parts/[id]` | Detalhes da peça + guias disponíveis |
 | `/guides/[id]` | Guia completo com passo a passo |
 | `/search?q=` | Busca por sistemas, peças e guias |
+| `/especificacoes` | Especificações gerais, fluidos, plano de manutenção preventiva e torques, cada um com fonte citada |
 
 ---
 

@@ -8,3 +8,8 @@ export * from './repairGuide';
 export * from './toolItem';
 export * from './materialItem';
 export * from './carHotspot';
+export * from './source';
+export * from './specification';
+export * from './fluidSpecification';
+export * from './maintenanceInterval';
+export * from './torqueSpecification';
