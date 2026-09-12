@@ -198,6 +198,23 @@ Normalização de texto em português: remoção de acentos usando `normalize('N
 | `/guides/[id]` | Guia completo com passo a passo |
 | `/search?q=` | Busca por sistemas, peças e guias |
 | `/especificacoes` | Especificações gerais, fluidos, plano de manutenção preventiva e torques, cada um com fonte citada |
+| `/scanner` | Scanner OBD-II: conecta ao [OBD Service](#scanner-obd-ii) local, mostra dados ao vivo, gráficos e DTC/freeze frame |
+| `/historico` | Prontuário do veículo: sessões de diagnóstico OBD anteriores |
+
+---
+
+## Scanner OBD-II
+
+O Scanner lê dados reais do carro através de um adaptador OBD-USB, mas o navegador nunca fala com a porta serial diretamente. Há um serviço local separado:
+
+```
+Prisma → adaptador OBD-USB → porta serial → obd-service (processo Node local)
+       → HTTP/WebSocket (localhost:4405) → app Next.js (/scanner)
+```
+
+- **Para usar**: `cd obd-service && npm install && npm run dev` (inicia em modo simulador por padrão, sem precisar do carro conectado), depois abra `/scanner`.
+- **Somente leitura**: não existe, em nenhum lugar do código, uma função para apagar DTC, escrever na ECU ou controlar atuadores - a interface de transporte simplesmente não tem esse método, e um segundo checador em runtime rejeita qualquer coisa fora do allowlist de leitura.
+- **Adaptador real ainda não testado em hardware**: o transporte serial segue a documentação pública do protocolo ELM327/OBD-II, mas este ambiente de desenvolvimento não tem porta serial para validar contra um adaptador físico. Veja `obd-service/README.md` e `AGENTS.md` (seção "OBD Scanner Architecture") para detalhes, limitações e o que falta antes da próxima fase (diagnóstico guiado por IA, análise de tendências).
 
 ---
 
