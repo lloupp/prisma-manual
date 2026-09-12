@@ -138,6 +138,26 @@ export default function ScannerPage() {
   };
 
   const handleDisconnect = async () => {
+    if (profile && sessionStartRef.current) {
+      await fetch('/api/diagnostic-sessions', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          id: `session-${Date.now()}`,
+          startedAt: sessionStartRef.current,
+          endedAt: new Date().toISOString(),
+          port: profile.port,
+          protocol: profile.protocol,
+          ecuResponded: profile.ecuResponded,
+          supportedPids: profile.supportedPids,
+          dtcs,
+          freezeFrame,
+          finalSamples: live,
+        }),
+      }).catch(() => {
+        // Falha ao salvar o histórico não deve impedir a desconexão real.
+      });
+    }
     await obdDisconnect().catch(() => {});
     setState('DISCONNECTED');
     setProfile(null);

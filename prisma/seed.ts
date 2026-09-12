@@ -23,7 +23,10 @@ async function main() {
   const prisma = new PrismaClient({ adapter });
   console.log('🌱 Starting seed...');
 
-  // Clear existing data
+  // Clear existing data.
+  // DiagnosticSession is deliberately NOT cleared here: it holds the
+  // user's real OBD scan history, not static manual content, so re-seeding
+  // the manual must never wipe it out.
   await prisma.hotspot.deleteMany();
   await prisma.carView.deleteMany();
   await prisma.guideStep.deleteMany();

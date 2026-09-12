@@ -1,6 +1,6 @@
 // page.tsx
 import Link from 'next/link';
-import { Gauge, ScanLine } from 'lucide-react';
+import { Gauge, ScanLine, History } from 'lucide-react';
 import SearchBar from '../components/search/SearchBar';
 import CategoryCard from '../components/cards/CategoryCard';
 import CarPreviewCard from '../components/cards/CarPreviewCard';
@@ -16,7 +16,7 @@ export default async function HomePage() {
         <SearchBar />
         <CarPreviewCard />
       </div>
-      <div className="grid md:grid-cols-2 gap-4">
+      <div className="grid md:grid-cols-3 gap-4">
         <Link
           href="/especificacoes"
           className="flex items-center gap-3 bg-zinc-900 border border-zinc-800 hover:border-cyan-500/50 rounded-xl p-5 transition no-underline"
@@ -35,6 +35,16 @@ export default async function HomePage() {
           <div>
             <h2 className="text-lg font-semibold text-zinc-100">Scanner OBD</h2>
             <p className="text-sm text-zinc-400">Conecte o adaptador OBD-USB e veja dados ao vivo, DTCs e freeze frame do seu Prisma. Somente leitura.</p>
+          </div>
+        </Link>
+        <Link
+          href="/historico"
+          className="flex items-center gap-3 bg-zinc-900 border border-zinc-800 hover:border-cyan-500/50 rounded-xl p-5 transition no-underline"
+        >
+          <History className="text-cyan-400 flex-shrink-0" size={28} />
+          <div>
+            <h2 className="text-lg font-semibold text-zinc-100">Histórico</h2>
+            <p className="text-sm text-zinc-400">Sessões de diagnóstico OBD anteriores - o prontuário do seu Prisma.</p>
           </div>
         </Link>
       </div>

@@ -269,3 +269,26 @@ model TorqueSpecification {
 
   @@index([system])
 }
+
+// Prontuário do veículo: uma sessão de diagnóstico OBD (uma conexão do
+// Scanner). Guardamos um resumo, não uma amostra por segundo - registrar
+// LiveDataSample linha a linha para uma ferramenta de uso pessoal seria
+// overengineering (item 30 do escopo do projeto); o snapshot final de
+// leituras (finalSamples) já é suficiente para o agente e para o histórico.
+model DiagnosticSession {
+  id               String    @id
+  startedAt        DateTime  @default(now())
+  endedAt          DateTime?
+  port             String
+  protocol         String?
+  ecuResponded     Boolean   @default(false)
+  supportedPids    String    // JSON array de PIDs (hex)
+  dtcs             String    // JSON array de { code, description }
+  freezeFrame      String?   // JSON: snapshot dos PIDs no momento da falha, se houver
+  finalSamples     String?   // JSON: última leitura de /live antes de desconectar
+  symptomsReported String?   // texto livre informado pelo usuário, opcional
+  notes            String?
+  createdAt        DateTime  @default(now())
+
+  @@index([startedAt])
+}

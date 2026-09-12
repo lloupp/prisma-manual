@@ -305,3 +305,70 @@ export const getSourceReferencesByType = cache(async (subjectType: string) => {
   }
   return bySubjectId;
 });
+
+// ── Prontuário do veículo (sessões de diagnóstico OBD) ───────────────────
+
+export interface CreateDiagnosticSessionInput {
+  id: string;
+  startedAt: string;
+  endedAt?: string;
+  port: string;
+  protocol?: string;
+  ecuResponded: boolean;
+  supportedPids: string[];
+  dtcs: Array<{ code: string; description: string | null }>;
+  freezeFrame?: Record<string, unknown> | null;
+  finalSamples?: Record<string, unknown> | null;
+  symptomsReported?: string;
+}
+
+export async function createDiagnosticSession(input: CreateDiagnosticSessionInput) {
+  const prisma = getPrisma();
+  return prisma.diagnosticSession.create({
+    data: {
+      id: input.id,
+      startedAt: new Date(input.startedAt),
+      endedAt: input.endedAt ? new Date(input.endedAt) : new Date(),
+      port: input.port,
+      protocol: input.protocol,
+      ecuResponded: input.ecuResponded,
+      supportedPids: JSON.stringify(input.supportedPids),
+      dtcs: JSON.stringify(input.dtcs),
+      freezeFrame: input.freezeFrame ? JSON.stringify(input.freezeFrame) : null,
+      finalSamples: input.finalSamples ? JSON.stringify(input.finalSamples) : null,
+      symptomsReported: input.symptomsReported,
+    },
+  });
+}
+
+function parseDiagnosticSession(session: any) {
+  return {
+    id: session.id,
+    startedAt: session.startedAt,
+    endedAt: session.endedAt,
+    port: session.port,
+    protocol: session.protocol,
+    ecuResponded: session.ecuResponded,
+    supportedPids: safeParseArray(session.supportedPids),
+    dtcs: session.dtcs ? JSON.parse(session.dtcs) : [],
+    freezeFrame: session.freezeFrame ? JSON.parse(session.freezeFrame) : null,
+    finalSamples: session.finalSamples ? JSON.parse(session.finalSamples) : null,
+    symptomsReported: session.symptomsReported,
+    notes: session.notes,
+  };
+}
+
+export async function getDiagnosticSessions(limit = 50) {
+  const prisma = getPrisma();
+  const sessions = await prisma.diagnosticSession.findMany({
+    orderBy: { startedAt: 'desc' },
+    take: limit,
+  });
+  return sessions.map(parseDiagnosticSession);
+}
+
+export const getDiagnosticSessionById = cache(async (id: string) => {
+  const prisma = getPrisma();
+  const session = await prisma.diagnosticSession.findUnique({ where: { id } });
+  return session ? parseDiagnosticSession(session) : null;
+});
