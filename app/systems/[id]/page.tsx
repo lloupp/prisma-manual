@@ -1,6 +1,7 @@
 // app/systems/[id]/page.tsx
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import { Metadata } from 'next';
 import { ArrowLeft } from 'lucide-react';
 import { MLButton } from '../../../components/MLButton';
 import { getSystemById, getPartsBySystemId } from '../../../lib/selectors';
@@ -18,6 +19,16 @@ const CATEGORY_ICONS: Record<string, string> = {
 
 interface SystemPageProps {
   params: Promise<{ id: string }>;
+}
+
+export async function generateMetadata({ params }: SystemPageProps): Promise<Metadata> {
+  const { id } = await params;
+  const system = await getSystemById(id);
+  if (!system) return {};
+  return {
+    title: system.name,
+    description: system.description,
+  };
 }
 
 export default async function SystemPage({ params }: SystemPageProps) {

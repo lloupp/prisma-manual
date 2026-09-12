@@ -1,12 +1,24 @@
 // app/parts/[id]/page.tsx
 import Link from 'next/link';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
+import { Metadata } from 'next';
 import { ArrowLeft, Wrench, Clock, AlertTriangle, ShoppingCart } from 'lucide-react';
 import { getPartById, getSystemById, getGuidesByPartId } from '../../../lib/selectors';
 import { getGuideImageUrl } from '../../../lib/guide-images';
 
 interface PartPageProps {
   params: Promise<{ id: string }>;
+}
+
+export async function generateMetadata({ params }: PartPageProps): Promise<Metadata> {
+  const { id } = await params;
+  const part = await getPartById(id);
+  if (!part) return {};
+  return {
+    title: part.name,
+    description: part.description,
+  };
 }
 
 export default async function PartPage({ params }: PartPageProps) {
@@ -137,9 +149,11 @@ export default async function PartPage({ params }: PartPageProps) {
                 >
                   <div className="flex items-start gap-4">
                     {imageUrl && (
-                      <img
+                      <Image
                         src={imageUrl}
                         alt={guide.title}
+                        width={80}
+                        height={64}
                         className="w-20 h-16 object-contain rounded bg-zinc-800 flex-shrink-0"
                       />
                     )}

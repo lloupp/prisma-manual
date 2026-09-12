@@ -5,7 +5,10 @@ import AppShell from '../components/layout/AppShell';
 import ThemeProviders from '../components/layout/ThemeProviders';
 
 export const metadata = {
-  title: 'Manual de Manutenção Prisma',
+  title: {
+    default: 'Manual de Manutenção Prisma',
+    template: '%s | Manual de Manutenção Prisma',
+  },
   description: 'Seu guia visual, rápido e inteligente para manutenção do Chevrolet Prisma.',
 };
 

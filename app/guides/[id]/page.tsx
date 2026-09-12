@@ -1,6 +1,8 @@
 // app/guides/[id]/page.tsx
 import Link from 'next/link';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
+import { Metadata } from 'next';
 import { ArrowLeft, Clock, Wrench, AlertTriangle, PlayCircle, ShoppingCart } from 'lucide-react';
 import { getGuideById, getPartById, getSystemById } from '../../../lib/selectors';
 import { formatTime } from '../../../lib/utils';
@@ -8,6 +10,16 @@ import { getGuideImageUrl } from '../../../lib/guide-images';
 
 interface GuidePageProps {
   params: Promise<{ id: string }>;
+}
+
+export async function generateMetadata({ params }: GuidePageProps): Promise<Metadata> {
+  const { id } = await params;
+  const guide = await getGuideById(id);
+  if (!guide) return {};
+  return {
+    title: guide.title,
+    description: guide.description,
+  };
 }
 
 export default async function GuidePage({ params }: GuidePageProps) {
@@ -105,9 +117,11 @@ export default async function GuidePage({ params }: GuidePageProps) {
             const imageUrl = getGuideImageUrl(guide.id);
             return imageUrl ? (
               <div className="flex-shrink-0">
-                <img
+                <Image
                   src={imageUrl}
                   alt={guide.title}
+                  width={192}
+                  height={144}
                   className="w-48 h-36 object-contain rounded-lg bg-zinc-800 border border-zinc-700"
                 />
               </div>
