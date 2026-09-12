@@ -1,0 +1,24 @@
+{
+  "name": "prisma-obd-service",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Serviço local de OBD-II para o Manual de Manutenção Prisma - roda separado do app Next.js, fala com o adaptador OBD->USB via porta serial e expõe HTTP/WebSocket local.",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "start": "tsx src/index.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "serialport": "^13.0.0",
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/ws": "^8.5.0",
+    "tsx": "^4.23.0",
+    "typescript": "^5.7.0",
+    "vitest": "^5.0.0"
+  }
+}
