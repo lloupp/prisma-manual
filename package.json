@@ -8,7 +8,12 @@
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run"
+    "test": "vitest run",
+    "db:check": "node --import tsx scripts/check-database.ts",
+    "db:seed": "node --import tsx prisma/seed.ts",
+    "db:preview:plan": "node --import tsx scripts/migrate-preview.ts",
+    "db:preview:apply": "node --import tsx scripts/migrate-preview.ts --apply",
+    "build:vercel": "prisma generate && npm run db:check && next build"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.3.1",

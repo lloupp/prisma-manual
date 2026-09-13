@@ -125,6 +125,12 @@ npm run start
 
 ## Scripts Disponíveis
 
+Para corrigir previews com banco desatualizado, siga o
+[procedimento de recuperação](docs/preview-database-recovery.md).
+`npm run db:preview:plan` inspeciona sem alterar; `db:preview:apply` aplica a
+atualização aditiva; `db:seed` atualiza o catálogo sem exclusões; `db:check`
+valida conexão, schema e presença do manual. O build Vercel não modifica o banco.
+
 | Comando | Descrição |
 |---------|-----------|
 | `npm run dev` | Servidor de desenvolvimento |
@@ -134,7 +140,7 @@ npm run start
 | `npm run typecheck` | Verificação TypeScript (tsc --noEmit) |
 | `npm run test` | Testes de integridade de conteúdo (vitest) — ver AGENTS.md |
 | `npx prisma migrate dev` | Aplicar mudanças no schema ao banco |
-| `npx tsx prisma/seed.ts` | Repovoar banco com dados de `data/` |
+| `npm run db:seed` | Atualizar catálogo no banco configurado, preservando registros extras, usuários e histórico |
 
 ---
 
