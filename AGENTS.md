@@ -30,14 +30,14 @@ carro -> adaptador OBD-USB -> porta serial -> obd-service (Node, processo local)
 - `npm run start`: run the production build locally.
 - `npm run lint`: run ESLint (`eslint-config-next` core-web-vitals + TypeScript rules).
 - `npm run typecheck`: run TypeScript without emitting files.
-- `npx prisma migrate dev`: apply local schema changes to SQLite.
-- `npx tsx prisma/seed.ts`: repopulate `dev.db` from the files in `data/`.
+- `npx prisma migrate dev`: apply local schema changes to Postgres.
+- `npx tsx prisma/seed.ts`: repopulate the database from the files in `data/`.
 - `npm run test`: run the content-integrity and agent-safety test suite (vitest) - root project only, `obd-service/` has its own.
 - `cd obd-service && npm install && npm run dev`: start the OBD Service locally (simulator by default) - required before `/scanner` or `/historico` do anything useful.
 - `cd obd-service && npm run test`: run the OBD Service's own test suite (protocol decoding, simulator fault injection, connection manager, write-safety scans).
 - `cd obd-service && npx tsc --noEmit`: typecheck the OBD Service (its own tsconfig, not the root one).
 
-Run `npm run lint && npm run typecheck && npm run test` (root) and `cd obd-service && npx tsc --noEmit && npm run test` before opening a PR. Use `.env` for `DATABASE_URL`; `lib/prisma.ts` currently defaults to `file:./dev.db` for local work.
+Run `npm run lint && npm run typecheck && npm run test` (root) and `cd obd-service && npx tsc --noEmit && npm run test` before opening a PR. Use `.env` for `DATABASE_URL`/`DIRECT_URL` (Supabase Postgres) - local dev and production share the same database, so local work now requires network access; see `.env.example`.
 
 ## Coding Style & Naming Conventions
 Use TypeScript and React function components. Follow the existing code style: single quotes, semicolons, and simple named exports in shared modules. Keep route components and UI components in `PascalCase` (`CategoryCard.tsx`), utilities in lowercase files (`lib/utils.ts`), and data/type files in lowercase or camelCase by domain (`data/guides.ts`, `types/repairGuide.ts`). Prefer small, focused edits over broad rewrites.

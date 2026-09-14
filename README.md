@@ -5,7 +5,7 @@ Aplicação web interativa de manual de manutenção automotiva para o **Chevrol
 ![Next.js](https://img.shields.io/badge/Next.js-16-000000?style=flat-square&logo=next.js)
 ![TypeScript](https://img.shields.io/badge/TypeScript-6-3178C6?style=flat-square&logo=typescript)
 ![Prisma](https://img.shields.io/badge/Prisma-7-5A67D8?style=flat-square&logo=prisma)
-![SQLite](https://img.shields.io/badge/SQLite-3-003B57?style=flat-square&logo=sqlite)
+![Postgres](https://img.shields.io/badge/Postgres-Supabase-3ECF8E?style=flat-square&logo=supabase)
 
 ## Índice
 
@@ -40,7 +40,7 @@ Manual de manutenção interativo com:
 | Framework | Next.js 16 (App Router) |
 | Linguagem | TypeScript 6 |
 | Estilização | Tailwind CSS + Lucide React |
-| Banco de dados | SQLite via Prisma 7 + LibSQL adapter |
+| Banco de dados | Postgres (Supabase) via Prisma 7 + adapter-pg |
 | UI | Radix-like primitives, theming com next-themes |
 
 ---
@@ -78,8 +78,7 @@ prisma-manual/
 │   └── guide-images.ts           # Mapeamento de imagens dos guias
 ├── prisma/                       # Prisma ORM
 │   ├── schema.prisma             # Schema do banco
-│   ├── seed.ts                   # Script de seed
-│   └── dev.db                    # Banco SQLite local
+│   └── seed.ts                   # Script de seed
 ├── public/images/guides/         # Imagens SVG dos guias
 ├── types/                        # Tipos TypeScript
 └── .env                          # Variáveis de ambiente (não versionar)
@@ -103,6 +102,10 @@ cd prisma-manual
 
 # Instalar dependências
 npm install
+
+# Configurar variáveis de ambiente (Postgres/Supabase - ver .env.example)
+cp .env.example .env
+# edite .env com DATABASE_URL e DIRECT_URL do seu projeto Supabase
 
 # Aplicar migrations e popular banco
 npx prisma migrate dev --name init
@@ -167,7 +170,7 @@ Source (1) ──< SourceReference (>=1 por especificação/peça verificada)
 ### Padrão de Dados
 
 O projeto usa **dados híbridos**:
-- **Banco SQLite** (via Prisma + LibSQL): entidades relacionais (vehicle, systems, parts, guides, views, hotspots, specifications, fluid specifications, maintenance intervals, torque specifications, sources)
+- **Banco Postgres** (Supabase, via Prisma + adapter-pg): entidades relacionais (vehicle, systems, parts, guides, views, hotspots, specifications, fluid specifications, maintenance intervals, torque specifications, sources)
 - **Dados estáticos TypeScript** (`data/`): metadados ricos como symptoms, tools, materials, tips, warnings que não fazem sentido armazenar no banco relacional
 - A função `parsePart()` e `parseGuide()` em `lib/selectors.ts` mescla dados do banco com dados estáticos
 

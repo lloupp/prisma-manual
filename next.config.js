@@ -8,8 +8,7 @@ const nextConfig = {
     if (isServer) {
       config.externals = [
         ...(config.externals || []),
-        '@libsql/client',
-        '@prisma/adapter-libsql',
+        'pg',
       ];
     }
     // Three.js uses browser APIs — exclude from SSR bundle

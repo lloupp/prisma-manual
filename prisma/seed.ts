@@ -3,7 +3,7 @@
 
 import 'dotenv/config';
 import { PrismaClient } from '@prisma/client';
-import { PrismaLibSql } from '@prisma/adapter-libsql';
+import { PrismaPg } from '@prisma/adapter-pg';
 import { vehicle } from '../data/vehicle';
 import * as dataSystems from '../data/systems';
 import * as dataParts from '../data/parts';
@@ -19,7 +19,9 @@ import * as dataTorqueSpecifications from '../data/torque-specifications';
 
 async function main() {
   console.log('🔌 Setting up database connection...');
-  const adapter = new PrismaLibSql({ url: 'file:./dev.db' });
+  const url = process.env.DATABASE_URL;
+  if (!url) throw new Error('DATABASE_URL is not set.');
+  const adapter = new PrismaPg({ connectionString: url });
   const prisma = new PrismaClient({ adapter });
   console.log('🌱 Starting seed...');
 
